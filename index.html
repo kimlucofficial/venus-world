@@ -1,590 +1,1145 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="vi">
+<head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="support.js"></script>
-<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="18" fill="#0A0613"/><circle cx="50" cy="42" r="16" fill="#C79BFF"/><ellipse cx="50" cy="42" rx="26" ry="7" fill="none" stroke="#F9B8F5" stroke-width="2.5" transform="rotate(-16 50 42)"/><text x="50" y="78" font-family="Verdana,sans-serif" font-size="15" font-weight="bold" fill="#F9D6FF" text-anchor="middle">VW</text></svg></template>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Venus World — Vietnam Roleplay · FiveM</title>
+<meta name="description" content="Venus World — server roleplay Việt Nam trên FiveM. Bắt đầu cuộc đời thứ hai của bạn. Open Server 16.09.2026.">
+<meta name="theme-color" content="#FFF1F8">
+<meta property="og:title" content="Venus World — Vietnam Roleplay">
+<meta property="og:description" content="Một cuộc đời thứ hai đang chờ bạn ở thành phố Venus. Open Server 16.09.2026.">
+<meta property="og:image" content="assets/hero.webp">
+<link rel="icon" href="assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   VENUS WORLD — CANDY PASTEL
+   Kem sữa · kẹo bông · viền sticker · nút gummy
+   ============================================================ */
+:root{
+  /* nền */
+  --milk:#FFF8FC;    --cream:#FFEFF8;   --sugar:#FDE7FF;   --lav:#F0E6FF;
+  /* kẹo */
+  --gum:#FF8FD1;     --gum-d:#FF63BB;   --straw:#FFB3DE;
+  --grape:#B98BFF;   --grape-d:#9B63F0; --lilac:#DCC7FF;
+  --mint:#9BE9D6;    --sky:#A9D9FF;     --butter:#FFE39A;  --peach:#FFC2AE;
+  /* mực */
+  --ink:#4E2270;     --ink-2:#7B5C99;   --ink-3:#A48CBE;
+  --line:#EBD8F5;
+  --ease:cubic-bezier(.2,.75,.2,1);
+  --bounce:cubic-bezier(.34,1.56,.64,1);
+  --shell:min(1240px,100%);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--milk)}
+body{
+  margin:0;color:var(--ink);background:var(--milk);
+  font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body.is-locked{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:var(--grape-d);text-decoration:none;transition:color .25s var(--ease)}
+a:hover{color:var(--gum-d)}
+button{font-family:inherit}
+::selection{background:var(--gum);color:#fff}
+h1,h2,h3,.d{font-family:'Baloo 2','Be Vietnam Pro',sans-serif;font-weight:800;line-height:1.1;letter-spacing:-.005em;margin:0;color:var(--ink)}
+.mono{font-family:'Chakra Petch',monospace}
+::-webkit-scrollbar{width:12px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gum),var(--grape));border-radius:99px;border:3px solid var(--cream)}
+
+/* ============ NỀN KẸO ============ */
+.bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background:
+    radial-gradient(60% 50% at 12% 8%,rgba(255,143,209,.22),transparent 62%),
+    radial-gradient(55% 45% at 88% 18%,rgba(185,139,255,.22),transparent 62%),
+    radial-gradient(50% 40% at 50% 100%,rgba(155,233,214,.2),transparent 62%),
+    linear-gradient(180deg,#FFF8FC,#FDEFFA 40%,#F5ECFF 100%)}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;will-change:transform}
+.b1{width:44vw;height:44vw;left:-10vw;top:2vh;background:radial-gradient(circle,rgba(255,143,209,.7),transparent 66%);animation:drift1 24s ease-in-out infinite}
+.b2{width:40vw;height:40vw;right:-8vw;top:26vh;background:radial-gradient(circle,rgba(185,139,255,.62),transparent 66%);animation:drift2 30s ease-in-out infinite}
+.b3{width:46vw;height:46vw;left:26vw;bottom:-18vw;background:radial-gradient(circle,rgba(169,217,255,.55),transparent 66%);animation:drift1 36s ease-in-out infinite reverse}
+@keyframes drift1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(5vw,4vh,0) scale(1.12)}}
+@keyframes drift2{0%,100%{transform:translate3d(0,0,0) scale(1.05)}50%{transform:translate3d(-6vw,6vh,0) scale(.92)}}
+.dots{position:absolute;inset:-20%;opacity:.5;
+  background-image:radial-gradient(4px 4px at 30px 30px,rgba(255,143,209,.32),transparent),
+    radial-gradient(3px 3px at 110px 80px,rgba(185,139,255,.28),transparent),
+    radial-gradient(3.5px 3.5px at 70px 140px,rgba(169,217,255,.3),transparent),
+    radial-gradient(3px 3px at 170px 20px,rgba(255,227,154,.34),transparent);
+  background-size:200px 200px;animation:drift 90s linear infinite}
+@keyframes drift{to{transform:translate3d(-200px,-200px,0)}}
+
+/* sprinkles rơi */
+.fall{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.sprk{position:absolute;top:-8%;border-radius:99px;opacity:.85;animation:fall linear infinite}
+@keyframes fall{0%{transform:translate3d(0,-10vh,0) rotate(0)}100%{transform:translate3d(var(--dx,40px),112vh,0) rotate(760deg)}}
+
+/* ============ SPLASH ============ */
+#splash{position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(170deg,#FFF8FC,#FFE7F5 45%,#EFE2FF);transition:opacity .7s ease,visibility .7s}
+#splash.gone{opacity:0;visibility:hidden;pointer-events:none}
+#splash::before{content:"";position:absolute;inset:0;opacity:.55;
+  background-image:radial-gradient(5px 5px at 40px 40px,rgba(255,143,209,.4),transparent),
+    radial-gradient(4px 4px at 130px 100px,rgba(185,139,255,.36),transparent),
+    radial-gradient(4px 4px at 80px 160px,rgba(169,217,255,.4),transparent);
+  background-size:210px 210px}
+.sp-inner{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;padding:0 24px}
+.sp-mascot{width:clamp(130px,17vw,186px);animation:spHop 1.4s var(--bounce) infinite;
+  filter:drop-shadow(0 20px 26px rgba(255,111,187,.35))}
+@keyframes spHop{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-20px) rotate(4deg)}}
+.sp-word{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(40px,7.6vw,78px);line-height:1;color:#fff;
+  -webkit-text-stroke:0;text-shadow:
+    0 3px 0 #FF8FD1,0 6px 0 #F074C0,0 9px 0 #C77BE8,0 12px 0 #A45FD6,0 16px 24px rgba(164,95,214,.4)}
+.sp-sub{font-family:'Chakra Petch',monospace;font-size:11px;letter-spacing:.32em;color:var(--ink-2);font-weight:600}
+.sp-track{width:min(340px,74vw);height:22px;border-radius:99px;background:#fff;
+  border:3px solid #fff;box-shadow:0 5px 0 #F3C8E6,0 12px 24px rgba(164,95,214,.22);overflow:hidden;padding:0}
+.sp-fill{height:100%;width:0;border-radius:99px;transition:width .35s var(--ease);
+  background:repeating-linear-gradient(115deg,#FF8FD1 0 14px,#FFB3DE 14px 28px,#C7A0FF 28px 42px,#A9D9FF 42px 56px);
+  background-size:200% 100%;animation:candyRoll 1.4s linear infinite}
+@keyframes candyRoll{to{background-position:-112px 0}}
+.sp-pct{font-family:'Chakra Petch',monospace;font-weight:700;font-size:15px;color:var(--gum-d);letter-spacing:.14em}
+
+/* ============ HEADER ============ */
+header{position:fixed;top:0;left:0;right:0;z-index:120;transition:transform .45s var(--ease),background .35s,box-shadow .35s}
+header.solid{background:rgba(255,248,252,.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  box-shadow:0 6px 26px rgba(164,95,214,.14);border-bottom:2px solid #fff}
+header.hide{transform:translate3d(0,-108%,0)}
+.hd{width:var(--shell);margin:0 auto;padding:13px 24px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.brand img{width:46px;height:46px;border-radius:16px;object-fit:cover;border:3px solid #fff;
+  box-shadow:0 5px 0 #F3C8E6,0 10px 20px rgba(164,95,214,.24);transition:transform .4s var(--bounce)}
+.brand:hover img{transform:rotate(-9deg) scale(1.07)}
+.brand b{display:block;font-family:'Baloo 2',sans-serif;font-size:16px;font-weight:800;color:var(--ink);line-height:1.1}
+.brand small{font-family:'Chakra Petch',monospace;font-size:9px;letter-spacing:.24em;color:var(--ink-3);font-weight:600}
+nav.pills{display:flex;align-items:center;gap:3px;margin:0 auto;padding:5px;border-radius:99px;
+  background:#fff;border:2.5px solid #FFE3F3;box-shadow:0 5px 0 #FBDCEF,0 12px 24px rgba(164,95,214,.14)}
+nav.pills a{position:relative;display:flex;align-items:center;gap:7px;padding:10px 16px;border-radius:99px;
+  font-size:13.5px;font-weight:600;color:var(--ink-2);white-space:nowrap;transition:color .25s,background .25s,transform .25s}
+nav.pills a .dot{width:6px;height:6px;border-radius:50%;background:#fff;opacity:0;width:0;margin-left:-7px;transition:all .3s var(--ease)}
+nav.pills a:hover{color:var(--gum-d);background:#FFF0F8}
+nav.pills a.on{color:#fff;font-weight:700;background:linear-gradient(180deg,#FFA5DA,#FF6FC0 60%,#E96FD4);
+  box-shadow:0 4px 0 #D94FA5,0 8px 16px rgba(255,111,192,.4)}
+nav.pills a.on .dot{opacity:1;width:6px;margin-left:0}
+.burger{display:none;flex:0 0 auto;width:48px;height:48px;border-radius:16px;cursor:pointer;
+  border:2.5px solid #fff;background:#fff;box-shadow:0 4px 0 #F3C8E6;position:relative}
+.burger i{position:absolute;left:13px;right:13px;height:3px;border-radius:9px;background:var(--gum-d);transition:.3s var(--ease)}
+.burger i:nth-child(1){top:15px}.burger i:nth-child(2){top:21.5px}.burger i:nth-child(3){top:28px}
+.burger.x i:nth-child(1){top:21.5px;transform:rotate(45deg)}
+.burger.x i:nth-child(2){opacity:0}
+.burger.x i:nth-child(3){top:21.5px;transform:rotate(-45deg)}
+#bar{position:absolute;left:0;bottom:-2px;height:4px;width:0;border-radius:0 99px 99px 0;
+  background:repeating-linear-gradient(115deg,#FF8FD1 0 10px,#C7A0FF 10px 20px,#A9D9FF 20px 30px)}
+
+.drawer{position:fixed;inset:0;z-index:115;background:linear-gradient(170deg,#FFF8FC,#F5E9FF);
+  display:flex;flex-direction:column;justify-content:center;gap:9px;padding:92px 22px 36px;
+  opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s;overflow:auto}
+.drawer.open{opacity:1;visibility:visible}
+.drawer a{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:22px;
+  font-family:'Baloo 2',sans-serif;font-size:20px;font-weight:700;color:var(--ink);
+  background:#fff;border:2.5px solid #FFE3F3;box-shadow:0 5px 0 #FBDCEF}
+.drawer a.on{background:linear-gradient(180deg,#FFC2E6,#FFA5DA);border-color:#fff;color:#7A1C56}
+.drawer a span{font-family:'Chakra Petch',monospace;font-size:12px;color:var(--ink-3);margin-left:auto}
+
+/* ============ NÚT GUMMY ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;
+  font-weight:700;text-align:center;border:3px solid #fff;
+  transition:transform .28s var(--bounce),box-shadow .28s var(--ease)}
+.btn-p{padding:15px 30px;border-radius:99px;font-family:'Baloo 2',sans-serif;font-size:17px;color:#fff;
+  background:linear-gradient(180deg,#FFB0DF,#FF6FC0 52%,#E560C4);
+  box-shadow:0 7px 0 #D24C9F,0 16px 28px rgba(255,111,192,.4),inset 0 3px 0 rgba(255,255,255,.6);
+  text-shadow:0 2px 0 rgba(190,50,140,.4)}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 10px 0 #D24C9F,0 22px 38px rgba(255,111,192,.5),inset 0 3px 0 rgba(255,255,255,.6);color:#fff}
+.btn-p:active{transform:translateY(4px);box-shadow:0 3px 0 #D24C9F,0 8px 16px rgba(255,111,192,.36),inset 0 3px 0 rgba(255,255,255,.6)}
+.btn-v{padding:15px 30px;border-radius:99px;font-family:'Baloo 2',sans-serif;font-size:17px;color:#fff;
+  background:linear-gradient(180deg,#D3B4FF,#A574F5 52%,#8B5AE0);
+  box-shadow:0 7px 0 #7245C4,0 16px 28px rgba(165,116,245,.38),inset 0 3px 0 rgba(255,255,255,.55);
+  text-shadow:0 2px 0 rgba(90,40,150,.35)}
+.btn-v:hover{transform:translateY(-3px);box-shadow:0 10px 0 #7245C4,0 22px 38px rgba(165,116,245,.48),inset 0 3px 0 rgba(255,255,255,.55);color:#fff}
+.btn-v:active{transform:translateY(4px);box-shadow:0 3px 0 #7245C4,0 8px 16px rgba(165,116,245,.34),inset 0 3px 0 rgba(255,255,255,.55)}
+.btn-w{padding:14px 26px;border-radius:99px;font-family:'Chakra Petch',monospace;font-size:14px;font-weight:700;
+  letter-spacing:.05em;color:var(--ink);background:#fff;border-color:#FFE3F3;
+  box-shadow:0 6px 0 #F3C8E6,0 12px 22px rgba(164,95,214,.16)}
+.btn-w:hover{transform:translateY(-3px);color:var(--gum-d);box-shadow:0 9px 0 #F3C8E6,0 18px 30px rgba(164,95,214,.22)}
+.btn-w:active{transform:translateY(3px);box-shadow:0 3px 0 #F3C8E6}
+.btn-sm{padding:10px 20px;border-radius:99px;font-size:13.5px;font-family:'Baloo 2',sans-serif;color:#fff;
+  background:linear-gradient(180deg,#FFB0DF,#FF6FC0 60%,#E560C4);box-shadow:0 5px 0 #D24C9F,0 10px 18px rgba(255,111,192,.35);
+  text-shadow:0 1.5px 0 rgba(190,50,140,.35)}
+.btn-sm:hover{transform:translateY(-2px);color:#fff;box-shadow:0 7px 0 #D24C9F,0 14px 24px rgba(255,111,192,.45)}
+
+/* ============ LAYOUT ============ */
+main{position:relative;z-index:2}
+.shell{width:var(--shell);margin:0 auto;padding-left:24px;padding-right:24px}
+.sec{padding:clamp(56px,7vw,104px) 0;position:relative}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:5px 20px 5px 5px;border-radius:99px;
+  background:#fff;border:2.5px solid #FFE3F3;box-shadow:0 5px 0 #FBDCEF;margin-bottom:20px}
+.badge img{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:50% 20%;background:#F6E9FF}
+.badge span{font-family:'Chakra Petch',monospace;font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--gum-d)}
+.h2{font-size:clamp(30px,4.1vw,54px);text-wrap:balance}
+.grad{background:linear-gradient(100deg,#FF6FC0,#C77BE8 55%,#7FA8FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{margin:16px 0 0;font-size:16.5px;line-height:1.75;color:var(--ink-2);max-width:56ch;text-wrap:pretty}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* dải sọc kẹo */
+.stripe{height:16px;background:repeating-linear-gradient(115deg,#FF8FD1 0 18px,#FFC2E6 18px 36px,#C7A0FF 36px 54px,#A9D9FF 54px 72px);
+  border-top:3px solid #fff;border-bottom:3px solid #fff}
+
+/* sóng ngăn section */
+.wave{display:block;width:100%;height:clamp(38px,5vw,68px)}
+
+/* ============ HERO ============ */
+#home{position:relative;padding-top:104px}
+.hero-frame{position:relative;padding:14px;border-radius:44px;background:#fff;border:4px solid #fff;
+  box-shadow:0 12px 0 #F6CFE9,0 34px 60px rgba(164,95,214,.28)}
+.hero-art{position:relative;border-radius:32px;overflow:hidden}
+.hero-art>img{width:100%;height:auto;transform:scale(1.02);transition:transform 1.4s var(--ease)}
+.hero-frame:hover .hero-art>img{transform:scale(1.06)}
+.hero-shine{position:absolute;top:0;bottom:0;width:24%;left:-30%;z-index:2;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-16deg);
+  animation:shine 6.5s ease-in-out infinite}
+@keyframes shine{0%{left:-30%}55%,100%{left:126%}}
+.hero-corner{position:absolute;width:clamp(54px,6vw,78px);z-index:4;pointer-events:none;filter:drop-shadow(0 8px 14px rgba(164,95,214,.35))}
+.hc-l{left:-14px;top:-24px;transform:rotate(-14deg)}
+.hc-r{right:-14px;top:-20px;transform:rotate(14deg) scaleX(-1)}
+.hero-body{position:relative;z-index:3;text-align:center;display:flex;flex-direction:column;align-items:center;
+  margin-top:clamp(28px,3.6vw,44px)}
+.hero-h1{font-size:clamp(34px,5.6vw,72px);max-width:16ch;text-wrap:balance}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:26px}
+.hero-stats{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+.stat{display:flex;align-items:center;gap:9px;padding:11px 20px;border-radius:99px;background:#fff;
+  border:2.5px solid var(--sc,#FFE3F3);box-shadow:0 5px 0 var(--ss,#FBDCEF);transition:transform .3s var(--bounce)}
+.stat:hover{transform:translateY(-4px) rotate(-1.5deg)}
+.stat b{font-family:'Baloo 2',sans-serif;font-size:19px;color:var(--sb,#FF6FC0);line-height:1}
+.stat span{font-size:12.5px;color:var(--ink-2);font-weight:500}
+
+/* countdown macaron */
+.cd{display:flex;gap:clamp(9px,1.4vw,16px);justify-content:center;margin-top:34px;flex-wrap:wrap}
+.cd .u{position:relative;min-width:clamp(76px,10vw,106px);padding:15px 10px 12px;border-radius:26px;
+  background:linear-gradient(178deg,#fff,var(--u1,#FFEAF6));border:3px solid #fff;
+  box-shadow:0 8px 0 var(--u2,#F6C4E2),0 18px 30px rgba(164,95,214,.2);transition:transform .35s var(--bounce)}
+.cd .u:hover{transform:translateY(-6px) rotate(-2deg)}
+.cd .u::after{content:"";position:absolute;left:18%;right:18%;top:9px;height:6px;border-radius:99px;background:rgba(255,255,255,.8)}
+.cd .n{font-family:'Baloo 2',sans-serif;font-size:clamp(28px,3.6vw,40px);font-weight:800;line-height:1;
+  color:var(--u3,#E0559F);font-variant-numeric:tabular-nums}
+.cd .l{font-family:'Chakra Petch',monospace;font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--ink-3);margin-top:6px;text-transform:uppercase}
+
+/* ============ MARQUEE ============ */
+.mq{overflow:hidden;padding:14px 0;background:#fff;border-top:3px solid #FFE3F3;border-bottom:3px solid #FFE3F3;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.mq-in{display:flex;width:max-content;animation:tick 34s linear infinite}
+.mq:hover .mq-in{animation-play-state:paused}
+.mq-set{display:flex;gap:34px;padding-right:34px;align-items:center;white-space:nowrap;
+  font-family:'Chakra Petch',monospace;font-size:13px;font-weight:700;letter-spacing:.16em;color:var(--ink-2)}
+.mq-set b{color:var(--gum-d)}
+.mq-set i{font-style:normal;font-size:16px;color:var(--grape)}
+@keyframes tick{to{transform:translate3d(-50%,0,0)}}
+
+/* ============ THẺ STICKER ============ */
+.grid{display:grid;gap:clamp(20px,2.4vw,30px)}
+.g4{grid-template-columns:repeat(auto-fit,minmax(248px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{position:relative;margin-top:30px;padding:42px 24px 28px;border-radius:32px;background:#fff;
+  border:3px solid var(--cc,#FFC2E6);box-shadow:0 9px 0 var(--cs,#FFD9EE),0 22px 36px rgba(164,95,214,.16);
+  transform:rotate(var(--rot,0deg));transition:box-shadow .4s var(--ease),transform .4s var(--ease)}
+.card::before{content:"";position:absolute;left:0;right:0;top:0;height:78px;border-radius:29px 29px 50% 50%;
+  background:var(--cw,#FFF2F9);pointer-events:none}
+.card>*{position:relative}
+.card:hover{box-shadow:0 13px 0 var(--cs,#FFD9EE),0 30px 50px rgba(164,95,214,.22)}
+.no-tilt .card:hover{transform:rotate(0deg) translateY(-8px)}
+.card h3{font-size:21px;margin:20px 0 8px}
+.card p{margin:0;font-size:14.5px;line-height:1.7;color:var(--ink-2);text-wrap:pretty}
+.orb{position:absolute;top:-30px;left:24px;width:62px;height:62px}
+.orb .ring{position:absolute;left:-15px;right:-15px;top:50%;height:26px;margin-top:-13px;border-radius:50%;
+  border:3px solid var(--cc,#FFC2E6);transform:rotate(-16deg)}
+.orb .ball{position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Chakra Petch',monospace;font-size:21px;font-weight:700;color:#fff;border:3px solid #fff;
+  background:radial-gradient(circle at 32% 26%,#fff 0 6%,var(--cb1,#FFB0DF) 40%,var(--cb2,#FF6FC0) 76%);
+  box-shadow:0 8px 0 var(--cb3,#D24C9F),0 14px 22px rgba(164,95,214,.28);text-shadow:0 2px 0 rgba(0,0,0,.14)}
+.orb .glow{position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,var(--cg,rgba(255,143,209,.32)),transparent 70%)}
+.tape{position:absolute;top:-13px;right:28px;width:70px;height:24px;transform:rotate(8deg);z-index:2;
+  background:linear-gradient(180deg,rgba(255,255,255,.9),var(--cw,#FFE7F4));
+  border-left:3px dashed #fff;border-right:3px dashed #fff;box-shadow:0 3px 8px rgba(164,95,214,.16)}
+
+/* ============ TABS ============ */
+.tabbar{display:flex;flex-wrap:wrap;gap:10px}
+.tab{padding:12px 22px;border-radius:99px;cursor:pointer;font-size:14px;font-weight:700;color:var(--ink-2);
+  background:#fff;border:2.5px solid #FFE3F3;box-shadow:0 5px 0 #FBDCEF;transition:all .28s var(--bounce)}
+.tab:hover{color:var(--gum-d);transform:translateY(-3px)}
+.tab.on{color:#fff;border-color:#fff;background:linear-gradient(180deg,#FFA5DA,#FF6FC0 60%,#E560C4);
+  box-shadow:0 6px 0 #D24C9F,0 12px 20px rgba(255,111,192,.35);transform:translateY(-3px);text-shadow:0 1.5px 0 rgba(190,50,140,.35)}
+.panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,3.6vw,56px);align-items:center}
+.panel h3{font-size:clamp(23px,2.8vw,34px)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.chip{padding:10px 18px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--ink);background:#fff;
+  border:2.5px solid var(--pc,#FFC2E6);box-shadow:0 5px 0 var(--ps,#FFD9EE);transition:transform .3s var(--bounce),box-shadow .3s}
+.chip:hover{transform:translateY(-5px) rotate(-2deg);box-shadow:0 8px 0 var(--ps,#FFD9EE)}
+.polaroid{position:relative;padding:15px 15px 0;border-radius:28px;background:#fff;border:3px solid #fff;
+  transform:rotate(var(--rot,0deg));
+  box-shadow:0 12px 0 #E3CDF7,0 26px 46px rgba(164,95,214,.26);
+  transition:box-shadow .5s var(--ease),transform .5s var(--ease)}
+.no-tilt .polaroid:hover{transform:rotate(0deg) translateY(-8px)}
+.shot{aspect-ratio:4/3;border-radius:20px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(150deg,#FFE7F5,#EFE0FF 55%,#DFF3FF)}
+.shot::before{content:"";position:absolute;inset:0;opacity:.7;
+  background:repeating-linear-gradient(115deg,rgba(255,143,209,.24) 0 13px,rgba(185,139,255,.12) 13px 26px)}
+.shot em{position:relative;z-index:2;font-style:normal;font-family:'Chakra Petch',monospace;font-size:11px;font-weight:700;
+  letter-spacing:.18em;color:var(--ink-2);text-align:center;padding:8px 14px;background:rgba(255,255,255,.8);border-radius:99px}
+.pol-cap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 8px 16px;
+  font-family:'Chakra Petch',monospace;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ============ MOSAIC ============ */
+.mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(110px,12vw,178px);gap:16px}
+.tile{position:relative;border-radius:30px;overflow:hidden;border:3px solid #fff;display:flex;align-items:flex-end;padding:16px;
+  background:linear-gradient(160deg,var(--t1,#FFD9EE),var(--t2,#E7D6FF));
+  box-shadow:0 9px 0 var(--t3,#F0D3EA),0 20px 34px rgba(164,95,214,.18);
+  transition:transform .42s var(--bounce),box-shadow .42s var(--ease)}
+.tile::before{content:"";position:absolute;inset:0;opacity:.55;
+  background:repeating-linear-gradient(115deg,rgba(255,255,255,.6) 0 12px,transparent 12px 24px)}
+.tile::after{content:"";position:absolute;width:120%;height:120%;left:-10%;top:-45%;
+  background:radial-gradient(circle,rgba(255,255,255,.75),transparent 60%);transition:transform .6s}
+.tile:hover{transform:translateY(-6px) rotate(-1deg);box-shadow:0 13px 0 var(--t3,#F0D3EA),0 28px 46px rgba(164,95,214,.24)}
+.tile:hover::after{transform:translateY(30%)}
+.tile b{position:relative;z-index:2;font-family:'Chakra Petch',monospace;font-size:11px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:#fff;
+  padding:8px 14px;border-radius:99px;box-shadow:0 3px 0 rgba(164,95,214,.16)}
+.t-a{grid-column:span 2;grid-row:span 2}.t-b{grid-column:span 2}
+
+/* ============ CONNECT ============ */
+.connect{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:16px;border-radius:30px;
+  background:#fff;border:3px dashed #FFC2E6;box-shadow:0 9px 0 #FFE7F4,0 20px 34px rgba(164,95,214,.14)}
+.connect code{flex:1 1 240px;font-family:'Chakra Petch',monospace;font-size:15px;font-weight:700;
+  letter-spacing:.05em;color:var(--ink);padding:15px 20px;border-radius:20px;
+  background:linear-gradient(150deg,#FFF0F8,#F2E8FF);white-space:nowrap;overflow:auto}
+
+/* ============ ACCORDION ============ */
+.rules{display:flex;flex-direction:column;gap:13px}
+.rule{border-radius:26px;background:#fff;border:3px solid #FFE3F3;box-shadow:0 7px 0 #FBDCEF;
+  overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
+.rule.open{border-color:#FFC2E6;box-shadow:0 9px 0 #FFD9EE,0 20px 32px rgba(164,95,214,.16)}
+.rule-h{display:flex;align-items:center;gap:15px;width:100%;padding:17px 20px;cursor:pointer;
+  background:none;border:0;text-align:left;color:inherit}
+.rule-n{flex:0 0 auto;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Chakra Petch',monospace;font-size:13.5px;font-weight:700;color:#fff;border:3px solid #fff;
+  background:radial-gradient(circle at 32% 26%,#fff 0 6%,#FFB0DF 40%,#FF6FC0 78%);
+  box-shadow:0 5px 0 #D24C9F;text-shadow:0 1.5px 0 rgba(0,0,0,.14)}
+.rule-t{flex:1;font-family:'Baloo 2',sans-serif;font-size:17.5px;font-weight:700;color:var(--ink)}
+.rule-x{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:#FFF0F8;position:relative;transition:transform .35s var(--bounce)}
+.rule-x::before,.rule-x::after{content:"";position:absolute;left:50%;top:50%;background:var(--gum-d);border-radius:9px;transform:translate(-50%,-50%)}
+.rule-x::before{width:13px;height:3px}
+.rule-x::after{width:3px;height:13px;transition:opacity .3s}
+.rule.open .rule-x{transform:rotate(180deg)}
+.rule.open .rule-x::after{opacity:0}
+.rule-b{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+.rule-b p{margin:0;padding:0 22px 20px 77px;font-size:14.5px;line-height:1.75;color:var(--ink-2);text-wrap:pretty}
+
+/* ============ CTA ============ */
+.cta{position:relative;overflow:hidden;border-radius:44px;padding:clamp(38px,5.2vw,68px) clamp(26px,4vw,58px);
+  background:linear-gradient(150deg,#FFD9EE,#F0DCFF 52%,#DDF0FF);border:4px solid #fff;
+  box-shadow:0 14px 0 #EFCFE8,0 32px 54px rgba(164,95,214,.26);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:34px;align-items:center}
+.cta::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background:repeating-linear-gradient(115deg,rgba(255,255,255,.7) 0 20px,transparent 20px 40px)}
+.cta>*{position:relative}
+.cta-mascot{width:clamp(112px,13vw,172px);animation:float 6s ease-in-out infinite;
+  filter:drop-shadow(0 18px 22px rgba(164,95,214,.35))}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-15px) rotate(3deg)}}
+
+/* ============ FOOTER ============ */
+footer{position:relative;z-index:2;background:linear-gradient(180deg,#F7ECFF,#F0E2FF);border-top:3px solid #fff}
+.ft{width:var(--shell);margin:0 auto;padding:46px 24px;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:30px;align-items:start}
+.ft h4{font-family:'Baloo 2',sans-serif;font-size:14px;letter-spacing:.05em;color:var(--gum-d);margin:0 0 12px}
+.ft ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.ft a{font-size:14px;color:var(--ink-2);font-weight:500}
+.ft a:hover{color:var(--gum-d)}
+.ft-note{grid-column:1/-1;padding-top:22px;border-top:2px dashed #DFC9F2;font-size:12.5px;line-height:1.65;color:var(--ink-3)}
+
+/* ============ WIDGET NỔI ============ */
+.fab{position:fixed;right:clamp(14px,2.2vw,26px);bottom:clamp(14px,2.2vw,26px);z-index:100;
+  display:flex;flex-direction:column;align-items:center;gap:12px}
+.fab-mascot{position:relative;width:clamp(80px,7.6vw,106px);opacity:0;transform:translateY(40px);
+  transition:opacity .5s ease,transform .55s var(--bounce);filter:drop-shadow(0 14px 18px rgba(164,95,214,.4))}
+.fab-mascot.show{opacity:1;transform:none}
+.fab-mascot img{animation:float 5.5s ease-in-out infinite}
+.fab-bubble{position:absolute;right:calc(100% + 10px);top:14px;padding:10px 16px;border-radius:20px 20px 5px 20px;
+  font-family:'Baloo 2',sans-serif;font-size:13px;font-weight:700;color:var(--ink);white-space:nowrap;
+  background:#fff;border:2.5px solid #FFE3F3;box-shadow:0 5px 0 #FBDCEF;
+  opacity:0;transform:translateX(8px) scale(.9);transition:.35s var(--bounce);transform-origin:right center}
+.fab-mascot:hover .fab-bubble{opacity:1;transform:none}
+.totop{width:50px;height:50px;border-radius:50%;cursor:pointer;border:3px solid #fff;background:#fff;
+  color:var(--gum-d);font-size:19px;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 5px 0 #F3C8E6,0 12px 20px rgba(164,95,214,.2);
+  opacity:0;transform:translateY(20px);transition:.4s var(--ease)}
+.totop.show{opacity:1;transform:none}
+.totop:hover{transform:translateY(-3px)}
+
+#toast{position:fixed;left:50%;bottom:32px;z-index:300;transform:translate(-50%,26px);opacity:0;
+  padding:13px 26px;border-radius:99px;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:15px;color:#fff;
+  background:linear-gradient(180deg,#FFA5DA,#FF6FC0);border:3px solid #fff;
+  box-shadow:0 7px 0 #D24C9F,0 16px 28px rgba(255,111,192,.4);
+  transition:.4s var(--bounce);pointer-events:none;white-space:nowrap;text-shadow:0 1.5px 0 rgba(190,50,140,.35)}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+.spark{position:fixed;z-index:350;pointer-events:none;width:12px;height:12px;
+  background:radial-gradient(circle,#fff 0 26%,var(--sk,#FF8FD1) 42%,transparent 70%);
+  animation:sparkOut .75s ease-out forwards}
+@keyframes sparkOut{0%{transform:scale(1) rotate(0);opacity:1}100%{transform:scale(0) rotate(180deg);opacity:0}}
+.heart{position:fixed;z-index:350;pointer-events:none;font-size:19px;animation:heartUp 1.5s ease-out forwards}
+@keyframes heartUp{0%{transform:translate(0,0) scale(.4) rotate(0);opacity:1}
+  100%{transform:translate(var(--hx,0),-165px) scale(1.3) rotate(var(--hr,40deg));opacity:0}}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1024px){
+  nav.pills{display:none}
+  .burger{display:block;margin-left:auto}
+  .hd-cta{display:none}
+  .mosaic{grid-template-columns:repeat(2,1fr);grid-auto-rows:clamp(120px,26vw,170px)}
+  .t-a{grid-column:span 2;grid-row:span 1}
+}
+@media (max-width:640px){
+  .shell{padding-left:16px;padding-right:16px}
+  #home{padding-top:86px}
+  .hero-frame{padding:9px;border-radius:30px}
+  .hero-art{border-radius:22px}
+  .hero-corner{display:none}
+  .card{padding:40px 20px 26px;border-radius:26px}
+  .cta{border-radius:32px;padding:32px 20px}
+  .connect code{font-size:13px}
+  .rule-b p{padding-left:22px}
+  .fab-mascot{width:68px}
+  .cd .u{min-width:70px;padding:13px 8px 10px;border-radius:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
 </head>
 <body>
-<x-dc>
-<helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#0A0613;color:#F4EFFF;font-family:'Be Vietnam Pro',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:#C9A9FF;text-decoration:none;transition:color .25s ease}
-a:hover{color:#F58BFF}
-::selection{background:#A66BFF;color:#0A0613}
-@keyframes vDrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-240px,-180px,0)}}
-@keyframes vFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-12px,0)}}
-@keyframes vHalo{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.8;transform:scale(1.06)}}
-@keyframes vShine{0%{transform:translateX(-140%) skewX(-18deg)}100%{transform:translateX(320%) skewX(-18deg)}}
-@keyframes vSpin{to{transform:rotate(360deg)}}
-@keyframes vTick{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
-@keyframes vZoom{from{transform:scale(1.06)}to{transform:scale(1.16)}}
-@keyframes vRise{from{opacity:0;transform:translate3d(0,26px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
-</style>
-</helmet>
 
-
-<div style="position:relative;background:#0A0613;overflow:hidden">
-
-  <sc-if value="{{ splashOn }}" hint-placeholder-val="{{ true }}">
-  <div style="{{ splashStyle }}">
-    <div style="position:absolute;inset:0;overflow:hidden">
-      <img src="assets/hero.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;animation:vZoom 14s ease-out forwards;filter:blur(7px) saturate(1.45) brightness(.8);transform-origin:58% 42%">
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,4,15,.8) 0%,rgba(8,4,15,.55) 30%,rgba(8,4,15,.78) 66%,rgba(8,4,15,.98) 100%)"></div>
-      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,4,15,.94),rgba(8,4,15,.3) 54%,rgba(8,4,15,.6))"></div>
-      <div style="position:absolute;inset:0;background:radial-gradient(60% 70% at 74% 44%,rgba(166,107,255,.34),transparent 68%);mix-blend-mode:screen"></div>
-    </div>
-
-    <div style="position:absolute;top:clamp(22px,4vw,48px);left:clamp(22px,4vw,54px);display:flex;align-items:center;gap:12px">
-      <img src="assets/logo.webp" alt="" style="width:38px;height:38px;border-radius:11px;object-fit:cover;box-shadow:0 0 24px rgba(166,107,255,.6)">
-      <span style="font-family:'Chakra Petch',monospace;font-size:10px;letter-spacing:.34em;color:#BFB2D9">VIETNAM ROLEPLAY · FIVEM</span>
-    </div>
-
-    <div style="position:absolute;left:clamp(22px,4vw,54px);bottom:clamp(96px,13vh,150px);right:clamp(22px,4vw,54px)">
-      <div style="font-family:'Anton',Impact,sans-serif;font-size:clamp(58px,13.5vw,192px);line-height:.82;letter-spacing:-.015em;text-transform:uppercase;color:#FFFFFF;text-shadow:0 18px 60px rgba(8,4,15,.9)">Venus</div>
-      <div style="font-family:'Anton',Impact,sans-serif;font-size:clamp(58px,13.5vw,192px);line-height:.86;letter-spacing:-.015em;text-transform:uppercase;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.9);text-stroke:2px rgba(255,255,255,.9)">World</div>
-      <div style="margin-top:clamp(14px,2vw,22px);max-width:34ch;font-size:clamp(13px,1.3vw,16px);line-height:1.6;color:#C9BDE0">Một cuộc đời thứ hai đang chờ bạn ở thành phố Venus.</div>
-    </div>
-
-    
-    <div style="position:absolute;left:0;right:0;bottom:0">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 clamp(22px,4vw,54px) 16px">
-        <span style="font-family:'Chakra Petch',monospace;font-size:10.5px;letter-spacing:.3em;color:#9A8BBE">ĐANG VÀO THÀNH PHỐ</span>
-        <span style="font-family:'Chakra Petch',monospace;font-size:clamp(20px,2.4vw,30px);font-weight:700;line-height:1;color:#F4EFFF">{{ splashPct }}</span>
-      </div>
-      <div style="height:3px;background:rgba(255,255,255,.1)">
-        <div style="{{ splashBar }}"></div>
-      </div>
-    </div>
+<!-- ============ SPLASH ============ -->
+<div id="splash">
+  <div class="sp-inner">
+    <img class="sp-mascot" src="assets/mascot.png" alt="Kuromi Venus World">
+    <div class="sp-word">Venus World</div>
+    <div class="sp-sub">ĐANG VÀO THÀNH PHỐ</div>
+    <div class="sp-track"><div class="sp-fill" id="spFill"></div></div>
+    <div class="sp-pct" id="spPct">00%</div>
   </div>
-  </sc-if>
-
-
-  <div style="position: fixed; inset: -20%; pointer-events: none; z-index: 0; opacity: .5; background-image: radial-gradient(1.4px 1.4px at 40px 60px,rgba(255,255,255,.6),transparent),radial-gradient(1.2px 1.2px at 160px 20px,rgba(201,169,255,.55),transparent),radial-gradient(1.6px 1.6px at 90px 190px,rgba(245,139,255,.4),transparent),radial-gradient(1px 1px at 220px 140px,rgba(255,255,255,.4),transparent); background-size: 260px 260px; animation: vDrift 100s linear infinite; will-change: transform; left: -242px; top: -152px"></div>
-
-  <header style="position:sticky;top:0;z-index:60;transition:transform .45s cubic-bezier(.2,.7,.2,1);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(10,6,19,.62);border-bottom:1px solid rgba(201,169,255,.12)">
-    <div style="max-width:1400px;margin:0 auto;padding:12px 26px;display:flex;align-items:center;gap:22px;flex-wrap:wrap">
-      <a href="#/Home" sc-camel-on-click="{{ goHome }}" style="display:flex;align-items:center;gap:12px;flex:0 0 auto">
-        <img src="assets/logo.webp" alt="Venus World" style="width:40px;height:40px;border-radius:12px;object-fit:cover;box-shadow:0 0 22px rgba(166,107,255,.55)">
-        <span style="display:flex;flex-direction:column;line-height:1.08">
-          <span style="font-weight:800;font-size:15px;letter-spacing:.03em;color:#F4EFFF">VENUS WORLD</span>
-          <span style="font-family:'Chakra Petch',monospace;font-size:9.5px;letter-spacing:.24em;color:#9A8BBE">VIETNAM ROLEPLAY</span>
-        </span>
-      </a>
-      <nav style="display:flex;align-items:center;gap:2px;margin:0 auto;padding:6px;border-radius:20px;border:1px solid rgba(201,169,255,.16);background:linear-gradient(180deg,rgba(8,4,15,.86),rgba(255,255,255,.055));box-shadow:inset 0 2px 12px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1),0 10px 30px rgba(8,4,15,.5);flex-wrap:wrap">
-        <a href="#/Home" sc-camel-on-click="{{ goHome }}" style="{{ navHome }}"><span style="{{ dotHome }}"></span>Trang chủ</a>
-        <a href="#/Intro" sc-camel-on-click="{{ goIntro }}" style="{{ navIntro }}"><span style="{{ dotIntro }}"></span>Giới thiệu</a>
-        <a href="#/City" sc-camel-on-click="{{ goCity }}" style="{{ navCity }}"><span style="{{ dotCity }}"></span>Thành phố</a>
-        <a href="#/Join" sc-camel-on-click="{{ goJoin }}" style="{{ navJoin }}"><span style="{{ dotJoin }}"></span>Vào server</a>
-        <a href="#/Rules" sc-camel-on-click="{{ goRules }}" style="{{ navRules }}"><span style="{{ dotRules }}"></span>Luật lệ</a>
-      </nav>
-      <a href="{{ discordUrl }}" target="_blank" rel="noopener" style="flex:0 0 auto;padding:12px 24px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.06em;color:#F6ECFF;border:1px solid rgba(245,139,255,.5);background:linear-gradient(135deg,rgba(166,107,255,.35),rgba(245,139,255,.2));box-shadow:0 0 26px rgba(245,139,255,.22);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s ease" style-hover="transform:translateY(-2px);box-shadow:0 12px 34px rgba(245,139,255,.4);color:#FFFFFF">THAM GIA DISCORD</a>
-    </div>
-    <div data-progress="1" style="position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,#F58BFF,#C79BFF,#A66BFF);box-shadow:0 0 12px rgba(245,139,255,.7);transition:width .12s linear;pointer-events:none"></div>
-  </header>
-
-  <sc-if value="{{ pageHome }}" hint-placeholder-val="{{ true }}">
-  <section id="top" style="position:relative;z-index:1;overflow:hidden;border-bottom:1px solid rgba(201,169,255,.14);background:#0A0613">
-    <div style="position:relative;width:100%;line-height:0">
-      <img src="assets/hero.webp" alt="Venus World — Open Server 16.09.2026" style="display:block;width:100%;height:auto">
-      <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(10,6,19,.42) 0%,rgba(10,6,19,0) 24%,rgba(10,6,19,.30) 62%,rgba(10,6,19,.95) 100%)"></div>
-    </div>
-    <div style="position:relative;max-width:1240px;margin:clamp(-90px,-6vw,-40px) auto 0;padding:0 26px clamp(44px,5vw,72px)">
-      <h1 style="margin:0 0 28px;font-size:clamp(34px,5vw,68px);line-height:1;font-weight:900;letter-spacing:-.035em;max-width:15ch;text-wrap:balance">Bắt đầu cuộc đời thứ hai ở <span style="background:linear-gradient(100deg,#FFF0FC,#F9B8F5 40%,#C79BFF);-webkit-background-clip:text;background-clip:text;color:transparent">Venus World</span></h1>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-        <a href="{{ discordUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:18px 32px;border-radius:16px;font-size:15.5px;font-weight:800;color:#1A0A2E;background:linear-gradient(135deg,#EEDFFF,#F58BFF 52%,#A66BFF);box-shadow:0 14px 40px rgba(166,107,255,.45);transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s ease" style-hover="transform:translateY(-3px);box-shadow:0 20px 52px rgba(245,139,255,.55);color:#1A0A2E">Tham gia Discord</a>
-        <button sc-camel-on-click="{{ copyIp }}" style="display:inline-flex;align-items:center;padding:18px 26px;border-radius:16px;cursor:pointer;font-family:'Chakra Petch',monospace;font-size:13.5px;font-weight:600;letter-spacing:.07em;color:#E6DCFF;border:1px solid rgba(201,169,255,.28);background:rgba(255,255,255,.04);transition:background .25s ease,border-color .25s ease,transform .25s cubic-bezier(.2,.7,.2,1)" style-hover="background:rgba(166,107,255,.14);border-color:rgba(245,139,255,.45);transform:translateY(-3px)">{{ copyLabel }}</button>
-      </div>
-    </div>
-  </section>
-  </sc-if>
-
-  <div style="position:relative;z-index:1;border-bottom:1px solid rgba(201,169,255,.10);background:rgba(166,107,255,.06);overflow:hidden;padding:13px 0">
-    <div style="display:flex;width:max-content;animation:vTick 42s linear infinite;will-change:transform">
-      <div style="display:flex;gap:44px;padding-right:44px;font-family:'Chakra Petch',monospace;font-size:12px;letter-spacing:.2em;color:#9A8BBE;white-space:nowrap">
-        <span>HỆ THỐNG PVP CUỐN HÚT</span><span style="color:#F58BFF">✦</span><span>KINH TẾ CÂN BẰNG</span><span style="color:#F58BFF">✦</span><span>SỰ KIỆN HÀNG TUẦN</span><span style="color:#F58BFF">✦</span><span>THỜI TRANG CUTE</span><span style="color:#F58BFF">✦</span>
-      </div>
-      <div style="display:flex;gap:44px;padding-right:44px;font-family:'Chakra Petch',monospace;font-size:12px;letter-spacing:.2em;color:#9A8BBE;white-space:nowrap">
-        <span>HỆ THỐNG PVP CUỐN HÚT</span><span style="color:#F58BFF">✦</span><span>KINH TẾ CÂN BẰNG</span><span style="color:#F58BFF">✦</span><span>SỰ KIỆN HÀNG TUẦN</span><span style="color:#F58BFF">✦</span><span>THỜI TRANG CUTE</span><span style="color:#F58BFF">✦</span>
-      </div>
-    </div>
-  </div>
-
-  <sc-if value="{{ pageIntro }}" hint-placeholder-val="{{ true }}">
-  <section id="gioi-thieu" style="position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:clamp(64px,8vw,116px) 26px;scroll-margin-top:88px">
-    <img src="assets/mascot.png" alt="" data-par="0.06" style="position:absolute;top:clamp(-46px,-2vw,-16px);right:-8px;width:clamp(84px,9vw,132px);opacity:.28;pointer-events:none;filter:drop-shadow(0 18px 40px rgba(10,6,19,.7))">
-    <div data-reveal="1" style="max-width:660px;margin-bottom:clamp(36px,4.5vw,58px)">
-      <div style="display:inline-flex;align-items:center;gap:10px;padding:6px 18px 6px 6px;border-radius:999px;border:1px solid rgba(245,139,255,.26);background:rgba(245,139,255,.10);margin-bottom:20px">
-        <img src="assets/mascot.png" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover;object-position:50% 22%;background:rgba(255,255,255,.12)">
-        <span style="font-family:'Chakra Petch',monospace;font-size:11px;letter-spacing:.22em;color:#FFD6F5">GIỚI THIỆU</span>
-      </div>
-      <h2 style="margin:0 0 18px;font-size:clamp(30px,3.6vw,48px);line-height:1.12;font-weight:800;letter-spacing:-.02em;text-wrap:balance">Roleplay nghiêm túc, nhưng vẫn <span style="background:linear-gradient(100deg,#F9B8F5,#C79BFF);-webkit-background-clip:text;background-clip:text;color:transparent">siêu dễ thương</span></h2>
-      <p style="margin:0;font-size:16.5px;line-height:1.75;color:#B4A7D0;text-wrap:pretty">Venus World được xây cho những người muốn sống một cuộc đời thứ hai — có công việc, có bạn bè, có drama, có cả những đêm đi dạo trên phố cảng. Mọi hệ thống đều phục vụ câu chuyện của bạn.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(18px,2.2vw,30px)">
-      <div data-reveal="1" style="display:flex;margin-top:22px">
-        <div style="position:relative;flex:1;padding:38px 26px 28px;border-radius:26px;background:linear-gradient(170deg,#FFF3FB,#F6E4FF);border:2px solid #F58BFF;box-shadow:7px 7px 0 #F58BFF55;transform:rotate(-1deg);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease" style-hover="transform:rotate(0deg) translateY(-6px);box-shadow:10px 12px 0 #F58BFF77">
-          <div style="position:absolute;top:-26px;left:22px"><div style="position:relative;width:58px;height:58px;flex:0 0 auto">
-          <span style="position:absolute;inset:-16px;border-radius:50%;background:radial-gradient(circle,rgba(245,139,255,.38),transparent 70%);pointer-events:none"></span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid rgba(255,214,245,.75);transform:rotate(-16deg);pointer-events:none"></span>
-          <span style="position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:21px;font-weight:700;color:#3E1257;background:radial-gradient(circle at 32% 26%,#FFF6FD,#FAB6EF 42%,#D57BFF 74%,#6B3FA8);box-shadow:0 14px 34px rgba(245,139,255,.38),inset -9px -11px 22px rgba(38,10,66,.5)">01</span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid transparent;border-bottom-color:rgba(255,214,245,.75);transform:rotate(-16deg);pointer-events:none"></span>
-        </div></div>
-          <h3 style="margin:22px 0 9px;font-size:20px;font-weight:800;letter-spacing:-.02em;color:#3E1257">Vào là chơi</h3>
-          <p style="margin:0;font-size:14.5px;line-height:1.68;color:#6B4A85;text-wrap:pretty">Nộp đơn whitelist, không chờ duyệt. Tạo nhân vật xong là bắt đầu ngay trong 5 phút.</p>
-        </div>
-      </div>
-      <div data-reveal="1" style="display:flex;margin-top:22px">
-        <div style="position:relative;flex:1;padding:38px 26px 28px;border-radius:26px;background:linear-gradient(170deg,#FFF3FB,#F6E4FF);border:2px solid #A78BFF;box-shadow:7px 7px 0 #A78BFF55;transform:rotate(1deg);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease" style-hover="transform:rotate(0deg) translateY(-6px);box-shadow:10px 12px 0 #A78BFF77">
-          <div style="position:absolute;top:-26px;left:22px"><div style="position:relative;width:58px;height:58px;flex:0 0 auto">
-          <span style="position:absolute;inset:-16px;border-radius:50%;background:radial-gradient(circle,rgba(166,107,255,.38),transparent 70%);pointer-events:none"></span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid rgba(216,201,255,.75);transform:rotate(-16deg);pointer-events:none"></span>
-          <span style="position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:21px;font-weight:700;color:#3E1257;background:radial-gradient(circle at 32% 26%,#FFF6FD,#D9B4FF 42%,#A78BFF 74%,#4C3A9E);box-shadow:0 14px 34px rgba(166,107,255,.38),inset -9px -11px 22px rgba(38,10,66,.5)">02</span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid transparent;border-bottom-color:rgba(216,201,255,.75);transform:rotate(-16deg);pointer-events:none"></span>
-        </div></div>
-          <h3 style="margin:22px 0 9px;font-size:20px;font-weight:800;letter-spacing:-.02em;color:#3E1257">Hệ thống đa dạng</h3>
-          <p style="margin:0;font-size:14.5px;line-height:1.68;color:#6B4A85;text-wrap:pretty">Hệ thống nghề, độ xe, nhà ở và băng đảng do đội ngũ tự phát triển — mượt, ít bug, cập nhật liên tục.</p>
-        </div>
-      </div>
-      <div data-reveal="1" style="display:flex;margin-top:22px">
-        <div style="position:relative;flex:1;padding:38px 26px 28px;border-radius:26px;background:linear-gradient(170deg,#FFF3FB,#F6E4FF);border:2px solid #8B9BFF;box-shadow:7px 7px 0 #8B9BFF55;transform:rotate(1deg);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease" style-hover="transform:rotate(0deg) translateY(-6px);box-shadow:10px 12px 0 #8B9BFF77">
-          <div style="position:absolute;top:-26px;left:22px"><div style="position:relative;width:58px;height:58px;flex:0 0 auto">
-          <span style="position:absolute;inset:-16px;border-radius:50%;background:radial-gradient(circle,rgba(139,155,255,.34),transparent 70%);pointer-events:none"></span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid rgba(201,214,255,.72);transform:rotate(-16deg);pointer-events:none"></span>
-          <span style="position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:21px;font-weight:700;color:#3E1257;background:radial-gradient(circle at 32% 26%,#FFF6FD,#B8C4FF 42%,#8B9BFF 74%,#35408C);box-shadow:0 14px 34px rgba(139,155,255,.34),inset -9px -11px 22px rgba(38,10,66,.5)">03</span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid transparent;border-bottom-color:rgba(201,214,255,.72);transform:rotate(-16deg);pointer-events:none"></span>
-        </div></div>
-          <h3 style="margin:22px 0 9px;font-size:20px;font-weight:800;letter-spacing:-.02em;color:#3E1257">Cộng đồng sạch</h3>
-          <p style="margin:0;font-size:14.5px;line-height:1.68;color:#6B4A85;text-wrap:pretty">GM xử lý report trong ngày, và luật rõ ràng để ai cũng chơi được thoải mái.</p>
-        </div>
-      </div>
-      <div data-reveal="1" style="display:flex;margin-top:22px">
-        <div style="position:relative;flex:1;padding:38px 26px 28px;border-radius:26px;background:linear-gradient(170deg,#FFF3FB,#F6E4FF);border:2px solid #E48BB6;box-shadow:7px 7px 0 #E48BB655;transform:rotate(-1deg);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease" style-hover="transform:rotate(0deg) translateY(-6px);box-shadow:10px 12px 0 #E48BB677">
-          <div style="position:absolute;top:-26px;left:22px"><div style="position:relative;width:58px;height:58px;flex:0 0 auto">
-          <span style="position:absolute;inset:-16px;border-radius:50%;background:radial-gradient(circle,rgba(228,139,182,.34),transparent 70%);pointer-events:none"></span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid rgba(255,214,226,.72);transform:rotate(-16deg);pointer-events:none"></span>
-          <span style="position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:21px;font-weight:700;color:#3E1257;background:radial-gradient(circle at 32% 26%,#FFF6FD,#F7C7B0 42%,#E48BB6 74%,#7A2F55);box-shadow:0 14px 34px rgba(228,139,182,.34),inset -9px -11px 22px rgba(38,10,66,.5)">04</span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid transparent;border-bottom-color:rgba(255,214,226,.72);transform:rotate(-16deg);pointer-events:none"></span>
-        </div></div>
-          <h3 style="margin:22px 0 9px;font-size:20px;font-weight:800;letter-spacing:-.02em;color:#3E1257">Kinh tế bền</h3>
-          <p style="margin:0;font-size:14.5px;line-height:1.68;color:#6B4A85;text-wrap:pretty">Tiền trong phố đến từ công việc và quan hệ, giữ giá trị cho mọi người chơi.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  </sc-if>
-
-  <sc-if value="{{ pageCity }}" hint-placeholder-val="{{ true }}">
-  <section id="thanh-pho" style="position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,88px) 26px;scroll-margin-top:88px">
-    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:clamp(32px,4vw,52px)">
-      <div style="max-width:560px">
-        <div style="display:inline-flex;align-items:center;gap:10px;padding:6px 18px 6px 6px;border-radius:999px;border:1px solid rgba(245,139,255,.26);background:rgba(245,139,255,.10);margin-bottom:20px">
-          <img src="assets/mascot.png" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover;object-position:50% 22%;background:rgba(255,255,255,.12)">
-          <span style="font-family:'Chakra Petch',monospace;font-size:11px;letter-spacing:.22em;color:#FFD6F5">THÀNH PHỐ</span>
-        </div>
-        <h2 style="margin:0;font-size:clamp(30px,3.6vw,48px);line-height:1.12;font-weight:800;letter-spacing:-.02em">Trong phố có gì?</h2>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:10px">
-        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
-          <button sc-camel-on-click="{{ t.select }}" style="{{ t.style }}">{{ t.label }}</button>
-        </sc-for>
-      </div>
-    </div>
-    <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(318px,1fr));gap:clamp(28px,3.6vw,58px);align-items:center">
-      <div>
-        <h3 style="margin:0 0 14px;font-size:clamp(23px,2.6vw,33px);font-weight:800;letter-spacing:-.025em;line-height:1.12">{{ tabTitle }}</h3>
-        <p style="margin:0 0 26px;font-size:15.5px;line-height:1.75;color:#B4A7D0;max-width:46ch;text-wrap:pretty">{{ tabBody }}</p>
-        <div style="display:flex;flex-wrap:wrap;gap:10px">
-          <sc-for list="{{ tabChips }}" as="chip" hint-placeholder-count="4">
-            <div style="padding:10px 17px;border-radius:999px;background:linear-gradient(170deg,#FFF3FB,#F6E4FF);border:1.5px solid #F58BFF;color:#3E1257;font-size:13.5px;font-weight:600;box-shadow:3px 3px 0 rgba(245,139,255,.4);transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease" style-hover="transform:translateY(-3px);box-shadow:5px 6px 0 rgba(245,139,255,.55)">{{ chip }}</div>
-          </sc-for>
-        </div>
-      </div>
-      <div style="position:relative;padding:0 22px 26px 10px">
-        <div style="position:relative;padding:14px 14px 0;border-radius:20px;background:linear-gradient(170deg,#FFF6FD,#F3E6FF);box-shadow:10px 13px 0 rgba(166,107,255,.32),0 26px 60px rgba(10,6,19,.5);transform:rotate(1.6deg);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease" style-hover="transform:rotate(0deg) translateY(-6px);box-shadow:14px 18px 0 rgba(166,107,255,.45),0 30px 70px rgba(10,6,19,.55)">
-          <div style="aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:repeating-linear-gradient(135deg,rgba(166,107,255,.22) 0 10px,rgba(166,107,255,.06) 10px 20px),#191029"></div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 6px 16px">
-            <span style="font-family:'Chakra Petch',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#6B4A85">Ảnh in-game — {{ tabShot }}</span>
-          </div>
-        </div>
-        <img src="assets/mascot.png" alt="" style="position:absolute;right:-4px;bottom:-14px;width:clamp(72px,7.5vw,96px);transform:rotate(9deg);filter:drop-shadow(0 14px 28px rgba(10,6,19,.6));pointer-events:none">
-      </div>
-    </div>
-  </section>
-  </sc-if>
-
-  <sc-if value="{{ pageCity }}" hint-placeholder-val="{{ true }}">
-  <section id="hinh-anh" style="position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,88px) 26px;scroll-margin-top:88px">
-    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:clamp(28px,3.5vw,44px)">
-      <div>
-        <div style="display:inline-flex;align-items:center;gap:10px;padding:6px 18px 6px 6px;border-radius:999px;border:1px solid rgba(245,139,255,.26);background:rgba(245,139,255,.10);margin-bottom:20px">
-          <img src="assets/mascot.png" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover;object-position:50% 22%;background:rgba(255,255,255,.12)">
-          <span style="font-family:'Chakra Petch',monospace;font-size:11px;letter-spacing:.22em;color:#FFD6F5">KHÔNG KHÍ</span>
-        </div>
-        <h2 style="margin:0;font-size:clamp(30px,3.6vw,48px);line-height:1.12;font-weight:800;letter-spacing:-.02em">Một đêm ở Venus</h2>
-      </div>
-      
-    </div>
-    <div data-reveal="1" style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(110px,12vw,178px);gap:16px">
-      <div style="grid-column:span 2;grid-row:span 2;border-radius:22px;border:1px solid rgba(201,169,255,.18);background:repeating-linear-gradient(135deg,rgba(166,107,255,.12) 0 10px,rgba(166,107,255,.03) 10px 20px),#100A1E;display:flex;align-items:flex-end;padding:18px;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .4s ease" style-hover="transform:scale(1.015);border-color:rgba(245,139,255,.4)">
-        <span style="font-family:'Chakra Petch',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#A498C6;background:rgba(10,6,19,.72);padding:7px 12px;border-radius:999px">Phố đêm &amp; đèn neon</span>
-      </div>
-      <div style="grid-column:span 2;border-radius:22px;border:1px solid rgba(201,169,255,.18);background:repeating-linear-gradient(135deg,rgba(166,107,255,.12) 0 10px,rgba(166,107,255,.03) 10px 20px),#100A1E;display:flex;align-items:flex-end;padding:16px;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .4s ease" style-hover="transform:scale(1.015);border-color:rgba(245,139,255,.4)">
-        <span style="font-family:'Chakra Petch',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#A498C6;background:rgba(10,6,19,.72);padding:7px 12px;border-radius:999px">Meet xe cuối tuần</span>
-      </div>
-      <div style="border-radius:22px;border:1px solid rgba(201,169,255,.18);background:repeating-linear-gradient(135deg,rgba(166,107,255,.12) 0 10px,rgba(166,107,255,.03) 10px 20px),#100A1E;display:flex;align-items:flex-end;padding:14px;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .4s ease" style-hover="transform:scale(1.015);border-color:rgba(245,139,255,.4)">
-        <span style="font-family:'Chakra Petch',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#A498C6;background:rgba(10,6,19,.72);padding:6px 10px;border-radius:999px">Sự kiện</span>
-      </div>
-      <div style="border-radius:22px;border:1px solid rgba(201,169,255,.18);background:repeating-linear-gradient(135deg,rgba(166,107,255,.12) 0 10px,rgba(166,107,255,.03) 10px 20px),#100A1E;display:flex;align-items:flex-end;padding:14px;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .4s ease" style-hover="transform:scale(1.015);border-color:rgba(245,139,255,.4)">
-        <span style="font-family:'Chakra Petch',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#A498C6;background:rgba(10,6,19,.72);padding:6px 10px;border-radius:999px">Chân dung</span>
-      </div>
-    </div>
-  </section>
-  </sc-if>
-
-  <sc-if value="{{ pageJoin }}" hint-placeholder-val="{{ true }}">
-  <section id="vao-server" style="position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,88px) 26px;scroll-margin-top:88px">
-    <div style="display:inline-flex;align-items:center;gap:10px;padding:6px 18px 6px 6px;border-radius:999px;border:1px solid rgba(245,139,255,.26);background:rgba(245,139,255,.10);margin-bottom:20px">
-      <img src="assets/mascot.png" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover;object-position:50% 22%;background:rgba(255,255,255,.12)">
-      <span style="font-family:'Chakra Petch',monospace;font-size:11px;letter-spacing:.22em;color:#FFD6F5">BẮT ĐẦU</span>
-    </div>
-    <h2 style="margin:0 0 clamp(36px,4.5vw,56px);font-size:clamp(30px,3.6vw,48px);line-height:1.12;font-weight:800;letter-spacing:-.02em;max-width:640px">Vào phố trong 3 bước</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(276px,1fr));gap:clamp(18px,2.2vw,30px)">
-      <div data-reveal="1" style="display:flex;margin-top:22px">
-        <div style="position:relative;flex:1;padding:38px 26px 28px;border-radius:26px;background:linear-gradient(170deg,#FFF3FB,#F6E4FF);border:2px solid #F58BFF;box-shadow:7px 7px 0 #F58BFF55;transform:rotate(-1deg);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease" style-hover="transform:rotate(0deg) translateY(-6px);box-shadow:10px 12px 0 #F58BFF77">
-          <div style="position:absolute;top:-26px;left:22px"><div style="position:relative;width:58px;height:58px;flex:0 0 auto">
-          <span style="position:absolute;inset:-16px;border-radius:50%;background:radial-gradient(circle,rgba(245,139,255,.38),transparent 70%);pointer-events:none"></span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid rgba(255,214,245,.75);transform:rotate(-16deg);pointer-events:none"></span>
-          <span style="position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:21px;font-weight:700;color:#3E1257;background:radial-gradient(circle at 32% 26%,#FFF6FD,#FAB6EF 42%,#D57BFF 74%,#6B3FA8);box-shadow:0 14px 34px rgba(245,139,255,.38),inset -9px -11px 22px rgba(38,10,66,.5)">01</span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid transparent;border-bottom-color:rgba(255,214,245,.75);transform:rotate(-16deg);pointer-events:none"></span>
-        </div></div>
-          <h3 style="margin:22px 0 9px;font-size:20px;font-weight:800;letter-spacing:-.02em;color:#3E1257">Cài FiveM</h3>
-          <p style="margin:0;font-size:14.5px;line-height:1.68;color:#6B4A85;text-wrap:pretty">Cần GTA V bản quyền trên PC. Tải FiveM tại fivem.net và đăng nhập bằng tài khoản Cfx.re.</p>
-        </div>
-      </div>
-      <div data-reveal="1" style="display:flex;margin-top:22px">
-        <div style="position:relative;flex:1;padding:38px 26px 28px;border-radius:26px;background:linear-gradient(170deg,#FFF3FB,#F6E4FF);border:2px solid #A78BFF;box-shadow:7px 7px 0 #A78BFF55;transform:rotate(1deg);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease" style-hover="transform:rotate(0deg) translateY(-6px);box-shadow:10px 12px 0 #A78BFF77">
-          <div style="position:absolute;top:-26px;left:22px"><div style="position:relative;width:58px;height:58px;flex:0 0 auto">
-          <span style="position:absolute;inset:-16px;border-radius:50%;background:radial-gradient(circle,rgba(166,107,255,.38),transparent 70%);pointer-events:none"></span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid rgba(216,201,255,.75);transform:rotate(-16deg);pointer-events:none"></span>
-          <span style="position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:21px;font-weight:700;color:#3E1257;background:radial-gradient(circle at 32% 26%,#FFF6FD,#D9B4FF 42%,#A78BFF 74%,#4C3A9E);box-shadow:0 14px 34px rgba(166,107,255,.38),inset -9px -11px 22px rgba(38,10,66,.5)">02</span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid transparent;border-bottom-color:rgba(216,201,255,.75);transform:rotate(-16deg);pointer-events:none"></span>
-        </div></div>
-          <h3 style="margin:22px 0 9px;font-size:20px;font-weight:800;letter-spacing:-.02em;color:#3E1257">Kết nối Venus World</h3>
-          <p style="margin:0;font-size:14.5px;line-height:1.68;color:#6B4A85;text-wrap:pretty">Mở console bằng phím F8, dán lệnh kết nối rồi Enter. Hoặc tìm “Venus World” trong tab Servers.</p>
-        </div>
-      </div>
-      <div data-reveal="1" style="display:flex;margin-top:22px">
-        <div style="position:relative;flex:1;padding:38px 26px 28px;border-radius:26px;background:linear-gradient(170deg,#FFF3FB,#F6E4FF);border:2px solid #E48BB6;box-shadow:7px 7px 0 #E48BB655;transform:rotate(-1deg);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease" style-hover="transform:rotate(0deg) translateY(-6px);box-shadow:10px 12px 0 #E48BB677">
-          <div style="position:absolute;top:-26px;left:22px"><div style="position:relative;width:58px;height:58px;flex:0 0 auto">
-          <span style="position:absolute;inset:-16px;border-radius:50%;background:radial-gradient(circle,rgba(228,139,182,.34),transparent 70%);pointer-events:none"></span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid rgba(255,214,226,.72);transform:rotate(-16deg);pointer-events:none"></span>
-          <span style="position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:21px;font-weight:700;color:#3E1257;background:radial-gradient(circle at 32% 26%,#FFF6FD,#F7C7B0 42%,#E48BB6 74%,#7A2F55);box-shadow:0 14px 34px rgba(228,139,182,.34),inset -9px -11px 22px rgba(38,10,66,.5)">03</span>
-          <span style="position:absolute;left:-16px;right:-16px;top:50%;height:24px;margin-top:-12px;border-radius:50%;border:2px solid transparent;border-bottom-color:rgba(255,214,226,.72);transform:rotate(-16deg);pointer-events:none"></span>
-        </div></div>
-          <h3 style="margin:22px 0 9px;font-size:20px;font-weight:800;letter-spacing:-.02em;color:#3E1257">Tạo nhân vật &amp; sống</h3>
-          <p style="margin:0;font-size:14.5px;line-height:1.68;color:#6B4A85;text-wrap:pretty">Đặt tên, chọn ngoại hình, nhận CCCD. Vào Discord lấy role người chơi để nhận thông báo sự kiện.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  </sc-if>
-
-  <sc-if value="{{ pageRules }}" hint-placeholder-val="{{ true }}">
-  <section id="luat" style="position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,88px) 26px clamp(64px,8vw,110px);scroll-margin-top:88px">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,4vw,64px)">
-      <div>
-        <div style="display:inline-flex;align-items:center;gap:10px;padding:6px 18px 6px 6px;border-radius:999px;border:1px solid rgba(245,139,255,.26);background:rgba(245,139,255,.10);margin-bottom:20px">
-          <img src="assets/mascot.png" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover;object-position:50% 22%;background:rgba(255,255,255,.12)">
-          <span style="font-family:'Chakra Petch',monospace;font-size:11px;letter-spacing:.22em;color:#FFD6F5">LUẬT LỆ</span>
-        </div>
-        <h2 style="margin:0 0 18px;font-size:clamp(30px,3.6vw,48px);line-height:1.1;font-weight:800;letter-spacing:-.02em">Sáu điều để phố luôn vui</h2>
-        <p style="margin:0 0 28px;font-size:16px;line-height:1.75;color:#B4A7D0;text-wrap:pretty">Đây là phần cốt lõi. Bộ luật đầy đủ nằm trong kênh <strong style="color:#F4EFFF;font-weight:600">#luật-thành-phố</strong> trên Discord — đọc trước khi vào để tránh mất vui.</p>
-        <a href="{{ discordUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:15px 24px;border-radius:14px;font-size:14.5px;font-weight:600;color:#E6DCFF;border:1px solid rgba(201,169,255,.28);background:rgba(255,255,255,.03);transition:background .25s ease,border-color .25s ease,transform .25s cubic-bezier(.2,.7,.2,1)" style-hover="background:rgba(166,107,255,.14);border-color:rgba(245,139,255,.45);transform:translateY(-3px);color:#F4EFFF">Đọc luật đầy đủ →</a>
-      </div>
-      <div style="display:flex;flex-direction:column">
-        <div data-reveal="1" style="display:flex;gap:16px;padding:16px;border-radius:22px;transition:background .3s ease" style-hover="background:rgba(245,139,255,.07)"><span style="flex:0 0 auto;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:12.5px;font-weight:700;color:#4A1B63;background:radial-gradient(circle at 32% 26%,#FFF6FD,#FAB6EF 46%,#B98BFF 78%,#5B3A94);box-shadow:0 8px 20px rgba(245,139,255,.34),inset -4px -5px 10px rgba(38,10,66,.45)">01</span><div><div style="font-size:16px;font-weight:600;margin-bottom:5px">Giữ vai, đừng phá vai</div><div style="font-size:14px;line-height:1.65;color:#A99BC4">Trong phố chỉ nói chuyện với tư cách nhân vật. Việc ngoài game để dành cho Discord.</div></div></div>
-        <div data-reveal="1" style="display:flex;gap:16px;padding:16px;border-radius:22px;transition:background .3s ease" style-hover="background:rgba(245,139,255,.07)"><span style="flex:0 0 auto;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:12.5px;font-weight:700;color:#4A1B63;background:radial-gradient(circle at 32% 26%,#FFF6FD,#FAB6EF 46%,#B98BFF 78%,#5B3A94);box-shadow:0 8px 20px rgba(245,139,255,.34),inset -4px -5px 10px rgba(38,10,66,.45)">02</span><div><div style="font-size:16px;font-weight:600;margin-bottom:5px">Không RDM / VDM</div><div style="font-size:14px;line-height:1.65;color:#A99BC4">Không bắn hay tông người vô cớ. Mọi xung đột phải có lý do roleplay đi trước.</div></div></div>
-        <div data-reveal="1" style="display:flex;gap:16px;padding:16px;border-radius:22px;transition:background .3s ease" style-hover="background:rgba(245,139,255,.07)"><span style="flex:0 0 auto;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:12.5px;font-weight:700;color:#4A1B63;background:radial-gradient(circle at 32% 26%,#FFF6FD,#FAB6EF 46%,#B98BFF 78%,#5B3A94);box-shadow:0 8px 20px rgba(245,139,255,.34),inset -4px -5px 10px rgba(38,10,66,.45)">03</span><div><div style="font-size:16px;font-weight:600;margin-bottom:5px">Quý trọng mạng sống</div><div style="font-size:14px;line-height:1.65;color:#A99BC4">Nhân vật của bạn sợ chết. Bị chĩa súng vào đầu thì đừng hành động như người bất tử.</div></div></div>
-        <div data-reveal="1" style="display:flex;gap:16px;padding:16px;border-radius:22px;transition:background .3s ease" style-hover="background:rgba(245,139,255,.07)"><span style="flex:0 0 auto;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:12.5px;font-weight:700;color:#4A1B63;background:radial-gradient(circle at 32% 26%,#FFF6FD,#FAB6EF 46%,#B98BFF 78%,#5B3A94);box-shadow:0 8px 20px rgba(245,139,255,.34),inset -4px -5px 10px rgba(38,10,66,.45)">04</span><div><div style="font-size:16px;font-weight:600;margin-bottom:5px">Không metagaming</div><div style="font-size:14px;line-height:1.65;color:#A99BC4">Thông tin nghe từ stream, Discord hay bạn bè ngoài game không được mang vào nhân vật.</div></div></div>
-        <div data-reveal="1" style="display:flex;gap:16px;padding:16px;border-radius:22px;transition:background .3s ease" style-hover="background:rgba(245,139,255,.07)"><span style="flex:0 0 auto;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:12.5px;font-weight:700;color:#4A1B63;background:radial-gradient(circle at 32% 26%,#FFF6FD,#FAB6EF 46%,#B98BFF 78%,#5B3A94);box-shadow:0 8px 20px rgba(245,139,255,.34),inset -4px -5px 10px rgba(38,10,66,.45)">05</span><div><div style="font-size:16px;font-weight:600;margin-bottom:5px">Không phần mềm thứ ba</div><div style="font-size:14px;line-height:1.65;color:#A99BC4">Mod hình ảnh thì thoải mái. Mọi công cụ can thiệp gameplay đều bị ban vĩnh viễn.</div></div></div>
-        <div data-reveal="1" style="display:flex;gap:16px;padding:16px;border-radius:22px;transition:background .3s ease" style-hover="background:rgba(245,139,255,.07)"><span style="flex:0 0 auto;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',monospace;font-size:12.5px;font-weight:700;color:#4A1B63;background:radial-gradient(circle at 32% 26%,#FFF6FD,#FAB6EF 46%,#B98BFF 78%,#5B3A94);box-shadow:0 8px 20px rgba(245,139,255,.34),inset -4px -5px 10px rgba(38,10,66,.45)">06</span><div><div style="font-size:16px;font-weight:600;margin-bottom:5px">Tôn trọng người sau màn hình</div><div style="font-size:14px;line-height:1.65;color:#A99BC4">Drama trong phố là gia vị. Xúc phạm ngoài đời, phân biệt hay quấy rối thì không.</div></div></div>
-      </div>
-    </div>
-  </section>
-  </sc-if>
-
-  <section style="position:relative;z-index:1;max-width:1240px;margin:0 auto clamp(64px,8vw,110px);padding:clamp(48px,6vw,88px) 26px 0">
-    <div data-reveal="1" style="position:relative;overflow:hidden;border-radius:36px;border:1px solid rgba(245,139,255,.22);background:linear-gradient(150deg,rgba(166,107,255,.26),rgba(245,139,255,.12) 55%,rgba(10,6,19,.5));padding:clamp(44px,6vw,80px) clamp(28px,4vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:center">
-      <div style="position:absolute;top:-40%;left:-10%;width:60%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(245,139,255,.38),transparent 65%);filter:blur(50px);pointer-events:none"></div>
-      <div style="position:relative">
-        <h2 style="margin:0 0 16px;font-size:clamp(28px,3.4vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.02em">Hẹn gặp ở Venus ngày {{ openDateShort }}</h2>
-        <p style="margin:0;font-size:16px;line-height:1.7;color:#D7CBEF;max-width:460px;text-wrap:pretty">Vào Discord trước để giữ tên nhân vật, nhận thông báo mở server và tham gia sự kiện tặng xe ngày khai trương.</p>
-      </div>
-      <div style="position:relative;display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,30px);align-items:center;justify-content:flex-end">
-        <img src="assets/mascot.png" alt="" style="width:clamp(96px,11vw,150px);animation:vFloat 6.5s ease-in-out infinite;will-change:transform;filter:drop-shadow(0 16px 34px rgba(10,6,19,.6))">
-        <a href="{{ discordUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:18px 30px;border-radius:16px;font-size:15.5px;font-weight:700;color:#1A0A2E;background:linear-gradient(135deg,#EEDFFF,#F58BFF 52%,#A66BFF);box-shadow:0 14px 40px rgba(166,107,255,.45);transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s ease" style-hover="transform:translateY(-3px);box-shadow:0 20px 52px rgba(245,139,255,.55);color:#1A0A2E">Tham gia Discord</a>
-      </div>
-    </div>
-  </section>
-
-  <footer style="position:relative;z-index:1;border-top:1px solid rgba(201,169,255,.12);background:rgba(10,6,19,.6)">
-    <div style="max-width:1240px;margin:0 auto;padding:40px 26px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
-      <div style="display:flex;align-items:center;gap:14px">
-        <img src="assets/logo.webp" alt="" style="width:38px;height:38px;border-radius:11px;object-fit:cover">
-        <div>
-          <div style="font-weight:700;font-size:14px">VENUS WORLD</div>
-          <div style="font-family:'Chakra Petch',monospace;font-size:10px;letter-spacing:.2em;color:#8F82B2">VIETNAM ROLEPLAY · FIVEM</div>
-        </div>
-      </div>
-      <div style="font-size:12.5px;color:#7E7299;max-width:520px;line-height:1.6">Venus World là server roleplay do cộng đồng vận hành, không liên kết với Rockstar Games hay Take-Two Interactive. Bạn cần bản quyền GTA V để chơi.</div>
-    </div>
-  </footer>
-
-  <a data-mascot="1" href="{{ discordUrl }}" target="_blank" rel="noopener" aria-label="Tham gia Discord" style="position:fixed;right:clamp(12px,2vw,26px);bottom:clamp(12px,2vw,26px);z-index:55;width:clamp(74px,7vw,106px);opacity:0;transform:translate3d(0,44px,0);transition:opacity .5s ease,transform .55s cubic-bezier(.2,.7,.2,1);filter:drop-shadow(0 16px 34px rgba(10,6,19,.75))">
-    <img src="assets/mascot.png" alt="" style="display:block;width:100%;animation:vFloat 5.5s ease-in-out infinite;will-change:transform">
-  </a>
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script="" data-props="{&quot;discordUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://discord.gg/venusworld&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Nội dung&quot;},&quot;serverIp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;connect venusworld.vn&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Nội dung&quot;},&quot;openDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026-09-16&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Nội dung&quot;}}">
-class Component extends DCLogic {
-  state = { tab: 0, copied: false, splashPhase: 'show', pct: 0, page: (typeof location !== 'undefined' && location.hash.indexOf('#/') === 0 ? location.hash.slice(2) : 'Home') };
 
-  go(p) {
-    if (p === this.state.page) return;
-    try { history.replaceState(null, '', '#/' + p); } catch (e) { location.hash = '#/' + p; }
-    this.setState({ page: p }, () => { window.scrollTo(0, 0); this.setupReveal(); });
-  }
+<!-- ============ NỀN ============ -->
+<div class="bg-fx">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="dots"></div>
+</div>
+<div class="fall" id="fall"></div>
 
-  runSplash() {
-    const imgs = Array.prototype.slice.call(document.images)
-      .filter(i => i.getAttribute('src') && i.getAttribute('src').indexOf('assets/') === 0);
-    const total = Math.max(1, imgs.length);
-    let done = 0;
-    const bump = () => {
-      done++;
-      this.setState(s => ({ pct: Math.max(s.pct, Math.round(done / total * 92)) }));
-    };
-    imgs.forEach(i => {
+<!-- ============ HEADER ============ -->
+<header id="hdr">
+  <div class="hd">
+    <a class="brand" href="#home">
+      <img src="assets/logo.webp" alt="Venus World">
+      <span><b>VENUS WORLD</b><small>VIETNAM ROLEPLAY</small></span>
+    </a>
+    <nav class="pills" id="pills">
+      <a href="#home" data-nav="home"><i class="dot"></i>Trang chủ</a>
+      <a href="#gioi-thieu" data-nav="gioi-thieu"><i class="dot"></i>Giới thiệu</a>
+      <a href="#thanh-pho" data-nav="thanh-pho"><i class="dot"></i>Thành phố</a>
+      <a href="#vao-server" data-nav="vao-server"><i class="dot"></i>Vào server</a>
+      <a href="#luat" data-nav="luat"><i class="dot"></i>Luật lệ</a>
+      <a href="#hoi-dap" data-nav="hoi-dap"><i class="dot"></i>Hỏi đáp</a>
+    </nav>
+    <a class="btn btn-sm hd-cta" href="#" data-discord target="_blank" rel="noopener">Tham gia Discord</a>
+    <button class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
+  </div>
+  <div id="bar"></div>
+</header>
+
+<div class="drawer" id="drawer">
+  <a href="#home" data-nav="home">Trang chủ <span>01</span></a>
+  <a href="#gioi-thieu" data-nav="gioi-thieu">Giới thiệu <span>02</span></a>
+  <a href="#thanh-pho" data-nav="thanh-pho">Thành phố <span>03</span></a>
+  <a href="#vao-server" data-nav="vao-server">Vào server <span>04</span></a>
+  <a href="#luat" data-nav="luat">Luật lệ <span>05</span></a>
+  <a href="#hoi-dap" data-nav="hoi-dap">Hỏi đáp <span>06</span></a>
+  <a href="#" data-discord target="_blank" rel="noopener" style="justify-content:center;margin-top:12px;background:linear-gradient(180deg,#FFA5DA,#FF6FC0);color:#fff;border-color:#fff;box-shadow:0 5px 0 #D24C9F">Tham gia Discord ♡</a>
+</div>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="home">
+  <div class="shell">
+    <div style="position:relative" data-tilt>
+      <svg class="hero-corner hc-l" viewBox="0 0 120 80" aria-hidden="true">
+        <g stroke="#fff" stroke-width="6" stroke-linejoin="round">
+          <path fill="#FF8FD1" d="M60 40C38 8 6 12 10 40s28 32 50 0z"/>
+          <path fill="#FF8FD1" d="M60 40c22-32 54-28 50 0s-28 32-50 0z"/>
+          <circle fill="#FFC2E6" cx="60" cy="40" r="13"/>
+        </g>
+      </svg>
+      <svg class="hero-corner hc-r" viewBox="0 0 120 80" aria-hidden="true">
+        <g stroke="#fff" stroke-width="6" stroke-linejoin="round">
+          <path fill="#B98BFF" d="M60 40C38 8 6 12 10 40s28 32 50 0z"/>
+          <path fill="#B98BFF" d="M60 40c22-32 54-28 50 0s-28 32-50 0z"/>
+          <circle fill="#DCC7FF" cx="60" cy="40" r="13"/>
+        </g>
+      </svg>
+      <div class="hero-frame">
+        <div class="hero-art">
+          <img src="assets/hero.webp" alt="Venus World — Open Server 16.09.2026" fetchpriority="high">
+          <div class="hero-shine"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-body">
+      <h1 class="hero-h1">Bắt đầu cuộc đời thứ hai ở <span class="grad">Venus World</span></h1>
+      <p class="lead" style="text-align:center;max-width:52ch">Thành phố có công việc, có bạn bè, có drama và cả những đêm đi dạo trên phố cảng. Mọi hệ thống ở đây đều phục vụ câu chuyện của riêng bạn.</p>
+
+      <div class="hero-cta">
+        <a class="btn btn-p" href="#" data-discord target="_blank" rel="noopener">Tham gia Discord ♡</a>
+        <button class="btn btn-w" id="copyHero">Copy IP server</button>
+      </div>
+
+      <div class="cd" id="cd">
+        <div class="u" style="--u1:#FFEAF6;--u2:#F6C4E2;--u3:#E0559F"><div class="n" id="cdD">00</div><div class="l">Ngày</div></div>
+        <div class="u" style="--u1:#F3EAFF;--u2:#D9C4F6;--u3:#8B5AE0"><div class="n" id="cdH">00</div><div class="l">Giờ</div></div>
+        <div class="u" style="--u1:#E7F6FF;--u2:#C0DFF3;--u3:#3E8FD0"><div class="n" id="cdM">00</div><div class="l">Phút</div></div>
+        <div class="u" style="--u1:#FFF6E2;--u2:#F0DCAF;--u3:#C99320"><div class="n" id="cdS">00</div><div class="l">Giây</div></div>
+      </div>
+      <div class="mono" style="margin-top:14px;font-size:11.5px;font-weight:700;letter-spacing:.2em;color:var(--ink-3)">ĐẾM NGƯỢC KHAI TRƯƠNG · 16.09.2026 · 19:00 (GMT+7)</div>
+
+      <div class="hero-stats">
+        <div class="stat" style="--sc:#FFC2E6;--ss:#FFD9EE;--sb:#FF6FC0"><b>10+</b><span>nghề nghiệp</span></div>
+        <div class="stat" style="--sc:#DCC7FF;--ss:#E7DAFF;--sb:#8B5AE0"><b>50+</b><span>xe custom</span></div>
+        <div class="stat" style="--sc:#BEE5FF;--ss:#D6EEFF;--sb:#3E8FD0"><b>24/7</b><span>hỗ trợ GM</span></div>
+        <div class="stat" style="--sc:#B6EDDD;--ss:#D2F4EA;--sb:#2FA98A"><b>100%</b><span>Việt hoá</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe" style="margin-top:clamp(48px,6vw,84px)"></div>
+
+<!-- ============ MARQUEE ============ -->
+<div class="mq">
+  <div class="mq-in">
+    <div class="mq-set">
+      <span>HỆ THỐNG PVP CUỐN HÚT</span><i>✿</i><b>KINH TẾ CÂN BẰNG</b><i>♡</i><span>SỰ KIỆN HÀNG TUẦN</span><i>✦</i><b>THỜI TRANG CUTE</b><i>✿</i><span>BĂNG ĐẢNG &amp; CHIẾM ĐÓNG</span><i>♡</i><b>NHÀ CỬA TỰ DO</b><i>✦</i>
+    </div>
+    <div class="mq-set" aria-hidden="true">
+      <span>HỆ THỐNG PVP CUỐN HÚT</span><i>✿</i><b>KINH TẾ CÂN BẰNG</b><i>♡</i><span>SỰ KIỆN HÀNG TUẦN</span><i>✦</i><b>THỜI TRANG CUTE</b><i>✿</i><span>BĂNG ĐẢNG &amp; CHIẾM ĐÓNG</span><i>♡</i><b>NHÀ CỬA TỰ DO</b><i>✦</i>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GIỚI THIỆU ============ -->
+<section id="gioi-thieu" class="sec" style="scroll-margin-top:96px">
+  <div class="shell">
+    <div class="reveal" style="max-width:680px">
+      <div class="badge"><img src="assets/mascot.png" alt=""><span>GIỚI THIỆU</span></div>
+      <h2 class="h2">Roleplay nghiêm túc, nhưng vẫn <span class="grad">siêu dễ thương</span></h2>
+      <p class="lead">Venus World được xây cho những người muốn sống một cuộc đời thứ hai. Server dùng framework tự phát triển, tối ưu cho phòng đông người, hạn chế lag và cập nhật liên tục theo góp ý của cộng đồng.</p>
+    </div>
+
+    <div class="grid g4" style="margin-top:clamp(28px,3.6vw,48px)">
+      <div class="reveal">
+        <div class="card" style="--rot:-1.2deg;--cc:#FFC2E6;--cs:#FFD9EE;--cw:#FFF2F9;--cg:rgba(255,143,209,.32);--cb1:#FFB0DF;--cb2:#FF6FC0;--cb3:#D24C9F" data-rot="-1.2" data-tilt>
+          <div class="tape"></div>
+          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">01</span></div>
+          <h3>Vào là chơi</h3>
+          <p>Nộp đơn whitelist, không phải chờ duyệt lâu. Tạo nhân vật xong là bắt đầu ngay trong 5 phút.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="card" style="--rot:1deg;--cc:#DCC7FF;--cs:#E7DAFF;--cw:#F6F0FF;--cg:rgba(185,139,255,.32);--cb1:#D3B4FF;--cb2:#A574F5;--cb3:#7245C4" data-rot="1" data-tilt>
+          <div class="tape"></div>
+          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">02</span></div>
+          <h3>Hệ thống đa dạng</h3>
+          <p>Nghề, độ xe, nhà ở và băng đảng do đội ngũ tự phát triển — mượt, ít bug, cập nhật liên tục.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="card" style="--rot:1.4deg;--cc:#BEE5FF;--cs:#D6EEFF;--cw:#EFF8FF;--cg:rgba(105,185,245,.3);--cb1:#A9D9FF;--cb2:#5FAEEE;--cb3:#3B7FB8" data-rot="1.4" data-tilt>
+          <div class="tape"></div>
+          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">03</span></div>
+          <h3>Cộng đồng sạch</h3>
+          <p>GM xử lý report trong ngày, luật rõ ràng và công khai để ai cũng chơi được thoải mái.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="card" style="--rot:-1deg;--cc:#B6EDDD;--cs:#D2F4EA;--cw:#EEFBF7;--cg:rgba(90,220,190,.3);--cb1:#9BE9D6;--cb2:#4CC9AC;--cb3:#2E9A80" data-rot="-1" data-tilt>
+          <div class="tape"></div>
+          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">04</span></div>
+          <h3>Kinh tế bền</h3>
+          <p>Tiền trong phố đến từ công việc và quan hệ, không phải từ nạp. Giá trị được giữ cho mọi người chơi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THÀNH PHỐ ============ -->
+<section id="thanh-pho" class="sec" style="scroll-margin-top:96px;padding-top:0">
+  <div class="shell">
+    <div class="reveal" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:26px;margin-bottom:clamp(26px,3.4vw,44px)">
+      <div style="max-width:560px">
+        <div class="badge"><img src="assets/mascot.png" alt=""><span>THÀNH PHỐ</span></div>
+        <h2 class="h2">Trong phố có gì?</h2>
+      </div>
+      <div class="tabbar" id="tabbar">
+        <button class="tab on" data-tab="0">Nghề nghiệp</button>
+        <button class="tab" data-tab="1">Xe cộ</button>
+        <button class="tab" data-tab="2">Nhà cửa</button>
+        <button class="tab" data-tab="3">Băng đảng</button>
+      </div>
+    </div>
+
+    <div class="panel reveal">
+      <div>
+        <h3 id="tabTitle">Hơn 10+ nghề, hợp pháp lẫn không</h3>
+        <p class="lead" id="tabBody" style="max-width:46ch">Mỗi nghề có tiến trình riêng, đồng nghiệp riêng và những tình huống roleplay riêng. Bạn có thể đổi đời bất cứ lúc nào.</p>
+        <div class="chips" id="tabChips"></div>
+      </div>
+      <div style="position:relative;padding:0 20px 26px 8px">
+        <div class="polaroid" style="--rot:1.8deg" data-rot="1.8" data-tilt>
+          <div class="shot"><em>ẢNH IN-GAME SẼ ĐƯỢC CẬP NHẬT</em></div>
+          <div class="pol-cap"><span id="tabShot">Ảnh in-game — ca trực của cảnh sát</span><span style="color:#FF8FD1">♡</span></div>
+        </div>
+        <img src="assets/mascot.png" alt="" style="position:absolute;right:-8px;bottom:-18px;width:clamp(78px,8.4vw,106px);transform:rotate(10deg);filter:drop-shadow(0 12px 16px rgba(164,95,214,.35));pointer-events:none">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KHÔNG KHÍ ============ -->
+<section class="sec" style="padding-top:0">
+  <div class="shell">
+    <div class="reveal" style="margin-bottom:clamp(24px,3.2vw,40px)">
+      <div class="badge"><img src="assets/mascot.png" alt=""><span>KHÔNG KHÍ</span></div>
+      <h2 class="h2">Một đêm ở Venus</h2>
+    </div>
+    <div class="mosaic reveal">
+      <div class="tile t-a" style="--t1:#FFD9EE;--t2:#F0DCFF;--t3:#F0D3EA"><b>Phố đêm &amp; đèn neon</b></div>
+      <div class="tile t-b" style="--t1:#E2D8FF;--t2:#D8ECFF;--t3:#D6CBF2"><b>Meet xe cuối tuần</b></div>
+      <div class="tile" style="--t1:#FFEFD2;--t2:#FFDCE9;--t3:#F0DEC4"><b>Sự kiện</b></div>
+      <div class="tile" style="--t1:#D6F5EC;--t2:#DDEBFF;--t3:#C7E7DD"><b>Chân dung</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VÀO SERVER ============ -->
+<section id="vao-server" class="sec" style="scroll-margin-top:96px;padding-top:0">
+  <div class="shell">
+    <div class="reveal">
+      <div class="badge"><img src="assets/mascot.png" alt=""><span>BẮT ĐẦU</span></div>
+      <h2 class="h2">Vào phố trong <span class="grad">3 bước</span></h2>
+    </div>
+
+    <div class="grid g3" style="margin-top:clamp(26px,3.4vw,44px)">
+      <div class="reveal">
+        <div class="card" style="--rot:-1.2deg;--cc:#FFC2E6;--cs:#FFD9EE;--cw:#FFF2F9;--cg:rgba(255,143,209,.32);--cb1:#FFB0DF;--cb2:#FF6FC0;--cb3:#D24C9F" data-rot="-1.2" data-tilt>
+          <div class="tape"></div>
+          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">01</span></div>
+          <h3>Cài FiveM</h3>
+          <p>Cần GTA V bản quyền trên PC. Tải FiveM tại fivem.net rồi đăng nhập bằng tài khoản Cfx.re.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="card" style="--rot:1.1deg;--cc:#DCC7FF;--cs:#E7DAFF;--cw:#F6F0FF;--cg:rgba(185,139,255,.32);--cb1:#D3B4FF;--cb2:#A574F5;--cb3:#7245C4" data-rot="1.1" data-tilt>
+          <div class="tape"></div>
+          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">02</span></div>
+          <h3>Kết nối Venus World</h3>
+          <p>Mở console bằng phím F8, dán lệnh kết nối rồi Enter. Hoặc tìm “Venus World” trong tab Servers.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="card" style="--rot:-1deg;--cc:#FFD9B8;--cs:#FFE8D2;--cw:#FFF6EC;--cg:rgba(255,190,130,.3);--cb1:#FFD1A8;--cb2:#FFA463;--cb3:#D0763A" data-rot="-1" data-tilt>
+          <div class="tape"></div>
+          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">03</span></div>
+          <h3>Tạo nhân vật &amp; sống</h3>
+          <p>Đặt tên, chọn ngoại hình, nhận CCCD. Vào Discord lấy role người chơi để nhận thông báo sự kiện.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="connect reveal" style="margin-top:28px">
+      <code id="ipText">connect venusworld.vn</code>
+      <button class="btn btn-p" id="copyIp" style="padding:14px 26px;font-size:15.5px">Copy lệnh kết nối</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LUẬT ============ -->
+<section id="luat" class="sec" style="scroll-margin-top:96px;padding-top:0">
+  <div class="shell">
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(30px,4vw,60px)">
+      <div class="reveal">
+        <div class="badge"><img src="assets/mascot.png" alt=""><span>LUẬT LỆ</span></div>
+        <h2 class="h2">Sáu điều để phố luôn vui</h2>
+        <p class="lead">Đây là phần cốt lõi. Bộ luật đầy đủ nằm trong kênh <strong style="color:var(--gum-d);font-weight:700">#luật-thành-phố</strong> trên Discord — đọc trước khi vào để tránh mất vui.</p>
+        <a class="btn btn-v" href="#" data-discord target="_blank" rel="noopener" style="margin-top:24px">Đọc luật đầy đủ →</a>
+        <img src="assets/mascot.png" alt="" style="width:132px;margin-top:32px;transform:rotate(-7deg);filter:drop-shadow(0 14px 18px rgba(164,95,214,.32))">
+      </div>
+      <div class="rules reveal" id="rules"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HỎI ĐÁP ============ -->
+<section id="hoi-dap" class="sec" style="scroll-margin-top:96px;padding-top:0">
+  <div class="shell">
+    <div class="reveal" style="max-width:620px;margin-bottom:clamp(24px,3.2vw,40px)">
+      <div class="badge"><img src="assets/mascot.png" alt=""><span>HỎI ĐÁP</span></div>
+      <h2 class="h2">Câu hỏi hay gặp</h2>
+    </div>
+    <div class="rules reveal" id="faq"></div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="sec" style="padding-top:0">
+  <div class="shell">
+    <div class="cta reveal">
+      <div>
+        <h2 class="h2" style="font-size:clamp(27px,3.4vw,44px)">Hẹn gặp ở Venus ngày <span class="grad">16/09</span></h2>
+        <p class="lead" style="color:#6B4A85">Vào Discord trước để giữ tên nhân vật, nhận thông báo mở server và tham gia sự kiện tặng xe ngày khai trương.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,28px);align-items:center;justify-content:flex-end">
+        <img class="cta-mascot" src="assets/mascot.png" alt="">
+        <a class="btn btn-p" href="#" data-discord target="_blank" rel="noopener">Tham gia Discord ♡</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div style="height:26px;background-image:radial-gradient(circle at 26px 26px,#F7ECFF 26px,transparent 27px);background-size:52px 26px;background-repeat:repeat-x;position:relative;z-index:2"></div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="ft">
+    <div>
+      <div style="display:flex;align-items:center;gap:13px;margin-bottom:14px">
+        <img src="assets/logo.webp" alt="" style="width:46px;height:46px;border-radius:16px;border:3px solid #fff;box-shadow:0 4px 0 #E4D2F5">
+        <div>
+          <div style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:15px">VENUS WORLD</div>
+          <div class="mono" style="font-size:9.5px;font-weight:700;letter-spacing:.2em;color:var(--ink-3)">VIETNAM ROLEPLAY · FIVEM</div>
+        </div>
+      </div>
+      <p style="margin:0;font-size:13.5px;line-height:1.7;color:var(--ink-2);max-width:34ch">Một cuộc đời thứ hai đang chờ bạn ở thành phố Venus.</p>
+    </div>
+    <div>
+      <h4>KHÁM PHÁ</h4>
+      <ul>
+        <li><a href="#gioi-thieu">Giới thiệu</a></li>
+        <li><a href="#thanh-pho">Thành phố</a></li>
+        <li><a href="#vao-server">Hướng dẫn vào server</a></li>
+        <li><a href="#luat">Luật lệ</a></li>
+        <li><a href="#hoi-dap">Hỏi đáp</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>CỘNG ĐỒNG</h4>
+      <ul>
+        <li><a href="#" data-discord target="_blank" rel="noopener">Discord Venus World</a></li>
+        <li><a href="#" data-discord target="_blank" rel="noopener">Kênh #luật-thành-phố</a></li>
+        <li><a href="#" data-discord target="_blank" rel="noopener">Đăng ký whitelist</a></li>
+        <li><a href="#" data-discord target="_blank" rel="noopener">Báo lỗi &amp; góp ý</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>KHAI TRƯƠNG</h4>
+      <div class="mono" style="font-size:27px;font-weight:700;color:var(--gum-d);line-height:1.1">16.09.2026</div>
+      <div style="font-size:13px;color:var(--ink-3);margin-top:6px">19:00 (GMT+7)</div>
+      <a class="btn btn-sm" href="#" data-discord target="_blank" rel="noopener" style="margin-top:16px">Nhận thông báo</a>
+    </div>
+    <div class="ft-note">© 2026 Venus World · V-Team. Venus World là server roleplay do cộng đồng vận hành, không liên kết với Rockstar Games hay Take-Two Interactive. Bạn cần bản quyền GTA V để chơi.</div>
+  </div>
+</footer>
+
+<!-- ============ WIDGET NỔI ============ -->
+<div class="fab">
+  <a class="fab-mascot" id="fabMascot" href="#" data-discord target="_blank" rel="noopener" aria-label="Tham gia Discord">
+    <span class="fab-bubble">Vào Discord với tớ nhé!</span>
+    <img src="assets/mascot.png" alt="">
+  </a>
+  <button class="totop" id="toTop" aria-label="Lên đầu trang">↑</button>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ============================================================
+   VENUS WORLD — script
+   Sửa 3 dòng CONFIG bên dưới là đổi được Discord / IP / ngày mở
+   ============================================================ */
+var CONFIG = {
+  discord : 'https://discord.gg/venusworld',
+  ip      : 'connect venusworld.vn',
+  openDate: '2026-09-16T19:00:00+07:00'
+};
+
+(function(){
+  'use strict';
+  var $  = function(s,c){ return (c||document).querySelector(s); };
+  var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var touch  = window.matchMedia && window.matchMedia('(hover: none)').matches;
+
+  /* ---------- CONFIG áp vào DOM ---------- */
+  $$('[data-discord]').forEach(function(a){ a.href = CONFIG.discord; });
+  var ipEl = $('#ipText'); if (ipEl) ipEl.textContent = CONFIG.ip;
+
+  /* ---------- SPLASH ---------- */
+  (function(){
+    var splash = $('#splash'), fill = $('#spFill'), pct = $('#spPct');
+    if (!splash) return;
+    var imgs = $$('img').filter(function(i){ return (i.getAttribute('src')||'').indexOf('assets/') === 0 || (i.getAttribute('src')||'').indexOf('data:') === 0; });
+    var total = Math.max(1, imgs.length), done = 0, val = 0, ended = false;
+    function paint(v){
+      val = Math.max(val, Math.min(100, Math.round(v)));
+      fill.style.width = val + '%';
+      pct.textContent = (val < 10 ? '0' : '') + val + '%';
+    }
+    function bump(){ done++; paint(done / total * 92); }
+    imgs.forEach(function(i){
       if (i.complete) bump();
       else { i.addEventListener('load', bump); i.addEventListener('error', bump); }
     });
-    const slow = /[?&]splash/.test(location.search) || /[?&]splash/.test(location.hash);
-    const hold = slow ? 4200 : 1150;
-    const start = Date.now();
-    let ended = false;
-    const finish = () => {
-      if (ended) return;
-      ended = true;
-      this.setState({ pct: 100 });
-      this.splashT1 = setTimeout(() => {
-        this.setState({ splashPhase: 'fade' });
-        this.splashT2 = setTimeout(() => this.setState({ splashPhase: 'off' }), 800);
-      }, Math.max(0, hold - (Date.now() - start)));
-    };
-    const ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-    ready.then(() => {
+    function finish(){
+      if (ended) return; ended = true;
+      paint(100);
+      setTimeout(function(){
+        splash.classList.add('gone');
+        document.body.classList.remove('is-locked');
+        setTimeout(function(){ if (splash.parentNode) splash.parentNode.removeChild(splash); }, 900);
+      }, 620);
+    }
+    document.body.classList.add('is-locked');
+    var ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    ready.then(function(){
       if (document.readyState === 'complete') finish();
       else window.addEventListener('load', finish);
     });
-    this.splashT0 = setTimeout(finish, slow ? 9000 : 5000);
-  }
+    setTimeout(finish, 5200);
+  })();
 
-  setupReveal() {
-    if (!window.IntersectionObserver) return;
-    if (this.io) this.io.disconnect();
-    const ease = 'cubic-bezier(.2,.7,.2,1)';
-    const els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
-    els.forEach((el, i) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(28px)';
-      el.style.transition = 'opacity .55s ease, transform .6s ' + ease;
-      el.style.transitionDelay = ((i % 4) * 0.08) + 's';
-    });
-    this.revealEls = els;
-    this.io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        const el = e.target;
-        if (e.isIntersecting) {
-          el.__in = true;
-          el.style.opacity = '1';
-          el.style.transform = 'translate3d(0,0,0)';
-        } else {
-          el.__in = false;
-          const above = e.boundingClientRect.top < 0;
-          el.style.opacity = '0';
-          el.style.transform = 'translate3d(0,' + (above ? -34 : 34) + 'px,0)';
-        }
-      });
-    }, { rootMargin: '-4% 0px -6% 0px', threshold: 0.03 });
-    els.forEach(el => this.io.observe(el));
-  }
+  /* ---------- SPRINKLES RƠI ---------- */
+  (function(){
+    if (reduce) return;
+    var box = $('#fall'); if (!box) return;
+    var COLORS = ['#FF8FD1','#FFC2E6','#B98BFF','#DCC7FF','#A9D9FF','#9BE9D6','#FFE39A','#FFC2AE'];
+    var n = touch ? 12 : 24, frag = document.createDocumentFragment();
+    for (var i = 0; i < n; i++){
+      var p = document.createElement('span');
+      p.className = 'sprk';
+      var round = Math.random() < 0.4;
+      var w = round ? (6 + Math.random() * 7) : (9 + Math.random() * 10);
+      var hh = round ? w : (4 + Math.random() * 3);
+      p.style.left = (Math.random() * 100) + '%';
+      p.style.width = w.toFixed(1) + 'px';
+      p.style.height = hh.toFixed(1) + 'px';
+      p.style.background = COLORS[i % COLORS.length];
+      p.style.opacity = (0.5 + Math.random() * 0.45).toFixed(2);
+      p.style.boxShadow = '0 2px 0 rgba(255,255,255,.7) inset';
+      p.style.setProperty('--dx', (Math.random() * 220 - 110).toFixed(0) + 'px');
+      p.style.animationDuration = (11 + Math.random() * 14).toFixed(1) + 's';
+      p.style.animationDelay = (-Math.random() * 24).toFixed(1) + 's';
+      frag.appendChild(p);
+    }
+    box.appendChild(frag);
+  })();
 
-  componentDidMount() {
-    this.runSplash();
-    this.setupReveal();
-    this.onHash = () => {
-      const p = location.hash.indexOf('#/') === 0 ? location.hash.slice(2) : 'Home';
-      if (p !== this.state.page) this.setState({ page: p }, () => this.setupReveal());
-    };
-    window.addEventListener('hashchange', this.onHash);
+  /* ---------- HEADER + SCROLLSPY + PROGRESS ---------- */
+  (function(){
+    var hdr = $('#hdr'), bar = $('#bar'), fab = $('#fabMascot'), top = $('#toTop');
+    var links = $$('[data-nav]');
+    var secs = ['home','gioi-thieu','thanh-pho','vao-server','luat','hoi-dap']
+      .map(function(id){ return document.getElementById(id); }).filter(Boolean);
+    var lastY = 0, raf = 0;
 
-    this.mascot = document.querySelector('[data-mascot]');
-    this.parallax = Array.prototype.slice.call(document.querySelectorAll('[data-par]'));
-    this.onScroll = () => {
-      if (this.raf) return;
-      this.raf = requestAnimationFrame(() => {
-        this.raf = 0;
-        const y = window.pageYOffset || 0;
-        const vh = window.innerHeight || 800;
-        const dy = y - (this.lastY == null ? y : this.lastY);
-        this.lastY = y;
+    function frame(){
+      raf = 0;
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var vh = window.innerHeight || 800;
+      var max = Math.max(1, document.documentElement.scrollHeight - vh);
 
-        const bar = this.bar || (this.bar = document.querySelector('[data-progress]'));
-        if (bar) {
-          const max = Math.max(1, document.documentElement.scrollHeight - vh);
-          bar.style.width = (Math.min(1, y / max) * 100).toFixed(2) + '%';
-        }
+      bar.style.width = (Math.min(1, y / max) * 100).toFixed(2) + '%';
+      hdr.classList.toggle('solid', y > 30);
+      hdr.classList.toggle('hide', y > lastY + 6 && y > 420 && !$('#drawer').classList.contains('open'));
+      lastY = y;
 
-        const head = this.head || (this.head = document.querySelector('header'));
-        if (head) head.style.transform = (dy > 4 && y > 320) ? 'translate3d(0,-102%,0)' : 'translate3d(0,0,0)';
+      if (fab) fab.classList.toggle('show', y > vh * 0.65);
+      if (top) top.classList.toggle('show', y > vh * 0.65);
 
-        const v = Math.max(-24, Math.min(24, dy * 0.8));
-        if (this.revealEls) this.revealEls.forEach(el => { if (el.__in) el.style.transform = 'translate3d(0,' + v.toFixed(1) + 'px,0)'; });
-        clearTimeout(this.velT);
-        this.velT = setTimeout(() => {
-          if (this.revealEls) this.revealEls.forEach(el => { if (el.__in) el.style.transform = 'translate3d(0,0,0)'; });
-        }, 110);
-        if (this.mascot) {
-          const on = y > vh * 0.7;
-          this.mascot.style.opacity = on ? '1' : '0';
-          this.mascot.style.transform = 'translate3d(0,' + (on ? 0 : 44) + 'px,0) rotate(' + (Math.sin(y / 460) * 7).toFixed(2) + 'deg)';
-        }
-        this.parallax.forEach(el => {
-          const sp = parseFloat(el.getAttribute('data-par')) || 0.05;
-          const r = el.getBoundingClientRect();
-          el.style.transform = 'translate3d(0,' + ((r.top + r.height / 2 - vh / 2) * -sp).toFixed(1) + 'px,0)';
-        });
-      });
-    };
-    window.addEventListener('scroll', this.onScroll, { passive: true });
-    window.addEventListener('resize', this.onScroll, { passive: true });
-    this.onScroll();
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.copyTimer);
-    clearTimeout(this.velT);
-    clearTimeout(this.splashT0);
-    clearTimeout(this.splashT1);
-    clearTimeout(this.splashT2);
-    if (this.io) this.io.disconnect();
-    if (this.raf) cancelAnimationFrame(this.raf);
-    window.removeEventListener('scroll', this.onScroll);
-    window.removeEventListener('resize', this.onScroll);
-    window.removeEventListener('hashchange', this.onHash);
-  }
-
-  get openTs() {
-    const raw = this.props.openDate || '2026-09-16';
-    const t = new Date(raw + 'T19:00:00+07:00').getTime();
-    return isNaN(t) ? new Date('2026-09-16T19:00:00+07:00').getTime() : t;
-  }
-
-  renderVals() {
-    const ip = this.props.serverIp || 'connect venusworld.vn';
-    const pad = n => String(Math.max(0, n)).padStart(2, '0');
-    const dt = new Date(this.openTs);
-    const dd = pad(dt.getDate()), mm = pad(dt.getMonth() + 1), yy = dt.getFullYear();
-
-    const data = [
-      { key: 'Nghề nghiệp', title: 'Hơn 10+ nghề, hợp pháp lẫn không',
-        body: 'Mỗi nghề có tiến trình riêng, đồng nghiệp riêng và những tình huống roleplay riêng. Bạn có thể đổi đời bất cứ lúc nào.',
-        shot: 'ca trực của cảnh sát',
-        chips: ['Cảnh sát & Cứu hoả', 'Bác sĩ EMS', 'Cơ khí & Cứu hộ', 'Nhà hàng & Bar', 'Taxi & Giao hàng', 'Báo chí & Truyền hình'] },
-      { key: 'Xe cộ', title: '50+ xe custom & garage nhiều tầng',
-        body: 'Từ xe máy chạy grab tới hypercar. Độ máy, độ thân, dán decal, chọn biển số riêng — chiếc xe là chữ ký của nhân vật bạn.',
-        shot: 'garage độ xe',
-        chips: ['Độ máy & turbo', 'Decal tự thiết kế', 'Biển số cá nhân', 'Đua xe & drift'] },
-      { key: 'Nhà cửa', title: 'Nhà là nơi câu chuyện bắt đầu',
-        body: 'Thuê phòng trọ, mua căn hộ hay tậu villa ven biển. Tự do bày nội thất, mở tiệc, cất đồ trong kho riêng và mời bạn bè ghé chơi.',
-        shot: 'căn hộ người chơi',
-        chips: ['Nội thất tự do', 'Kho & két sắt', 'Chìa khoá cho bạn bè', 'Kinh doanh tại gia'] },
-      { key: 'Băng đảng', title: 'Băng đảng & thế lực ngầm',
-        body: 'Lập băng, giữ lãnh thổ, làm ăn với các thế lực khác. Xung đột có luật, có kịch bản — thắng thua đều phải ra chuyện, không phải xả súng vô nghĩa.',
-        shot: 'lãnh thổ băng đảng',
-        chips: ['Lãnh thổ & kho băng', 'Cấp bậc thành viên', 'Phi vụ theo kịch bản', 'Chiến tranh có kiểm soát'] }
-    ];
-
-    const active = data[this.state.tab] || data[0];
-    const base = 'padding:12px 22px;border-radius:999px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;transition:transform .3s cubic-bezier(.2,.7,.2,1),background .3s ease,border-color .3s ease,color .3s ease,box-shadow .3s ease;';
-    const tabs = data.map((t, i) => ({
-      label: t.key,
-      select: () => this.setState({ tab: i }),
-      style: base + (i === this.state.tab
-        ? 'border:1px solid rgba(255,255,255,.4);background:linear-gradient(135deg,#FFE2F8,#F58BFF 55%,#B98BFF);color:#3E1257;box-shadow:0 10px 26px rgba(245,139,255,.34);transform:translateY(-2px)'
-        : 'border:1px solid rgba(245,139,255,.18);background:rgba(255,255,255,.04);color:#BCADD8')
-    }));
-
-    const page = this.state.page;
-    const nBase = 'position:relative;display:flex;align-items:center;gap:9px;padding:11px 18px;border-radius:14px;font-size:13.5px;cursor:pointer;transition:color .25s ease,background .25s ease,box-shadow .25s ease;';
-    const nOn = 'font-weight:700;color:#FFFFFF;background:linear-gradient(180deg,rgba(245,139,255,.46),rgba(166,107,255,.34));box-shadow:0 8px 22px rgba(245,139,255,.32),inset 0 1px 0 rgba(255,255,255,.4),inset 0 -1px 0 rgba(0,0,0,.25)';
-    const nOff = 'font-weight:500;color:#BFB2D9';
-    const dBase = 'width:6px;height:6px;border-radius:50%;background:#FFE9FB;box-shadow:0 0 12px #F9B8F5;flex:0 0 auto;transition:opacity .3s ease,width .3s ease,margin .3s ease;';
-    const dOn = 'opacity:1';
-    const dOff = 'opacity:0;width:0;margin-left:-9px';
-    const keys = ['Home', 'Intro', 'City', 'Join', 'Rules'];
-    const routes = {};
-    keys.forEach(k => {
-      routes['nav' + k] = nBase + (page === k ? nOn : nOff);
-      routes['dot' + k] = dBase + (page === k ? dOn : dOff);
-      routes['go' + k] = () => this.go(k);
-      routes['page' + k] = page === k;
-    });
-    if (!keys.some(k => page === k)) { routes.navHome = nBase + nOn; routes.dotHome = dBase + dOn; routes.pageHome = true; }
-
-    const sp = this.state.splashPhase;
-    const splashBase = 'position:fixed;inset:0;z-index:300;overflow:hidden;background:#08040F;transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1);';
-
-    return {
-      ...routes,
-      splashOn: sp !== 'off',
-      splashStyle: splashBase + (sp === 'fade' ? 'opacity:0;transform:scale(1.06);pointer-events:none' : 'opacity:1'),
-      splashBar: 'width:' + this.state.pct + '%;height:100%;background:linear-gradient(90deg,#C79BFF,#F58BFF 60%,#FFE9FB);box-shadow:0 0 16px rgba(245,139,255,.8);transition:width .45s cubic-bezier(.2,.7,.2,1)',
-      splashPct: String(this.state.pct).padStart(2, '0') + '%',
-      discordUrl: this.props.discordUrl || 'https://discord.gg/venusworld',
-      openDateShort: dd + '/' + mm,
-      tabs,
-      tabTitle: active.title,
-      tabBody: active.body,
-      tabChips: active.chips,
-      tabShot: active.shot,
-      copyLabel: this.state.copied ? 'Đã copy IP ✓' : 'Copy IP server',
-      copyIp: () => {
-        const done = () => {
-          this.setState({ copied: true });
-          clearTimeout(this.copyTimer);
-    clearTimeout(this.velT);
-    clearTimeout(this.splashT0);
-    clearTimeout(this.splashT1);
-    clearTimeout(this.splashT2);
-          this.copyTimer = setTimeout(() => this.setState({ copied: false }), 1800);
-        };
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(ip).then(done, done);
-        } else { done(); }
+      var cur = secs[0] ? secs[0].id : 'home';
+      for (var i = 0; i < secs.length; i++){
+        if (secs[i].getBoundingClientRect().top <= vh * 0.35) cur = secs[i].id;
       }
-    };
+      links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-nav') === cur); });
+    }
+    function onScroll(){ if (!raf) raf = requestAnimationFrame(frame); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    onScroll();
+
+    if (top) top.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+  })();
+
+  /* ---------- DRAWER MOBILE ---------- */
+  (function(){
+    var b = $('#burger'), d = $('#drawer');
+    if (!b || !d) return;
+    function close(){ b.classList.remove('x'); d.classList.remove('open'); document.body.classList.remove('is-locked'); }
+    b.addEventListener('click', function(){
+      var open = !d.classList.contains('open');
+      b.classList.toggle('x', open);
+      d.classList.toggle('open', open);
+      document.body.classList.toggle('is-locked', open);
+    });
+    $$('a', d).forEach(function(a){ a.addEventListener('click', close); });
+    window.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+  })();
+
+  /* ---------- REVEAL ---------- */
+  (function(){
+    var els = $$('.reveal');
+    if (!window.IntersectionObserver){ els.forEach(function(e){ e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function(list){
+      list.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    els.forEach(function(e, i){ e.style.transitionDelay = ((i % 4) * 0.07).toFixed(2) + 's'; io.observe(e); });
+  })();
+
+  /* ---------- TILT 3D ---------- */
+  (function(){
+    if (touch || reduce){ document.documentElement.classList.add('no-tilt'); return; }
+    $$('[data-tilt]').forEach(function(el){
+      var rot = parseFloat(el.getAttribute('data-rot') || '0') || 0;
+      var rest = 'rotate(' + rot + 'deg)';
+      var lift = el.hasAttribute('data-rot') ? ' translateY(-8px)' : '';
+      el.style.transformStyle = 'preserve-3d';
+      el.addEventListener('mousemove', function(e){
+        var r = el.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = 'perspective(900px)' + lift +
+          ' rotateX(' + (-py * 6).toFixed(2) + 'deg) rotateY(' + (px * 7).toFixed(2) + 'deg)';
+      });
+      el.addEventListener('mouseleave', function(){ el.style.transform = rest; });
+    });
+  })();
+
+  /* ---------- TABS THÀNH PHỐ ---------- */
+  (function(){
+    var DATA = [
+      { title:'Hơn 10+ nghề, hợp pháp lẫn không',
+        body :'Mỗi nghề có tiến trình riêng, đồng nghiệp riêng và những tình huống roleplay riêng. Bạn có thể đổi đời bất cứ lúc nào.',
+        shot :'Ảnh in-game — ca trực của cảnh sát',
+        chips:['Cảnh sát & Cứu hoả','Bác sĩ EMS','Cơ khí & Cứu hộ','Nhà hàng & Bar','Taxi & Giao hàng','Báo chí & Truyền hình'] },
+      { title:'50+ xe custom & garage nhiều tầng',
+        body :'Từ xe máy chạy grab tới hypercar. Độ máy, độ thân, dán decal, chọn biển số riêng — chiếc xe là chữ ký của nhân vật bạn.',
+        shot :'Ảnh in-game — garage độ xe',
+        chips:['Độ máy & turbo','Decal tự thiết kế','Biển số cá nhân','Đua xe & drift'] },
+      { title:'Nhà là nơi câu chuyện bắt đầu',
+        body :'Thuê phòng trọ, mua căn hộ hay tậu villa ven biển. Tự do bày nội thất, mở tiệc, cất đồ trong kho riêng và mời bạn bè ghé chơi.',
+        shot :'Ảnh in-game — căn hộ người chơi',
+        chips:['Nội thất tự do','Kho & két sắt','Chìa khoá cho bạn bè','Kinh doanh tại gia'] },
+      { title:'Băng đảng & thế lực ngầm',
+        body :'Lập băng, giữ lãnh thổ, làm ăn với các thế lực khác. Xung đột có luật, có kịch bản — thắng thua đều phải ra chuyện, không phải xả súng vô nghĩa.',
+        shot :'Ảnh in-game — lãnh thổ băng đảng',
+        chips:['Lãnh thổ & kho băng','Cấp bậc thành viên','Phi vụ theo kịch bản','Chiến tranh có kiểm soát'] }
+    ];
+    var bar = $('#tabbar'), t = $('#tabTitle'), b = $('#tabBody'), c = $('#tabChips'), s = $('#tabShot');
+    if (!bar) return;
+    function draw(i){
+      var d = DATA[i] || DATA[0];
+      t.textContent = d.title; b.textContent = d.body; s.textContent = d.shot;
+      c.innerHTML = '';
+      d.chips.forEach(function(x, k){
+        var el = document.createElement('div');
+        el.className = 'chip'; el.textContent = x;
+        el.style.opacity = '0'; el.style.transform = 'translateY(10px)';
+        el.style.transition = 'opacity .35s ease ' + (k * 0.045) + 's, transform .45s cubic-bezier(.34,1.56,.64,1) ' + (k * 0.045) + 's';
+        c.appendChild(el);
+        requestAnimationFrame(function(){ el.style.opacity = '1'; el.style.transform = 'none'; });
+      });
+      $$('.tab', bar).forEach(function(x){ x.classList.toggle('on', +x.getAttribute('data-tab') === i); });
+    }
+    bar.addEventListener('click', function(e){
+      var btn = e.target.closest('.tab'); if (!btn) return;
+      draw(+btn.getAttribute('data-tab'));
+    });
+    draw(0);
+  })();
+
+  /* ---------- ACCORDION (LUẬT + FAQ) ---------- */
+  (function(){
+    var RULES = [
+      ['Giữ vai, đừng phá vai','Trong phố chỉ nói chuyện với tư cách nhân vật. Việc ngoài game để dành cho Discord.'],
+      ['Không RDM / VDM','Không bắn hay tông người vô cớ. Mọi xung đột phải có lý do roleplay đi trước.'],
+      ['Quý trọng mạng sống','Nhân vật của bạn biết sợ chết. Bị chĩa súng vào đầu thì đừng hành động như người bất tử.'],
+      ['Không metagaming','Thông tin nghe từ stream, Discord hay bạn bè ngoài game không được mang vào nhân vật.'],
+      ['Không phần mềm thứ ba','Mod hình ảnh thì thoải mái. Mọi công cụ can thiệp gameplay đều bị ban vĩnh viễn.'],
+      ['Tôn trọng người sau màn hình','Drama trong phố là gia vị. Xúc phạm ngoài đời, phân biệt hay quấy rối thì không.']
+    ];
+    var FAQ = [
+      ['Server có cần whitelist không?','Có, nhưng thủ tục rất nhanh. Bạn vào Discord điền đơn, đọc luật và nhận role người chơi — không phải chờ duyệt lâu.'],
+      ['Mình cần mua GTA V bản quyền không?','Có. FiveM yêu cầu bản GTA V hợp lệ trên PC (Steam, Rockstar hoặc Epic). Bản lậu sẽ không kết nối được.'],
+      ['Máy yếu có chơi được không?','Được. Server tối ưu để chạy ổn ở cấu hình tầm trung. Nếu giật, bạn có thể hạ setting và tắt bớt mod đồ hoạ.'],
+      ['Server có pay-to-win không?','Không. Tiền trong phố đến từ công việc và quan hệ. Vật phẩm hỗ trợ chỉ mang tính trang trí, không ảnh hưởng cân bằng.'],
+      ['Mình mới chơi RP lần đầu thì sao?','Hoàn toàn ổn. Có hướng dẫn cho người mới ngay khi vào phố, và cộng đồng luôn sẵn sàng chỉ bạn cách nhập vai.'],
+      ['Bao giờ server mở cửa?','19:00 ngày 16.09.2026 (giờ Việt Nam). Vào Discord trước để giữ tên nhân vật và nhận thông báo.']
+    ];
+    function build(host, rows, numbered){
+      if (!host) return;
+      rows.forEach(function(r, i){
+        var wrap = document.createElement('div'); wrap.className = 'rule';
+        var head = document.createElement('button'); head.className = 'rule-h'; head.type = 'button';
+        head.innerHTML = (numbered ? '<span class="rule-n">' + (i < 9 ? '0' : '') + (i + 1) + '</span>' : '<span class="rule-n">♡</span>')
+          + '<span class="rule-t"></span><span class="rule-x"></span>';
+        $('.rule-t', head).textContent = r[0];
+        var body = document.createElement('div'); body.className = 'rule-b';
+        var p = document.createElement('p'); p.textContent = r[1]; body.appendChild(p);
+        wrap.appendChild(head); wrap.appendChild(body); host.appendChild(wrap);
+        head.addEventListener('click', function(){
+          var open = wrap.classList.toggle('open');
+          body.style.maxHeight = open ? (body.scrollHeight + 'px') : '0px';
+          $$('.rule', host).forEach(function(o){
+            if (o !== wrap && o.classList.contains('open')){
+              o.classList.remove('open');
+              $('.rule-b', o).style.maxHeight = '0px';
+            }
+          });
+        });
+        if (i === 0){ wrap.classList.add('open'); requestAnimationFrame(function(){ body.style.maxHeight = body.scrollHeight + 'px'; }); }
+      });
+      window.addEventListener('resize', function(){
+        $$('.rule.open', host).forEach(function(o){ $('.rule-b', o).style.maxHeight = $('.rule-b', o).scrollHeight + 'px'; });
+      });
+    }
+    build($('#rules'), RULES, true);
+    build($('#faq'), FAQ, false);
+  })();
+
+  /* ---------- ĐẾM NGƯỢC ---------- */
+  (function(){
+    var d = $('#cdD'), h = $('#cdH'), m = $('#cdM'), s = $('#cdS');
+    if (!d) return;
+    var target = new Date(CONFIG.openDate).getTime();
+    if (isNaN(target)) return;
+    function pad(n){ return (n < 10 ? '0' : '') + n; }
+    function tick(){
+      var diff = Math.max(0, target - Date.now());
+      var sec = Math.floor(diff / 1000);
+      d.textContent = pad(Math.floor(sec / 86400));
+      h.textContent = pad(Math.floor(sec / 3600) % 24);
+      m.textContent = pad(Math.floor(sec / 60) % 60);
+      s.textContent = pad(sec % 60);
+    }
+    tick(); setInterval(tick, 1000);
+  })();
+
+  /* ---------- TOAST + TIM BAY ---------- */
+  var toastT;
+  function toast(msg){
+    var t = $('#toast'); if (!t) return;
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toastT);
+    toastT = setTimeout(function(){ t.classList.remove('show'); }, 2000);
   }
-}
+  function hearts(x, y){
+    if (reduce) return;
+    var ic = ['♡','✦','♥','✿','★'];
+    for (var i = 0; i < 12; i++){
+      (function(i){
+        var el = document.createElement('span');
+        el.className = 'heart';
+        el.textContent = ic[i % ic.length];
+        el.style.left = (x + (Math.random() * 90 - 45)) + 'px';
+        el.style.top  = (y + (Math.random() * 20 - 10)) + 'px';
+        el.style.color = ['#FF6FC0','#FF8FD1','#A574F5','#FFD46B','#5FAEEE','#4CC9AC'][i % 6];
+        el.style.setProperty('--hx', (Math.random() * 140 - 70).toFixed(0) + 'px');
+        el.style.setProperty('--hr', (Math.random() * 120 - 60).toFixed(0) + 'deg');
+        el.style.animationDelay = (i * 0.035) + 's';
+        document.body.appendChild(el);
+        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 1700);
+      })(i);
+    }
+  }
+
+  /* ---------- COPY IP ---------- */
+  (function(){
+    function copy(e){
+      var txt = CONFIG.ip;
+      function done(){
+        toast('Đã copy: ' + txt + ' ♡');
+        var r = e.currentTarget.getBoundingClientRect();
+        hearts(r.left + r.width / 2, r.top + r.height / 2);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done, function(){ fallback(txt); done(); });
+      } else { fallback(txt); done(); }
+    }
+    function fallback(txt){
+      try{
+        var ta = document.createElement('textarea');
+        ta.value = txt; ta.setAttribute('readonly',''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      }catch(err){}
+    }
+    ['#copyIp','#copyHero'].forEach(function(sel){
+      var b = $(sel); if (b) b.addEventListener('click', copy);
+    });
+  })();
+
+  /* ---------- SPARKLE THEO CHUỘT ---------- */
+  (function(){
+    if (touch || reduce) return;
+    var last = 0;
+    window.addEventListener('mousemove', function(e){
+      var now = Date.now();
+      if (now - last < 60) return;
+      last = now;
+      var s = document.createElement('span');
+      s.className = 'spark';
+      s.style.setProperty('--sk', ['#FF8FD1','#B98BFF','#A9D9FF','#9BE9D6','#FFE39A'][(Math.random()*5)|0]);
+      s.style.left = (e.clientX - 5 + (Math.random() * 14 - 7)) + 'px';
+      s.style.top  = (e.clientY - 5 + (Math.random() * 14 - 7)) + 'px';
+      var sc = (0.5 + Math.random() * 0.9).toFixed(2);
+      s.style.transform = 'scale(' + sc + ')';
+      document.body.appendChild(s);
+      setTimeout(function(){ if (s.parentNode) s.parentNode.removeChild(s); }, 780);
+    }, { passive: true });
+  })();
+
+  /* ---------- SMOOTH SCROLL BÙ HEADER ---------- */
+  (function(){
+    document.addEventListener('click', function(e){
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      var el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      var y = el.getBoundingClientRect().top + window.pageYOffset - (id === 'home' ? 200 : 84);
+      window.scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
+      history.replaceState(null, '', '#' + id);
+    });
+  })();
+
+})();
 </script>
-
-
-</body></html>
+</body>
+</html>
