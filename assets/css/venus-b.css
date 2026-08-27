@@ -153,19 +153,29 @@ nav.pills a.on{color:var(--on-neon);background:var(--neon);border-color:var(--ne
   border:1px solid rgba(255,107,182,.4)}
 .btn-g:hover{transform:translateY(-3px);color:var(--on-neon);background:var(--neon)}
 
-/* ============ DẢI CHỮ CHẠY ============ */
-.ticker{border-top:2px solid rgba(255,107,182,.3);border-bottom:2px solid rgba(255,107,182,.3);
-  overflow:hidden;padding:12px 0;background:rgba(24,10,46,.7);
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.ticker-in{display:flex;width:max-content;animation:tick 34s linear infinite}
-.ticker:hover .ticker-in{animation-play-state:paused}
-.ticker-set{display:flex;gap:34px;padding-right:34px;align-items:center;white-space:nowrap;
-  font-family:'Oswald',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--tx-2)}
-.ticker-set b{color:var(--neon)}
-.ticker-set i{font-style:normal;color:var(--violet)}
-@keyframes tick{to{transform:translate3d(-50%,0,0)}}
+/* ============ DÃY BIỂN HIỆU TREO ============ */
+.hang{position:relative;padding:0 0 38px}
+.hang-row{position:relative;padding-top:46px}
+.hang-row+.hang-row{padding-top:42px}
+.hang-wire{position:absolute;left:0;right:0;top:0;height:46px;pointer-events:none}
+.hang-wire svg{width:100%;height:100%}
+.hang-in{width:var(--shell);margin:0 auto;padding:0 26px;display:flex;flex-wrap:wrap;gap:14px;
+  align-items:flex-start;justify-content:center}
+.plate-sign{position:relative;padding:12px 18px 13px;border-radius:4px;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.1em;
+  text-transform:uppercase;white-space:nowrap;transition:transform .3s var(--ease)}
+.plate-sign::before{content:"";position:absolute;left:50%;top:-13px;width:2px;height:13px;background:#4A2A5E}
+.plate-sign:hover{transform:translateY(-4px) rotate(0deg)!important}
+.plate-sign.s1{background:linear-gradient(180deg,var(--paper),var(--paper-2));color:var(--ink);
+  border:2px solid var(--neon-d);box-shadow:0 0 30px rgba(255,107,182,.3);transform:rotate(-1.6deg)}
+.plate-sign.s2{background:rgba(42,15,62,.9);color:#FFC7EA;border:2px solid var(--neon);
+  box-shadow:0 0 26px rgba(255,107,182,.34);transform:rotate(1.2deg)}
+.plate-sign.s3{background:rgba(28,14,58,.9);color:#D9C6FF;border:2px solid var(--violet);
+  box-shadow:0 0 26px rgba(160,107,255,.34);transform:rotate(-.8deg)}
+.plate-sign.s4{background:linear-gradient(180deg,#FF8ECB,var(--neon));color:var(--on-neon);
+  border:2px solid #fff;box-shadow:0 0 30px rgba(255,107,182,.4);transform:rotate(1.8deg)}
+.plate-sign.s5{background:rgba(42,15,62,.9);color:#FFC7EA;border:2px dashed var(--neon-d);
+  transform:rotate(-1.2deg)}
 
 /* ============ DÃY BIỂN HIỆU ============ */
 .eyebrow{display:inline-flex;align-items:center;gap:11px;font-family:'Chakra Petch',monospace;font-size:10.5px;
@@ -292,6 +302,13 @@ footer{border-top:2px solid rgba(255,107,182,.24);background:rgba(12,4,24,.75);p
 .totop.show{opacity:1;pointer-events:auto}
 .totop:hover{transform:translateY(-3px);background:var(--neon);color:var(--on-neon)}
 
+@media (max-width:1080px){
+  .hang-wire{display:none}
+  .plate-sign::before{display:none}
+  .hang{padding-bottom:30px}
+  .hang-row{padding-top:26px}
+  .hang-row+.hang-row{padding-top:14px}
+}
 @media (max-width:960px){
   nav.pills,.cta-sm{display:none}
   .burger{display:block}
@@ -309,6 +326,7 @@ footer{border-top:2px solid rgba(255,107,182,.24);background:rgba(12,4,24,.75);p
 }
 @media (max-width:600px){
   .shell,.hd,.hero-in,.ft{padding-left:18px;padding-right:18px}
+  .plate-sign{font-size:12.5px;padding:10px 14px 11px}
   .hero-mas{display:none}
   .led i{font-size:17px;min-width:38px;padding:6px 8px}
   .led-lb span{min-width:38px}
