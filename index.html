@@ -4,224 +4,170 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Venus World — Vietnam Roleplay · FiveM</title>
-<meta name="description" content="Venus World — server roleplay Việt Nam trên FiveM. Bắt đầu cuộc đời thứ hai của bạn. Open Server 16.09.2026.">
-<meta name="theme-color" content="#FFF1F8">
-<meta property="og:title" content="Venus World — Vietnam Roleplay · FiveM">
-<meta property="og:description" content="Venus World — server roleplay Việt Nam trên FiveM. Bắt đầu cuộc đời thứ hai của bạn. Open Server 16.09.2026.">
-<meta property="og:image" content="assets/hero.webp">
-<meta property="og:type" content="website">
-<link rel="icon" href="assets/logo.webp">
+<meta name="description" content="Số 16 đường Venus, mở cửa 19:00 ngày 16.09.2026. Server roleplay Việt Nam trên FiveM.">
+<meta name="theme-color" content="#0A0712">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/venus.css">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Chakra+Petch:wght@500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/venus-b.css">
 </head>
 <body>
 
-<!-- ============ SPLASH ============ -->
-<div id="splash">
-  <div class="sp-inner">
-    <img class="sp-mascot" src="assets/mascot.png" alt="Kuromi Venus World">
-    <div class="sp-word">Venus World</div>
-    <div class="sp-sub">ĐANG VÀO THÀNH PHỐ</div>
-    <div class="sp-track"><div class="sp-fill" id="spFill"></div></div>
-    <div class="sp-pct" id="spPct">00%</div>
-  </div>
-</div>
-
-<!-- ============ NỀN ============ -->
-<div class="bg-fx">
-  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-  <div class="dots"></div>
-</div>
-<div class="fall" id="fall"></div>
-
-<!-- ============ HEADER ============ -->
 <header id="hdr">
   <div class="hd">
     <a class="brand" href="index.html">
-      <img src="assets/logo.webp" alt="Venus World">
-      <span><b>VENUS WORLD</b><small>VIETNAM ROLEPLAY</small></span>
+      <span class="ava"><img src="assets/mascot.png" alt=""></span>
+      <span class="plate"><b>VENUS WORLD</b></span>
+      <small>VIETNAM ROLEPLAY</small>
     </a>
-    <nav class="pills" id="pills">
-      <a href="index.html" data-nav class="on"><i class="dot"></i>Trang chủ</a>
-      <a href="gioi-thieu.html" data-nav><i class="dot"></i>Giới thiệu</a>
-      <a href="thanh-pho.html" data-nav><i class="dot"></i>Thành phố</a>
-      <a href="vao-server.html" data-nav><i class="dot"></i>Vào server</a>
-      <a href="luat.html" data-nav><i class="dot"></i>Luật lệ</a>
-      <a href="hoi-dap.html" data-nav><i class="dot"></i>Hỏi đáp</a>
+    <nav class="pills">
+      <a href="index.html" class="on">Trang chủ</a>
+      <a href="#trong-pho">Thành phố</a>
+      <a href="#vao-server">Vào server</a>
+      <a href="luat.html">Luật lệ</a>
     </nav>
-    <a class="btn btn-sm hd-cta" href="#" data-discord target="_blank" rel="noopener">Tham gia Discord</a>
+    <a class="cta-sm" href="#" data-discord target="_blank" rel="noopener">Vào Discord</a>
     <button class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
   </div>
-  <div id="bar"></div>
 </header>
 
 <div class="drawer" id="drawer">
-  <a href="index.html" class="on">Trang chủ <span>01</span></a>
-  <a href="gioi-thieu.html">Giới thiệu <span>02</span></a>
-  <a href="thanh-pho.html">Thành phố <span>03</span></a>
-  <a href="vao-server.html">Vào server <span>04</span></a>
-  <a href="luat.html">Luật lệ <span>05</span></a>
-  <a href="hoi-dap.html">Hỏi đáp <span>06</span></a>
-  <a href="#" data-discord target="_blank" rel="noopener" style="justify-content:center;margin-top:12px;background:linear-gradient(180deg,#FFA5DA,#FF6FC0);color:#fff;border-color:#fff;box-shadow:0 5px 0 #D24C9F">Tham gia Discord ♡</a>
+  <a href="index.html" class="on">Trang chủ <u>01</u></a>
+  <a href="#trong-pho">Thành phố <u>02</u></a>
+  <a href="#vao-server">Vào server <u>03</u></a>
+  <a href="luat.html">Luật lệ <u>04</u></a>
+  <a href="#" data-discord target="_blank" rel="noopener">Discord <u>↗</u></a>
 </div>
 
 <main>
 
-<!-- ============ HERO ============ -->
-<section id="home">
-  <div class="shell">
-    <div style="position:relative" data-tilt>
-      <svg class="hero-corner hc-l" viewBox="0 0 120 80" aria-hidden="true">
-        <g stroke="#fff" stroke-width="6" stroke-linejoin="round">
-          <path fill="#FF8FD1" d="M60 40C38 8 6 12 10 40s28 32 50 0z"/>
-          <path fill="#FF8FD1" d="M60 40c22-32 54-28 50 0s-28 32-50 0z"/>
-          <circle fill="#FFC2E6" cx="60" cy="40" r="13"/>
-        </g>
-      </svg>
-      <svg class="hero-corner hc-r" viewBox="0 0 120 80" aria-hidden="true">
-        <g stroke="#fff" stroke-width="6" stroke-linejoin="round">
-          <path fill="#B98BFF" d="M60 40C38 8 6 12 10 40s28 32 50 0z"/>
-          <path fill="#B98BFF" d="M60 40c22-32 54-28 50 0s-28 32-50 0z"/>
-          <circle fill="#DCC7FF" cx="60" cy="40" r="13"/>
-        </g>
-      </svg>
-      <div class="hero-frame">
-        <div class="hero-art">
-          <img src="assets/hero.webp" alt="Venus World — Open Server 16.09.2026" fetchpriority="high">
-          <div class="hero-shine"></div>
+<!-- ============ HERO: HỘP ĐÈN ============ -->
+<section class="hero">
+  <div class="hero-bg"><img src="assets/hero.webp" alt=""></div>
+  <div class="wire">
+    <svg viewBox="0 0 1400 60" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 8 Q 350 44 700 20 T 1400 10" fill="none" stroke="#4A2A5E" stroke-width="3"/>
+      <circle cx="210" cy="26" r="4" fill="#FFC7EA"/><circle cx="490" cy="33" r="4" fill="#FF6BB6"/>
+      <circle cx="770" cy="22" r="4" fill="#C77DFF"/><circle cx="1050" cy="18" r="4" fill="#FFC7EA"/>
+    </svg>
+  </div>
+
+  <div class="hero-in">
+    <div class="vert"><span>VENUS</span></div>
+
+    <div class="box">
+      <div class="vn">Số 16 · Đường Venus · Vietnam Roleplay</div>
+      <h1>Sống một đời<br><em>ở phố Venus</em></h1>
+      <p class="sub">Thành phố mở cửa lúc 19:00 ngày 16.09.2026. Ghé sớm để giữ tên nhân vật, giữ biển số đẹp và chọn chỗ ngồi trong phố trước khi đông.</p>
+      <div class="dash"></div>
+
+      <div class="hero-row">
+        <div>
+          <div class="led">
+            <i data-cd="d">00</i><u>:</u><i data-cd="h">00</i><u>:</u><i data-cd="m">00</i><u>:</u><i data-cd="s">00</i>
+          </div>
+          <div class="led-lb"><span>NGÀY</span><u></u><span>GIỜ</span><u></u><span>PHÚT</span><u></u><span>GIÂY</span></div>
         </div>
-      </div>
-    </div>
-
-    <div class="hero-body">
-      <h1 class="hero-h1">Bắt đầu cuộc đời thứ hai ở <span class="grad">Venus World</span></h1>
-      <p class="lead" style="text-align:center;max-width:52ch">Thành phố có công việc, có bạn bè, có drama và cả những đêm đi dạo trên phố cảng. Mọi hệ thống ở đây đều phục vụ câu chuyện của riêng bạn.</p>
-
-      <div class="hero-cta">
-        <a class="btn btn-p" href="#" data-discord target="_blank" rel="noopener">Tham gia Discord ♡</a>
-        <button class="btn btn-w" id="copyHero" data-copy-ip>Copy IP server</button>
-      </div>
-
-      <div class="cd" id="cd">
-        <div class="u" style="--u1:#FFEAF6;--u2:#F6C4E2;--u3:#E0559F"><div class="n" id="cdD">00</div><div class="l">Ngày</div></div>
-        <div class="u" style="--u1:#F3EAFF;--u2:#D9C4F6;--u3:#8B5AE0"><div class="n" id="cdH">00</div><div class="l">Giờ</div></div>
-        <div class="u" style="--u1:#E7F6FF;--u2:#C0DFF3;--u3:#3E8FD0"><div class="n" id="cdM">00</div><div class="l">Phút</div></div>
-        <div class="u" style="--u1:#FFF6E2;--u2:#F0DCAF;--u3:#C99320"><div class="n" id="cdS">00</div><div class="l">Giây</div></div>
-      </div>
-      <div class="mono" style="margin-top:14px;font-size:11.5px;font-weight:700;letter-spacing:.2em;color:var(--ink-3)">ĐẾM NGƯỢC KHAI TRƯƠNG · 16.09.2026 · 19:00 (GMT+7)</div>
-
-      <div class="hero-stats">
-        <div class="stat" style="--sc:#FFC2E6;--ss:#FFD9EE;--sb:#FF6FC0"><b>10+</b><span>nghề nghiệp</span></div>
-        <div class="stat" style="--sc:#DCC7FF;--ss:#E7DAFF;--sb:#8B5AE0"><b>50+</b><span>xe custom</span></div>
-        <div class="stat" style="--sc:#BEE5FF;--ss:#D6EEFF;--sb:#3E8FD0"><b>24/7</b><span>hỗ trợ GM</span></div>
-        <div class="stat" style="--sc:#B6EDDD;--ss:#D2F4EA;--sb:#2FA98A"><b>100%</b><span>Việt hoá</span></div>
+        <a class="btn btn-p" href="#" data-discord target="_blank" rel="noopener">Vào Discord</a>
+        <button class="btn btn-d" data-copy-ip>Copy IP</button>
       </div>
     </div>
   </div>
+
+  <img class="hero-mas" src="assets/mascot.png" alt="">
 </section>
 
-<div class="stripe" style="margin-top:clamp(48px,6vw,84px)"></div>
-
-<div class="stripe" style="margin-top:clamp(48px,6vw,84px)"></div>
-
-<!-- ============ MARQUEE ============ -->
-<div class="mq">
-  <div class="mq-in">
-    <div class="mq-set">
-      <span>HỆ THỐNG PVP CUỐN HÚT</span><i>✿</i><b>KINH TẾ CÂN BẰNG</b><i>♡</i><span>SỰ KIỆN HÀNG TUẦN</span><i>✦</i><b>THỜI TRANG CUTE</b><i>✿</i><span>BĂNG ĐẢNG &amp; CHIẾM ĐÓNG</span><i>♡</i><b>NHÀ CỬA TỰ DO</b><i>✦</i>
+<div class="ticker">
+  <div class="ticker-in">
+    <div class="ticker-set">
+      <span>Băng đảng &amp; chiếm đóng</span><i>✦</i><b>Kinh tế không nạp</b><i>✦</i><span>Sự kiện hàng tuần</span><i>✦</i><b>25 chương luật</b><i>✦</i><span>Nhà cửa tự do</span><i>✦</i><b>OneSync Infinity</b><i>✦</i>
     </div>
-    <div class="mq-set" aria-hidden="true">
-      <span>HỆ THỐNG PVP CUỐN HÚT</span><i>✿</i><b>KINH TẾ CÂN BẰNG</b><i>♡</i><span>SỰ KIỆN HÀNG TUẦN</span><i>✦</i><b>THỜI TRANG CUTE</b><i>✿</i><span>BĂNG ĐẢNG &amp; CHIẾM ĐÓNG</span><i>♡</i><b>NHÀ CỬA TỰ DO</b><i>✦</i>
+    <div class="ticker-set" aria-hidden="true">
+      <span>Băng đảng &amp; chiếm đóng</span><i>✦</i><b>Kinh tế không nạp</b><i>✦</i><span>Sự kiện hàng tuần</span><i>✦</i><b>25 chương luật</b><i>✦</i><span>Nhà cửa tự do</span><i>✦</i><b>OneSync Infinity</b><i>✦</i>
     </div>
   </div>
 </div>
 
-<!-- ============ KHÔNG KHÍ ============ -->
-<section class="sec" style="padding-top:0">
-  <div class="shell">
-    <div class="reveal" style="margin-bottom:clamp(24px,3.2vw,40px)">
-      <div class="badge"><img src="assets/mascot.png" alt=""><span>KHÔNG KHÍ</span></div>
-      <h2 class="h2">Một đêm ở Venus</h2>
-    </div>
-    <div class="mosaic reveal">
-      <div class="tile t-a" style="--t1:#FFD9EE;--t2:#F0DCFF;--t3:#F0D3EA"><b>Phố đêm &amp; đèn neon</b></div>
-      <div class="tile t-b" style="--t1:#E2D8FF;--t2:#D8ECFF;--t3:#D6CBF2"><b>Meet xe cuối tuần</b></div>
-      <div class="tile" style="--t1:#FFEFD2;--t2:#FFDCE9;--t3:#F0DEC4"><b>Sự kiện</b></div>
-      <div class="tile" style="--t1:#D6F5EC;--t2:#DDEBFF;--t3:#C7E7DD"><b>Chân dung</b></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ĐI TIẾP ============ -->
-<section class="sec" style="padding-top:0">
+<!-- ============ DÃY BIỂN HIỆU ============ -->
+<section class="sec" id="trong-pho">
   <div class="shell">
     <div class="reveal" style="max-width:620px">
-      <div class="badge"><img src="assets/mascot.png" alt=""><span>KHÁM PHÁ</span></div>
-      <h2 class="h2">Xem tiếp gì đây?</h2>
+      <div class="eyebrow"><i></i>DÃY PHỐ CHÍNH</div>
+      <h2 class="h2">Trong phố có <em>những gì</em></h2>
+      <p class="lead">Bốn mặt tiền làm nên nhịp sống ở Venus. Tất cả đều do đội ngũ tự viết, chạy trên khung QBX và OneSync Infinity.</p>
     </div>
 
-    <div class="grid g4" style="margin-top:clamp(28px,3.6vw,48px)">
-      <div class="reveal">
-        <a class="gocard" href="gioi-thieu.html">
-          <div class="card" style="--rot:-1.2deg;--cc:#FFC2E6;--cs:#FFD9EE;--cw:#FFF2F9;--cg:rgba(255,143,209,.32);--cb1:#FFB0DF;--cb2:#FF6FC0;--cb3:#D24C9F" data-rot="-1.2" data-tilt>
-            <div class="tape"></div>
-            <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">♡</span></div>
-            <h3>Giới thiệu</h3>
-            <p>Venus World là gì, xây cho ai và server chạy trên nền tảng nào.</p>
-            <span class="go">XEM TRANG</span>
-          </div>
-        </a>
+    <div class="signs">
+      <div class="sign reveal">
+        <div class="no">SỐ 01</div>
+        <h3>Nghề nghiệp</h3>
+        <p>Hơn 10 nghề hợp pháp lẫn không: cảnh sát, EMS, cơ khí, nhà hàng, taxi, báo chí. Mỗi nghề có tiến trình và đồng nghiệp riêng.</p>
       </div>
-      <div class="reveal">
-        <a class="gocard" href="thanh-pho.html">
-          <div class="card" style="--rot:1deg;--cc:#DCC7FF;--cs:#E7DAFF;--cw:#F6F0FF;--cg:rgba(185,139,255,.32);--cb1:#D3B4FF;--cb2:#A574F5;--cb3:#7245C4" data-rot="1" data-tilt>
-            <div class="tape"></div>
-            <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">✿</span></div>
-            <h3>Thành phố</h3>
-            <p>Nghề nghiệp, xe cộ, nhà cửa và băng đảng — trong phố có gì để chơi.</p>
-            <span class="go">XEM TRANG</span>
-          </div>
-        </a>
+      <div class="sign reveal">
+        <div class="no">SỐ 02</div>
+        <h3>Xe cộ</h3>
+        <p>Hơn 50 xe custom, garage nhiều tầng. Độ máy, dán decal, chọn biển số riêng — chiếc xe là chữ ký của nhân vật.</p>
       </div>
-      <div class="reveal">
-        <a class="gocard" href="vao-server.html">
-          <div class="card" style="--rot:1.4deg;--cc:#BEE5FF;--cs:#D6EEFF;--cw:#EFF8FF;--cg:rgba(105,185,245,.3);--cb1:#A9D9FF;--cb2:#5FAEEE;--cb3:#3B7FB8" data-rot="1.4" data-tilt>
-            <div class="tape"></div>
-            <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">✦</span></div>
-            <h3>Vào server</h3>
-            <p>Ba bước cài FiveM, kết nối Venus World và tạo nhân vật đầu tiên.</p>
-            <span class="go">XEM TRANG</span>
-          </div>
-        </a>
+      <div class="sign reveal">
+        <div class="no">SỐ 03</div>
+        <h3>Nhà cửa</h3>
+        <p>Phòng trọ, căn hộ hay villa ven biển. Bày nội thất tự do, cất đồ trong kho riêng, đưa chìa khoá cho bạn bè.</p>
       </div>
-      <div class="reveal">
-        <a class="gocard" href="luat.html">
-          <div class="card" style="--rot:-1deg;--cc:#B6EDDD;--cs:#D2F4EA;--cw:#EEFBF7;--cg:rgba(90,220,190,.3);--cb1:#9BE9D6;--cb2:#4CC9AC;--cb3:#2E9A80" data-rot="-1" data-tilt>
-            <div class="tape"></div>
-            <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">★</span></div>
-            <h3>Luật lệ</h3>
-            <p>Bộ luật thành phố, chia theo chương, có ô tìm kiếm để tra nhanh.</p>
-            <span class="go">XEM TRANG</span>
-          </div>
-        </a>
+      <div class="sign reveal">
+        <div class="no">SỐ 04</div>
+        <h3>Băng đảng</h3>
+        <p>Lãnh thổ, phi vụ theo kịch bản, chiến tranh có kiểm soát. Thắng thua đều phải ra chuyện, không xả súng vô nghĩa.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CTA ============ -->
+<!-- ============ VÀO SERVER ============ -->
+<section class="sec" id="vao-server" style="padding-top:0">
+  <div class="shell">
+    <div class="two">
+      <div class="reveal">
+        <div class="eyebrow"><i></i>CỬA VÀO</div>
+        <h2 class="h2">Ba bước là <em>có mặt</em></h2>
+        <p class="lead">Chưa từng chơi FiveM cũng làm được. Cần bản GTA V hợp lệ trên PC là đủ, lần đầu mất khoảng 15 phút.</p>
+        <div class="connect">
+          <code id="ipText" data-ip>connect venusworld.vn</code>
+          <button class="btn btn-g" data-copy-ip>Copy lệnh</button>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="box" style="padding:26px 28px 28px">
+          <div class="vn">Hướng dẫn nhập phố</div>
+          <div class="dash" style="margin:14px 0 18px"></div>
+          <ol style="margin:0;padding-left:20px;color:#5A3F6E;font-size:14.5px;line-height:1.85">
+            <li style="margin-bottom:12px"><strong style="color:#3A1147">Cài FiveM.</strong> Tải tại fivem.net, đăng nhập bằng tài khoản Cfx.re. Bản GTA V lậu sẽ không kết nối được.</li>
+            <li style="margin-bottom:12px"><strong style="color:#3A1147">Kết nối Venus.</strong> Mở console bằng phím F8, dán lệnh kết nối rồi Enter.</li>
+            <li><strong style="color:#3A1147">Tạo nhân vật.</strong> Đặt tên, chọn ngoại hình, nhận CCCD rồi bước ra phố.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LUẬT ============ -->
 <section class="sec" style="padding-top:0">
   <div class="shell">
-    <div class="cta reveal">
-      <div>
-        <h2 class="h2" style="font-size:clamp(27px,3.4vw,44px)">Hẹn gặp ở Venus ngày <span class="grad">16/09</span></h2>
-        <p class="lead" style="color:#6B4A85">Vào Discord trước để giữ tên nhân vật, nhận thông báo mở server và tham gia sự kiện tặng xe ngày khai trương.</p>
+    <div class="two">
+      <div class="reveal">
+        <div class="box" style="padding:26px 28px 28px;text-align:center">
+          <div class="vn">Nội quy thành phố</div>
+          <h2 style="font-size:clamp(30px,4vw,46px);margin:12px 0 0;color:#3A1147">25 chương<br><em>82 điều</em></h2>
+          <div class="dash" style="margin:18px auto;width:60%"></div>
+          <p style="margin:0;font-size:14px">Mỗi điều ghi rõ mức xử lý. Sửa luật là thông báo trước trên Discord.</p>
+        </div>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,28px);align-items:center;justify-content:flex-end">
-        <img class="cta-mascot" src="assets/mascot.png" alt="">
-        <a class="btn btn-p" href="#" data-discord target="_blank" rel="noopener">Tham gia Discord ♡</a>
+      <div class="reveal">
+        <div class="eyebrow"><i></i>DÁN Ở CỬA</div>
+        <h2 class="h2">Phố có luật, và luật <em>viết ra để đọc</em></h2>
+        <p class="lead">Từ luật truy đuổi của cảnh sát, luật ẩu đả trong vùng vàng, cho tới thời gian cooldown sau một vụ cướp. Có ô tìm kiếm bỏ dấu, gõ “bien bao” là ra ngay điều cần.</p>
+        <p style="margin-top:24px"><a class="btn btn-p" href="luat.html">Đọc luật thành phố</a></p>
       </div>
     </div>
   </div>
@@ -229,66 +175,44 @@
 
 </main>
 
-<div style="height:26px;background-image:radial-gradient(circle at 26px 26px,#F7ECFF 26px,transparent 27px);background-size:52px 26px;background-repeat:repeat-x;position:relative;z-index:2"></div>
-
-<!-- ============ FOOTER ============ -->
 <footer>
   <div class="ft">
     <div>
-      <div style="display:flex;align-items:center;gap:13px;margin-bottom:14px">
-        <img src="assets/logo.webp" alt="" style="width:46px;height:46px;border-radius:16px;border:3px solid #fff;box-shadow:0 4px 0 #E4D2F5">
-        <div>
-          <div style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:15px">VENUS WORLD</div>
-          <div class="mono" style="font-size:9.5px;font-weight:700;letter-spacing:.2em;color:var(--ink-3)">VIETNAM ROLEPLAY · FIVEM</div>
-        </div>
-      </div>
-      <p style="margin:0;font-size:13.5px;line-height:1.7;color:var(--ink-2);max-width:34ch">Một cuộc đời thứ hai đang chờ bạn ở thành phố Venus.</p>
+      <a class="brand" href="index.html" style="margin-bottom:14px">
+        <span class="ava"><img src="assets/mascot.png" alt=""></span>
+      <span class="plate"><b>VENUS WORLD</b></span>
+      </a>
+      <p style="margin:14px 0 0;font-size:13.5px;color:var(--tx-2);max-width:32ch;line-height:1.8;font-weight:300">Số 16 đường Venus. Mở cửa 19:00 mỗi ngày, từ 16.09.2026.</p>
     </div>
     <div>
       <h4>KHÁM PHÁ</h4>
       <ul>
-        <li><a href="gioi-thieu.html">Giới thiệu</a></li>
-        <li><a href="thanh-pho.html">Thành phố</a></li>
-        <li><a href="vao-server.html">Hướng dẫn vào server</a></li>
+        <li><a href="#trong-pho">Thành phố</a></li>
+        <li><a href="#vao-server">Vào server</a></li>
         <li><a href="luat.html">Luật lệ</a></li>
-        <li><a href="hoi-dap.html">Hỏi đáp</a></li>
       </ul>
     </div>
     <div>
       <h4>CỘNG ĐỒNG</h4>
       <ul>
         <li><a href="#" data-discord target="_blank" rel="noopener">Discord Venus World</a></li>
-        <li><a href="#" data-discord target="_blank" rel="noopener">Kênh #luật-thành-phố</a></li>
         <li><a href="#" data-discord target="_blank" rel="noopener">Đăng ký whitelist</a></li>
         <li><a href="#" data-discord target="_blank" rel="noopener">Báo lỗi &amp; góp ý</a></li>
       </ul>
     </div>
     <div>
       <h4>KHAI TRƯƠNG</h4>
-      <div class="mono" style="font-size:27px;font-weight:700;color:var(--gum-d);line-height:1.1">16.09.2026</div>
-      <div style="font-size:13px;color:var(--ink-3);margin-top:6px">19:00 (GMT+7)</div>
-      <a class="btn btn-sm" href="#" data-discord target="_blank" rel="noopener" style="margin-top:16px">Nhận thông báo</a>
+      <div class="mono" style="font-size:26px;font-weight:700;color:var(--neon);line-height:1.1">16.09.2026</div>
+      <div style="font-size:13px;color:var(--tx-3);margin-top:6px">19:00 (GMT+7)</div>
     </div>
     <div class="ft-note">© 2026 Venus World · V-Team. Venus World là server roleplay do cộng đồng vận hành, không liên kết với Rockstar Games hay Take-Two Interactive. Bạn cần bản quyền GTA V để chơi.</div>
   </div>
 </footer>
 
-<!-- ============ WIDGET NỔI ============ -->
-<div class="fab">
-  <a class="fab-mascot" id="fabMascot" href="#" data-discord target="_blank" rel="noopener" aria-label="Tham gia Discord">
-    <span class="fab-bubble">Vào Discord với tớ nhé!</span>
-    <img src="assets/mascot.png" alt="">
-  </a>
-  <button class="totop" id="toTop" aria-label="Lên đầu trang">↑</button>
-</div>
-
-<div id="toast"></div>
-
+<button class="totop" id="toTop" aria-label="Lên đầu trang">↑</button>
 <div id="toast"></div>
 
 <script src="assets/js/config.js"></script>
-
-<script src="assets/js/venus.js"></script>
-
+<script src="assets/js/core.js"></script>
 </body>
 </html>
