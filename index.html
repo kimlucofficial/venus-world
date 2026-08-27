@@ -6,418 +6,15 @@
 <title>Venus World — Vietnam Roleplay · FiveM</title>
 <meta name="description" content="Venus World — server roleplay Việt Nam trên FiveM. Bắt đầu cuộc đời thứ hai của bạn. Open Server 16.09.2026.">
 <meta name="theme-color" content="#FFF1F8">
-<meta property="og:title" content="Venus World — Vietnam Roleplay">
-<meta property="og:description" content="Một cuộc đời thứ hai đang chờ bạn ở thành phố Venus. Open Server 16.09.2026.">
+<meta property="og:title" content="Venus World — Vietnam Roleplay · FiveM">
+<meta property="og:description" content="Venus World — server roleplay Việt Nam trên FiveM. Bắt đầu cuộc đời thứ hai của bạn. Open Server 16.09.2026.">
 <meta property="og:image" content="assets/hero.webp">
+<meta property="og:type" content="website">
 <link rel="icon" href="assets/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-/* ============================================================
-   VENUS WORLD — CANDY PASTEL
-   Kem sữa · kẹo bông · viền sticker · nút gummy
-   ============================================================ */
-:root{
-  /* nền */
-  --milk:#FFF8FC;    --cream:#FFEFF8;   --sugar:#FDE7FF;   --lav:#F0E6FF;
-  /* kẹo */
-  --gum:#FF8FD1;     --gum-d:#FF63BB;   --straw:#FFB3DE;
-  --grape:#B98BFF;   --grape-d:#9B63F0; --lilac:#DCC7FF;
-  --mint:#9BE9D6;    --sky:#A9D9FF;     --butter:#FFE39A;  --peach:#FFC2AE;
-  /* mực */
-  --ink:#4E2270;     --ink-2:#7B5C99;   --ink-3:#A48CBE;
-  --line:#EBD8F5;
-  --ease:cubic-bezier(.2,.75,.2,1);
-  --bounce:cubic-bezier(.34,1.56,.64,1);
-  --shell:min(1240px,100%);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--milk)}
-body{
-  margin:0;color:var(--ink);background:var(--milk);
-  font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:16px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-}
-body.is-locked{overflow:hidden}
-img{max-width:100%;display:block}
-a{color:var(--grape-d);text-decoration:none;transition:color .25s var(--ease)}
-a:hover{color:var(--gum-d)}
-button{font-family:inherit}
-::selection{background:var(--gum);color:#fff}
-h1,h2,h3,.d{font-family:'Baloo 2','Be Vietnam Pro',sans-serif;font-weight:800;line-height:1.1;letter-spacing:-.005em;margin:0;color:var(--ink)}
-.mono{font-family:'Chakra Petch',monospace}
-::-webkit-scrollbar{width:12px}
-::-webkit-scrollbar-track{background:var(--cream)}
-::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gum),var(--grape));border-radius:99px;border:3px solid var(--cream)}
-
-/* ============ NỀN KẸO ============ */
-.bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
-  background:
-    radial-gradient(60% 50% at 12% 8%,rgba(255,143,209,.22),transparent 62%),
-    radial-gradient(55% 45% at 88% 18%,rgba(185,139,255,.22),transparent 62%),
-    radial-gradient(50% 40% at 50% 100%,rgba(155,233,214,.2),transparent 62%),
-    linear-gradient(180deg,#FFF8FC,#FDEFFA 40%,#F5ECFF 100%)}
-.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;will-change:transform}
-.b1{width:44vw;height:44vw;left:-10vw;top:2vh;background:radial-gradient(circle,rgba(255,143,209,.7),transparent 66%);animation:drift1 24s ease-in-out infinite}
-.b2{width:40vw;height:40vw;right:-8vw;top:26vh;background:radial-gradient(circle,rgba(185,139,255,.62),transparent 66%);animation:drift2 30s ease-in-out infinite}
-.b3{width:46vw;height:46vw;left:26vw;bottom:-18vw;background:radial-gradient(circle,rgba(169,217,255,.55),transparent 66%);animation:drift1 36s ease-in-out infinite reverse}
-@keyframes drift1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(5vw,4vh,0) scale(1.12)}}
-@keyframes drift2{0%,100%{transform:translate3d(0,0,0) scale(1.05)}50%{transform:translate3d(-6vw,6vh,0) scale(.92)}}
-.dots{position:absolute;inset:-20%;opacity:.5;
-  background-image:radial-gradient(4px 4px at 30px 30px,rgba(255,143,209,.32),transparent),
-    radial-gradient(3px 3px at 110px 80px,rgba(185,139,255,.28),transparent),
-    radial-gradient(3.5px 3.5px at 70px 140px,rgba(169,217,255,.3),transparent),
-    radial-gradient(3px 3px at 170px 20px,rgba(255,227,154,.34),transparent);
-  background-size:200px 200px;animation:drift 90s linear infinite}
-@keyframes drift{to{transform:translate3d(-200px,-200px,0)}}
-
-/* sprinkles rơi */
-.fall{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.sprk{position:absolute;top:-8%;border-radius:99px;opacity:.85;animation:fall linear infinite}
-@keyframes fall{0%{transform:translate3d(0,-10vh,0) rotate(0)}100%{transform:translate3d(var(--dx,40px),112vh,0) rotate(760deg)}}
-
-/* ============ SPLASH ============ */
-#splash{position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(170deg,#FFF8FC,#FFE7F5 45%,#EFE2FF);transition:opacity .7s ease,visibility .7s}
-#splash.gone{opacity:0;visibility:hidden;pointer-events:none}
-#splash::before{content:"";position:absolute;inset:0;opacity:.55;
-  background-image:radial-gradient(5px 5px at 40px 40px,rgba(255,143,209,.4),transparent),
-    radial-gradient(4px 4px at 130px 100px,rgba(185,139,255,.36),transparent),
-    radial-gradient(4px 4px at 80px 160px,rgba(169,217,255,.4),transparent);
-  background-size:210px 210px}
-.sp-inner{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;padding:0 24px}
-.sp-mascot{width:clamp(130px,17vw,186px);animation:spHop 1.4s var(--bounce) infinite;
-  filter:drop-shadow(0 20px 26px rgba(255,111,187,.35))}
-@keyframes spHop{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-20px) rotate(4deg)}}
-.sp-word{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(40px,7.6vw,78px);line-height:1;color:#fff;
-  -webkit-text-stroke:0;text-shadow:
-    0 3px 0 #FF8FD1,0 6px 0 #F074C0,0 9px 0 #C77BE8,0 12px 0 #A45FD6,0 16px 24px rgba(164,95,214,.4)}
-.sp-sub{font-family:'Chakra Petch',monospace;font-size:11px;letter-spacing:.32em;color:var(--ink-2);font-weight:600}
-.sp-track{width:min(340px,74vw);height:22px;border-radius:99px;background:#fff;
-  border:3px solid #fff;box-shadow:0 5px 0 #F3C8E6,0 12px 24px rgba(164,95,214,.22);overflow:hidden;padding:0}
-.sp-fill{height:100%;width:0;border-radius:99px;transition:width .35s var(--ease);
-  background:repeating-linear-gradient(115deg,#FF8FD1 0 14px,#FFB3DE 14px 28px,#C7A0FF 28px 42px,#A9D9FF 42px 56px);
-  background-size:200% 100%;animation:candyRoll 1.4s linear infinite}
-@keyframes candyRoll{to{background-position:-112px 0}}
-.sp-pct{font-family:'Chakra Petch',monospace;font-weight:700;font-size:15px;color:var(--gum-d);letter-spacing:.14em}
-
-/* ============ HEADER ============ */
-header{position:fixed;top:0;left:0;right:0;z-index:120;transition:transform .45s var(--ease),background .35s,box-shadow .35s}
-header.solid{background:rgba(255,248,252,.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  box-shadow:0 6px 26px rgba(164,95,214,.14);border-bottom:2px solid #fff}
-header.hide{transform:translate3d(0,-108%,0)}
-.hd{width:var(--shell);margin:0 auto;padding:13px 24px;display:flex;align-items:center;gap:18px}
-.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}
-.brand img{width:46px;height:46px;border-radius:16px;object-fit:cover;border:3px solid #fff;
-  box-shadow:0 5px 0 #F3C8E6,0 10px 20px rgba(164,95,214,.24);transition:transform .4s var(--bounce)}
-.brand:hover img{transform:rotate(-9deg) scale(1.07)}
-.brand b{display:block;font-family:'Baloo 2',sans-serif;font-size:16px;font-weight:800;color:var(--ink);line-height:1.1}
-.brand small{font-family:'Chakra Petch',monospace;font-size:9px;letter-spacing:.24em;color:var(--ink-3);font-weight:600}
-nav.pills{display:flex;align-items:center;gap:3px;margin:0 auto;padding:5px;border-radius:99px;
-  background:#fff;border:2.5px solid #FFE3F3;box-shadow:0 5px 0 #FBDCEF,0 12px 24px rgba(164,95,214,.14)}
-nav.pills a{position:relative;display:flex;align-items:center;gap:7px;padding:10px 16px;border-radius:99px;
-  font-size:13.5px;font-weight:600;color:var(--ink-2);white-space:nowrap;transition:color .25s,background .25s,transform .25s}
-nav.pills a .dot{width:6px;height:6px;border-radius:50%;background:#fff;opacity:0;width:0;margin-left:-7px;transition:all .3s var(--ease)}
-nav.pills a:hover{color:var(--gum-d);background:#FFF0F8}
-nav.pills a.on{color:#fff;font-weight:700;background:linear-gradient(180deg,#FFA5DA,#FF6FC0 60%,#E96FD4);
-  box-shadow:0 4px 0 #D94FA5,0 8px 16px rgba(255,111,192,.4)}
-nav.pills a.on .dot{opacity:1;width:6px;margin-left:0}
-.burger{display:none;flex:0 0 auto;width:48px;height:48px;border-radius:16px;cursor:pointer;
-  border:2.5px solid #fff;background:#fff;box-shadow:0 4px 0 #F3C8E6;position:relative}
-.burger i{position:absolute;left:13px;right:13px;height:3px;border-radius:9px;background:var(--gum-d);transition:.3s var(--ease)}
-.burger i:nth-child(1){top:15px}.burger i:nth-child(2){top:21.5px}.burger i:nth-child(3){top:28px}
-.burger.x i:nth-child(1){top:21.5px;transform:rotate(45deg)}
-.burger.x i:nth-child(2){opacity:0}
-.burger.x i:nth-child(3){top:21.5px;transform:rotate(-45deg)}
-#bar{position:absolute;left:0;bottom:-2px;height:4px;width:0;border-radius:0 99px 99px 0;
-  background:repeating-linear-gradient(115deg,#FF8FD1 0 10px,#C7A0FF 10px 20px,#A9D9FF 20px 30px)}
-
-.drawer{position:fixed;inset:0;z-index:115;background:linear-gradient(170deg,#FFF8FC,#F5E9FF);
-  display:flex;flex-direction:column;justify-content:center;gap:9px;padding:92px 22px 36px;
-  opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s;overflow:auto}
-.drawer.open{opacity:1;visibility:visible}
-.drawer a{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:22px;
-  font-family:'Baloo 2',sans-serif;font-size:20px;font-weight:700;color:var(--ink);
-  background:#fff;border:2.5px solid #FFE3F3;box-shadow:0 5px 0 #FBDCEF}
-.drawer a.on{background:linear-gradient(180deg,#FFC2E6,#FFA5DA);border-color:#fff;color:#7A1C56}
-.drawer a span{font-family:'Chakra Petch',monospace;font-size:12px;color:var(--ink-3);margin-left:auto}
-
-/* ============ NÚT GUMMY ============ */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;
-  font-weight:700;text-align:center;border:3px solid #fff;
-  transition:transform .28s var(--bounce),box-shadow .28s var(--ease)}
-.btn-p{padding:15px 30px;border-radius:99px;font-family:'Baloo 2',sans-serif;font-size:17px;color:#fff;
-  background:linear-gradient(180deg,#FFB0DF,#FF6FC0 52%,#E560C4);
-  box-shadow:0 7px 0 #D24C9F,0 16px 28px rgba(255,111,192,.4),inset 0 3px 0 rgba(255,255,255,.6);
-  text-shadow:0 2px 0 rgba(190,50,140,.4)}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 10px 0 #D24C9F,0 22px 38px rgba(255,111,192,.5),inset 0 3px 0 rgba(255,255,255,.6);color:#fff}
-.btn-p:active{transform:translateY(4px);box-shadow:0 3px 0 #D24C9F,0 8px 16px rgba(255,111,192,.36),inset 0 3px 0 rgba(255,255,255,.6)}
-.btn-v{padding:15px 30px;border-radius:99px;font-family:'Baloo 2',sans-serif;font-size:17px;color:#fff;
-  background:linear-gradient(180deg,#D3B4FF,#A574F5 52%,#8B5AE0);
-  box-shadow:0 7px 0 #7245C4,0 16px 28px rgba(165,116,245,.38),inset 0 3px 0 rgba(255,255,255,.55);
-  text-shadow:0 2px 0 rgba(90,40,150,.35)}
-.btn-v:hover{transform:translateY(-3px);box-shadow:0 10px 0 #7245C4,0 22px 38px rgba(165,116,245,.48),inset 0 3px 0 rgba(255,255,255,.55);color:#fff}
-.btn-v:active{transform:translateY(4px);box-shadow:0 3px 0 #7245C4,0 8px 16px rgba(165,116,245,.34),inset 0 3px 0 rgba(255,255,255,.55)}
-.btn-w{padding:14px 26px;border-radius:99px;font-family:'Chakra Petch',monospace;font-size:14px;font-weight:700;
-  letter-spacing:.05em;color:var(--ink);background:#fff;border-color:#FFE3F3;
-  box-shadow:0 6px 0 #F3C8E6,0 12px 22px rgba(164,95,214,.16)}
-.btn-w:hover{transform:translateY(-3px);color:var(--gum-d);box-shadow:0 9px 0 #F3C8E6,0 18px 30px rgba(164,95,214,.22)}
-.btn-w:active{transform:translateY(3px);box-shadow:0 3px 0 #F3C8E6}
-.btn-sm{padding:10px 20px;border-radius:99px;font-size:13.5px;font-family:'Baloo 2',sans-serif;color:#fff;
-  background:linear-gradient(180deg,#FFB0DF,#FF6FC0 60%,#E560C4);box-shadow:0 5px 0 #D24C9F,0 10px 18px rgba(255,111,192,.35);
-  text-shadow:0 1.5px 0 rgba(190,50,140,.35)}
-.btn-sm:hover{transform:translateY(-2px);color:#fff;box-shadow:0 7px 0 #D24C9F,0 14px 24px rgba(255,111,192,.45)}
-
-/* ============ LAYOUT ============ */
-main{position:relative;z-index:2}
-.shell{width:var(--shell);margin:0 auto;padding-left:24px;padding-right:24px}
-.sec{padding:clamp(56px,7vw,104px) 0;position:relative}
-.badge{display:inline-flex;align-items:center;gap:10px;padding:5px 20px 5px 5px;border-radius:99px;
-  background:#fff;border:2.5px solid #FFE3F3;box-shadow:0 5px 0 #FBDCEF;margin-bottom:20px}
-.badge img{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:50% 20%;background:#F6E9FF}
-.badge span{font-family:'Chakra Petch',monospace;font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--gum-d)}
-.h2{font-size:clamp(30px,4.1vw,54px);text-wrap:balance}
-.grad{background:linear-gradient(100deg,#FF6FC0,#C77BE8 55%,#7FA8FF);-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{margin:16px 0 0;font-size:16.5px;line-height:1.75;color:var(--ink-2);max-width:56ch;text-wrap:pretty}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .8s var(--ease)}
-.reveal.in{opacity:1;transform:none}
-
-/* dải sọc kẹo */
-.stripe{height:16px;background:repeating-linear-gradient(115deg,#FF8FD1 0 18px,#FFC2E6 18px 36px,#C7A0FF 36px 54px,#A9D9FF 54px 72px);
-  border-top:3px solid #fff;border-bottom:3px solid #fff}
-
-/* sóng ngăn section */
-.wave{display:block;width:100%;height:clamp(38px,5vw,68px)}
-
-/* ============ HERO ============ */
-#home{position:relative;padding-top:104px}
-.hero-frame{position:relative;padding:14px;border-radius:44px;background:#fff;border:4px solid #fff;
-  box-shadow:0 12px 0 #F6CFE9,0 34px 60px rgba(164,95,214,.28)}
-.hero-art{position:relative;border-radius:32px;overflow:hidden}
-.hero-art>img{width:100%;height:auto;transform:scale(1.02);transition:transform 1.4s var(--ease)}
-.hero-frame:hover .hero-art>img{transform:scale(1.06)}
-.hero-shine{position:absolute;top:0;bottom:0;width:24%;left:-30%;z-index:2;pointer-events:none;
-  background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-16deg);
-  animation:shine 6.5s ease-in-out infinite}
-@keyframes shine{0%{left:-30%}55%,100%{left:126%}}
-.hero-corner{position:absolute;width:clamp(54px,6vw,78px);z-index:4;pointer-events:none;filter:drop-shadow(0 8px 14px rgba(164,95,214,.35))}
-.hc-l{left:-14px;top:-24px;transform:rotate(-14deg)}
-.hc-r{right:-14px;top:-20px;transform:rotate(14deg) scaleX(-1)}
-.hero-body{position:relative;z-index:3;text-align:center;display:flex;flex-direction:column;align-items:center;
-  margin-top:clamp(28px,3.6vw,44px)}
-.hero-h1{font-size:clamp(34px,5.6vw,72px);max-width:16ch;text-wrap:balance}
-.hero-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:26px}
-.hero-stats{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
-.stat{display:flex;align-items:center;gap:9px;padding:11px 20px;border-radius:99px;background:#fff;
-  border:2.5px solid var(--sc,#FFE3F3);box-shadow:0 5px 0 var(--ss,#FBDCEF);transition:transform .3s var(--bounce)}
-.stat:hover{transform:translateY(-4px) rotate(-1.5deg)}
-.stat b{font-family:'Baloo 2',sans-serif;font-size:19px;color:var(--sb,#FF6FC0);line-height:1}
-.stat span{font-size:12.5px;color:var(--ink-2);font-weight:500}
-
-/* countdown macaron */
-.cd{display:flex;gap:clamp(9px,1.4vw,16px);justify-content:center;margin-top:34px;flex-wrap:wrap}
-.cd .u{position:relative;min-width:clamp(76px,10vw,106px);padding:15px 10px 12px;border-radius:26px;
-  background:linear-gradient(178deg,#fff,var(--u1,#FFEAF6));border:3px solid #fff;
-  box-shadow:0 8px 0 var(--u2,#F6C4E2),0 18px 30px rgba(164,95,214,.2);transition:transform .35s var(--bounce)}
-.cd .u:hover{transform:translateY(-6px) rotate(-2deg)}
-.cd .u::after{content:"";position:absolute;left:18%;right:18%;top:9px;height:6px;border-radius:99px;background:rgba(255,255,255,.8)}
-.cd .n{font-family:'Baloo 2',sans-serif;font-size:clamp(28px,3.6vw,40px);font-weight:800;line-height:1;
-  color:var(--u3,#E0559F);font-variant-numeric:tabular-nums}
-.cd .l{font-family:'Chakra Petch',monospace;font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--ink-3);margin-top:6px;text-transform:uppercase}
-
-/* ============ MARQUEE ============ */
-.mq{overflow:hidden;padding:14px 0;background:#fff;border-top:3px solid #FFE3F3;border-bottom:3px solid #FFE3F3;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
-.mq-in{display:flex;width:max-content;animation:tick 34s linear infinite}
-.mq:hover .mq-in{animation-play-state:paused}
-.mq-set{display:flex;gap:34px;padding-right:34px;align-items:center;white-space:nowrap;
-  font-family:'Chakra Petch',monospace;font-size:13px;font-weight:700;letter-spacing:.16em;color:var(--ink-2)}
-.mq-set b{color:var(--gum-d)}
-.mq-set i{font-style:normal;font-size:16px;color:var(--grape)}
-@keyframes tick{to{transform:translate3d(-50%,0,0)}}
-
-/* ============ THẺ STICKER ============ */
-.grid{display:grid;gap:clamp(20px,2.4vw,30px)}
-.g4{grid-template-columns:repeat(auto-fit,minmax(248px,1fr))}
-.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.card{position:relative;margin-top:30px;padding:42px 24px 28px;border-radius:32px;background:#fff;
-  border:3px solid var(--cc,#FFC2E6);box-shadow:0 9px 0 var(--cs,#FFD9EE),0 22px 36px rgba(164,95,214,.16);
-  transform:rotate(var(--rot,0deg));transition:box-shadow .4s var(--ease),transform .4s var(--ease)}
-.card::before{content:"";position:absolute;left:0;right:0;top:0;height:78px;border-radius:29px 29px 50% 50%;
-  background:var(--cw,#FFF2F9);pointer-events:none}
-.card>*{position:relative}
-.card:hover{box-shadow:0 13px 0 var(--cs,#FFD9EE),0 30px 50px rgba(164,95,214,.22)}
-.no-tilt .card:hover{transform:rotate(0deg) translateY(-8px)}
-.card h3{font-size:21px;margin:20px 0 8px}
-.card p{margin:0;font-size:14.5px;line-height:1.7;color:var(--ink-2);text-wrap:pretty}
-.orb{position:absolute;top:-30px;left:24px;width:62px;height:62px}
-.orb .ring{position:absolute;left:-15px;right:-15px;top:50%;height:26px;margin-top:-13px;border-radius:50%;
-  border:3px solid var(--cc,#FFC2E6);transform:rotate(-16deg)}
-.orb .ball{position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-family:'Chakra Petch',monospace;font-size:21px;font-weight:700;color:#fff;border:3px solid #fff;
-  background:radial-gradient(circle at 32% 26%,#fff 0 6%,var(--cb1,#FFB0DF) 40%,var(--cb2,#FF6FC0) 76%);
-  box-shadow:0 8px 0 var(--cb3,#D24C9F),0 14px 22px rgba(164,95,214,.28);text-shadow:0 2px 0 rgba(0,0,0,.14)}
-.orb .glow{position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,var(--cg,rgba(255,143,209,.32)),transparent 70%)}
-.tape{position:absolute;top:-13px;right:28px;width:70px;height:24px;transform:rotate(8deg);z-index:2;
-  background:linear-gradient(180deg,rgba(255,255,255,.9),var(--cw,#FFE7F4));
-  border-left:3px dashed #fff;border-right:3px dashed #fff;box-shadow:0 3px 8px rgba(164,95,214,.16)}
-
-/* ============ TABS ============ */
-.tabbar{display:flex;flex-wrap:wrap;gap:10px}
-.tab{padding:12px 22px;border-radius:99px;cursor:pointer;font-size:14px;font-weight:700;color:var(--ink-2);
-  background:#fff;border:2.5px solid #FFE3F3;box-shadow:0 5px 0 #FBDCEF;transition:all .28s var(--bounce)}
-.tab:hover{color:var(--gum-d);transform:translateY(-3px)}
-.tab.on{color:#fff;border-color:#fff;background:linear-gradient(180deg,#FFA5DA,#FF6FC0 60%,#E560C4);
-  box-shadow:0 6px 0 #D24C9F,0 12px 20px rgba(255,111,192,.35);transform:translateY(-3px);text-shadow:0 1.5px 0 rgba(190,50,140,.35)}
-.panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,3.6vw,56px);align-items:center}
-.panel h3{font-size:clamp(23px,2.8vw,34px)}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-.chip{padding:10px 18px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--ink);background:#fff;
-  border:2.5px solid var(--pc,#FFC2E6);box-shadow:0 5px 0 var(--ps,#FFD9EE);transition:transform .3s var(--bounce),box-shadow .3s}
-.chip:hover{transform:translateY(-5px) rotate(-2deg);box-shadow:0 8px 0 var(--ps,#FFD9EE)}
-.polaroid{position:relative;padding:15px 15px 0;border-radius:28px;background:#fff;border:3px solid #fff;
-  transform:rotate(var(--rot,0deg));
-  box-shadow:0 12px 0 #E3CDF7,0 26px 46px rgba(164,95,214,.26);
-  transition:box-shadow .5s var(--ease),transform .5s var(--ease)}
-.no-tilt .polaroid:hover{transform:rotate(0deg) translateY(-8px)}
-.shot{aspect-ratio:4/3;border-radius:20px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(150deg,#FFE7F5,#EFE0FF 55%,#DFF3FF)}
-.shot::before{content:"";position:absolute;inset:0;opacity:.7;
-  background:repeating-linear-gradient(115deg,rgba(255,143,209,.24) 0 13px,rgba(185,139,255,.12) 13px 26px)}
-.shot em{position:relative;z-index:2;font-style:normal;font-family:'Chakra Petch',monospace;font-size:11px;font-weight:700;
-  letter-spacing:.18em;color:var(--ink-2);text-align:center;padding:8px 14px;background:rgba(255,255,255,.8);border-radius:99px}
-.pol-cap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 8px 16px;
-  font-family:'Chakra Petch',monospace;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
-
-/* ============ MOSAIC ============ */
-.mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(110px,12vw,178px);gap:16px}
-.tile{position:relative;border-radius:30px;overflow:hidden;border:3px solid #fff;display:flex;align-items:flex-end;padding:16px;
-  background:linear-gradient(160deg,var(--t1,#FFD9EE),var(--t2,#E7D6FF));
-  box-shadow:0 9px 0 var(--t3,#F0D3EA),0 20px 34px rgba(164,95,214,.18);
-  transition:transform .42s var(--bounce),box-shadow .42s var(--ease)}
-.tile::before{content:"";position:absolute;inset:0;opacity:.55;
-  background:repeating-linear-gradient(115deg,rgba(255,255,255,.6) 0 12px,transparent 12px 24px)}
-.tile::after{content:"";position:absolute;width:120%;height:120%;left:-10%;top:-45%;
-  background:radial-gradient(circle,rgba(255,255,255,.75),transparent 60%);transition:transform .6s}
-.tile:hover{transform:translateY(-6px) rotate(-1deg);box-shadow:0 13px 0 var(--t3,#F0D3EA),0 28px 46px rgba(164,95,214,.24)}
-.tile:hover::after{transform:translateY(30%)}
-.tile b{position:relative;z-index:2;font-family:'Chakra Petch',monospace;font-size:11px;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:#fff;
-  padding:8px 14px;border-radius:99px;box-shadow:0 3px 0 rgba(164,95,214,.16)}
-.t-a{grid-column:span 2;grid-row:span 2}.t-b{grid-column:span 2}
-
-/* ============ CONNECT ============ */
-.connect{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:16px;border-radius:30px;
-  background:#fff;border:3px dashed #FFC2E6;box-shadow:0 9px 0 #FFE7F4,0 20px 34px rgba(164,95,214,.14)}
-.connect code{flex:1 1 240px;font-family:'Chakra Petch',monospace;font-size:15px;font-weight:700;
-  letter-spacing:.05em;color:var(--ink);padding:15px 20px;border-radius:20px;
-  background:linear-gradient(150deg,#FFF0F8,#F2E8FF);white-space:nowrap;overflow:auto}
-
-/* ============ ACCORDION ============ */
-.rules{display:flex;flex-direction:column;gap:13px}
-.rule{border-radius:26px;background:#fff;border:3px solid #FFE3F3;box-shadow:0 7px 0 #FBDCEF;
-  overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
-.rule.open{border-color:#FFC2E6;box-shadow:0 9px 0 #FFD9EE,0 20px 32px rgba(164,95,214,.16)}
-.rule-h{display:flex;align-items:center;gap:15px;width:100%;padding:17px 20px;cursor:pointer;
-  background:none;border:0;text-align:left;color:inherit}
-.rule-n{flex:0 0 auto;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-family:'Chakra Petch',monospace;font-size:13.5px;font-weight:700;color:#fff;border:3px solid #fff;
-  background:radial-gradient(circle at 32% 26%,#fff 0 6%,#FFB0DF 40%,#FF6FC0 78%);
-  box-shadow:0 5px 0 #D24C9F;text-shadow:0 1.5px 0 rgba(0,0,0,.14)}
-.rule-t{flex:1;font-family:'Baloo 2',sans-serif;font-size:17.5px;font-weight:700;color:var(--ink)}
-.rule-x{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:#FFF0F8;position:relative;transition:transform .35s var(--bounce)}
-.rule-x::before,.rule-x::after{content:"";position:absolute;left:50%;top:50%;background:var(--gum-d);border-radius:9px;transform:translate(-50%,-50%)}
-.rule-x::before{width:13px;height:3px}
-.rule-x::after{width:3px;height:13px;transition:opacity .3s}
-.rule.open .rule-x{transform:rotate(180deg)}
-.rule.open .rule-x::after{opacity:0}
-.rule-b{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
-.rule-b p{margin:0;padding:0 22px 20px 77px;font-size:14.5px;line-height:1.75;color:var(--ink-2);text-wrap:pretty}
-
-/* ============ CTA ============ */
-.cta{position:relative;overflow:hidden;border-radius:44px;padding:clamp(38px,5.2vw,68px) clamp(26px,4vw,58px);
-  background:linear-gradient(150deg,#FFD9EE,#F0DCFF 52%,#DDF0FF);border:4px solid #fff;
-  box-shadow:0 14px 0 #EFCFE8,0 32px 54px rgba(164,95,214,.26);
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:34px;align-items:center}
-.cta::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
-  background:repeating-linear-gradient(115deg,rgba(255,255,255,.7) 0 20px,transparent 20px 40px)}
-.cta>*{position:relative}
-.cta-mascot{width:clamp(112px,13vw,172px);animation:float 6s ease-in-out infinite;
-  filter:drop-shadow(0 18px 22px rgba(164,95,214,.35))}
-@keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-15px) rotate(3deg)}}
-
-/* ============ FOOTER ============ */
-footer{position:relative;z-index:2;background:linear-gradient(180deg,#F7ECFF,#F0E2FF);border-top:3px solid #fff}
-.ft{width:var(--shell);margin:0 auto;padding:46px 24px;display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:30px;align-items:start}
-.ft h4{font-family:'Baloo 2',sans-serif;font-size:14px;letter-spacing:.05em;color:var(--gum-d);margin:0 0 12px}
-.ft ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
-.ft a{font-size:14px;color:var(--ink-2);font-weight:500}
-.ft a:hover{color:var(--gum-d)}
-.ft-note{grid-column:1/-1;padding-top:22px;border-top:2px dashed #DFC9F2;font-size:12.5px;line-height:1.65;color:var(--ink-3)}
-
-/* ============ WIDGET NỔI ============ */
-.fab{position:fixed;right:clamp(14px,2.2vw,26px);bottom:clamp(14px,2.2vw,26px);z-index:100;
-  display:flex;flex-direction:column;align-items:center;gap:12px}
-.fab-mascot{position:relative;width:clamp(80px,7.6vw,106px);opacity:0;transform:translateY(40px);
-  transition:opacity .5s ease,transform .55s var(--bounce);filter:drop-shadow(0 14px 18px rgba(164,95,214,.4))}
-.fab-mascot.show{opacity:1;transform:none}
-.fab-mascot img{animation:float 5.5s ease-in-out infinite}
-.fab-bubble{position:absolute;right:calc(100% + 10px);top:14px;padding:10px 16px;border-radius:20px 20px 5px 20px;
-  font-family:'Baloo 2',sans-serif;font-size:13px;font-weight:700;color:var(--ink);white-space:nowrap;
-  background:#fff;border:2.5px solid #FFE3F3;box-shadow:0 5px 0 #FBDCEF;
-  opacity:0;transform:translateX(8px) scale(.9);transition:.35s var(--bounce);transform-origin:right center}
-.fab-mascot:hover .fab-bubble{opacity:1;transform:none}
-.totop{width:50px;height:50px;border-radius:50%;cursor:pointer;border:3px solid #fff;background:#fff;
-  color:var(--gum-d);font-size:19px;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 5px 0 #F3C8E6,0 12px 20px rgba(164,95,214,.2);
-  opacity:0;transform:translateY(20px);transition:.4s var(--ease)}
-.totop.show{opacity:1;transform:none}
-.totop:hover{transform:translateY(-3px)}
-
-#toast{position:fixed;left:50%;bottom:32px;z-index:300;transform:translate(-50%,26px);opacity:0;
-  padding:13px 26px;border-radius:99px;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:15px;color:#fff;
-  background:linear-gradient(180deg,#FFA5DA,#FF6FC0);border:3px solid #fff;
-  box-shadow:0 7px 0 #D24C9F,0 16px 28px rgba(255,111,192,.4);
-  transition:.4s var(--bounce);pointer-events:none;white-space:nowrap;text-shadow:0 1.5px 0 rgba(190,50,140,.35)}
-#toast.show{opacity:1;transform:translate(-50%,0)}
-
-.spark{position:fixed;z-index:350;pointer-events:none;width:12px;height:12px;
-  background:radial-gradient(circle,#fff 0 26%,var(--sk,#FF8FD1) 42%,transparent 70%);
-  animation:sparkOut .75s ease-out forwards}
-@keyframes sparkOut{0%{transform:scale(1) rotate(0);opacity:1}100%{transform:scale(0) rotate(180deg);opacity:0}}
-.heart{position:fixed;z-index:350;pointer-events:none;font-size:19px;animation:heartUp 1.5s ease-out forwards}
-@keyframes heartUp{0%{transform:translate(0,0) scale(.4) rotate(0);opacity:1}
-  100%{transform:translate(var(--hx,0),-165px) scale(1.3) rotate(var(--hr,40deg));opacity:0}}
-
-/* ============ RESPONSIVE ============ */
-@media (max-width:1024px){
-  nav.pills{display:none}
-  .burger{display:block;margin-left:auto}
-  .hd-cta{display:none}
-  .mosaic{grid-template-columns:repeat(2,1fr);grid-auto-rows:clamp(120px,26vw,170px)}
-  .t-a{grid-column:span 2;grid-row:span 1}
-}
-@media (max-width:640px){
-  .shell{padding-left:16px;padding-right:16px}
-  #home{padding-top:86px}
-  .hero-frame{padding:9px;border-radius:30px}
-  .hero-art{border-radius:22px}
-  .hero-corner{display:none}
-  .card{padding:40px 20px 26px;border-radius:26px}
-  .cta{border-radius:32px;padding:32px 20px}
-  .connect code{font-size:13px}
-  .rule-b p{padding-left:22px}
-  .fab-mascot{width:68px}
-  .cd .u{min-width:70px;padding:13px 8px 10px;border-radius:20px}
-}
-@media (prefers-reduced-motion:reduce){
-  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-  html{scroll-behavior:auto}
-}
-</style>
+<link rel="stylesheet" href="assets/css/venus.css">
 </head>
 <body>
 
@@ -442,17 +39,17 @@ footer{position:relative;z-index:2;background:linear-gradient(180deg,#F7ECFF,#F0
 <!-- ============ HEADER ============ -->
 <header id="hdr">
   <div class="hd">
-    <a class="brand" href="#home">
+    <a class="brand" href="index.html">
       <img src="assets/logo.webp" alt="Venus World">
       <span><b>VENUS WORLD</b><small>VIETNAM ROLEPLAY</small></span>
     </a>
     <nav class="pills" id="pills">
-      <a href="#home" data-nav="home"><i class="dot"></i>Trang chủ</a>
-      <a href="#gioi-thieu" data-nav="gioi-thieu"><i class="dot"></i>Giới thiệu</a>
-      <a href="#thanh-pho" data-nav="thanh-pho"><i class="dot"></i>Thành phố</a>
-      <a href="#vao-server" data-nav="vao-server"><i class="dot"></i>Vào server</a>
-      <a href="#luat" data-nav="luat"><i class="dot"></i>Luật lệ</a>
-      <a href="#hoi-dap" data-nav="hoi-dap"><i class="dot"></i>Hỏi đáp</a>
+      <a href="index.html" data-nav class="on"><i class="dot"></i>Trang chủ</a>
+      <a href="gioi-thieu.html" data-nav><i class="dot"></i>Giới thiệu</a>
+      <a href="thanh-pho.html" data-nav><i class="dot"></i>Thành phố</a>
+      <a href="vao-server.html" data-nav><i class="dot"></i>Vào server</a>
+      <a href="luat.html" data-nav><i class="dot"></i>Luật lệ</a>
+      <a href="hoi-dap.html" data-nav><i class="dot"></i>Hỏi đáp</a>
     </nav>
     <a class="btn btn-sm hd-cta" href="#" data-discord target="_blank" rel="noopener">Tham gia Discord</a>
     <button class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
@@ -461,12 +58,12 @@ footer{position:relative;z-index:2;background:linear-gradient(180deg,#F7ECFF,#F0
 </header>
 
 <div class="drawer" id="drawer">
-  <a href="#home" data-nav="home">Trang chủ <span>01</span></a>
-  <a href="#gioi-thieu" data-nav="gioi-thieu">Giới thiệu <span>02</span></a>
-  <a href="#thanh-pho" data-nav="thanh-pho">Thành phố <span>03</span></a>
-  <a href="#vao-server" data-nav="vao-server">Vào server <span>04</span></a>
-  <a href="#luat" data-nav="luat">Luật lệ <span>05</span></a>
-  <a href="#hoi-dap" data-nav="hoi-dap">Hỏi đáp <span>06</span></a>
+  <a href="index.html" class="on">Trang chủ <span>01</span></a>
+  <a href="gioi-thieu.html">Giới thiệu <span>02</span></a>
+  <a href="thanh-pho.html">Thành phố <span>03</span></a>
+  <a href="vao-server.html">Vào server <span>04</span></a>
+  <a href="luat.html">Luật lệ <span>05</span></a>
+  <a href="hoi-dap.html">Hỏi đáp <span>06</span></a>
   <a href="#" data-discord target="_blank" rel="noopener" style="justify-content:center;margin-top:12px;background:linear-gradient(180deg,#FFA5DA,#FF6FC0);color:#fff;border-color:#fff;box-shadow:0 5px 0 #D24C9F">Tham gia Discord ♡</a>
 </div>
 
@@ -504,7 +101,7 @@ footer{position:relative;z-index:2;background:linear-gradient(180deg,#F7ECFF,#F0
 
       <div class="hero-cta">
         <a class="btn btn-p" href="#" data-discord target="_blank" rel="noopener">Tham gia Discord ♡</a>
-        <button class="btn btn-w" id="copyHero">Copy IP server</button>
+        <button class="btn btn-w" id="copyHero" data-copy-ip>Copy IP server</button>
       </div>
 
       <div class="cd" id="cd">
@@ -527,6 +124,8 @@ footer{position:relative;z-index:2;background:linear-gradient(180deg,#F7ECFF,#F0
 
 <div class="stripe" style="margin-top:clamp(48px,6vw,84px)"></div>
 
+<div class="stripe" style="margin-top:clamp(48px,6vw,84px)"></div>
+
 <!-- ============ MARQUEE ============ -->
 <div class="mq">
   <div class="mq-in">
@@ -538,85 +137,6 @@ footer{position:relative;z-index:2;background:linear-gradient(180deg,#F7ECFF,#F0
     </div>
   </div>
 </div>
-
-<!-- ============ GIỚI THIỆU ============ -->
-<section id="gioi-thieu" class="sec" style="scroll-margin-top:96px">
-  <div class="shell">
-    <div class="reveal" style="max-width:680px">
-      <div class="badge"><img src="assets/mascot.png" alt=""><span>GIỚI THIỆU</span></div>
-      <h2 class="h2">Roleplay nghiêm túc, nhưng vẫn <span class="grad">siêu dễ thương</span></h2>
-      <p class="lead">Venus World được xây cho những người muốn sống một cuộc đời thứ hai. Server dùng framework tự phát triển, tối ưu cho phòng đông người, hạn chế lag và cập nhật liên tục theo góp ý của cộng đồng.</p>
-    </div>
-
-    <div class="grid g4" style="margin-top:clamp(28px,3.6vw,48px)">
-      <div class="reveal">
-        <div class="card" style="--rot:-1.2deg;--cc:#FFC2E6;--cs:#FFD9EE;--cw:#FFF2F9;--cg:rgba(255,143,209,.32);--cb1:#FFB0DF;--cb2:#FF6FC0;--cb3:#D24C9F" data-rot="-1.2" data-tilt>
-          <div class="tape"></div>
-          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">01</span></div>
-          <h3>Vào là chơi</h3>
-          <p>Nộp đơn whitelist, không phải chờ duyệt lâu. Tạo nhân vật xong là bắt đầu ngay trong 5 phút.</p>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="card" style="--rot:1deg;--cc:#DCC7FF;--cs:#E7DAFF;--cw:#F6F0FF;--cg:rgba(185,139,255,.32);--cb1:#D3B4FF;--cb2:#A574F5;--cb3:#7245C4" data-rot="1" data-tilt>
-          <div class="tape"></div>
-          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">02</span></div>
-          <h3>Hệ thống đa dạng</h3>
-          <p>Nghề, độ xe, nhà ở và băng đảng do đội ngũ tự phát triển — mượt, ít bug, cập nhật liên tục.</p>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="card" style="--rot:1.4deg;--cc:#BEE5FF;--cs:#D6EEFF;--cw:#EFF8FF;--cg:rgba(105,185,245,.3);--cb1:#A9D9FF;--cb2:#5FAEEE;--cb3:#3B7FB8" data-rot="1.4" data-tilt>
-          <div class="tape"></div>
-          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">03</span></div>
-          <h3>Cộng đồng sạch</h3>
-          <p>GM xử lý report trong ngày, luật rõ ràng và công khai để ai cũng chơi được thoải mái.</p>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="card" style="--rot:-1deg;--cc:#B6EDDD;--cs:#D2F4EA;--cw:#EEFBF7;--cg:rgba(90,220,190,.3);--cb1:#9BE9D6;--cb2:#4CC9AC;--cb3:#2E9A80" data-rot="-1" data-tilt>
-          <div class="tape"></div>
-          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">04</span></div>
-          <h3>Kinh tế bền</h3>
-          <p>Tiền trong phố đến từ công việc và quan hệ, không phải từ nạp. Giá trị được giữ cho mọi người chơi.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ THÀNH PHỐ ============ -->
-<section id="thanh-pho" class="sec" style="scroll-margin-top:96px;padding-top:0">
-  <div class="shell">
-    <div class="reveal" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:26px;margin-bottom:clamp(26px,3.4vw,44px)">
-      <div style="max-width:560px">
-        <div class="badge"><img src="assets/mascot.png" alt=""><span>THÀNH PHỐ</span></div>
-        <h2 class="h2">Trong phố có gì?</h2>
-      </div>
-      <div class="tabbar" id="tabbar">
-        <button class="tab on" data-tab="0">Nghề nghiệp</button>
-        <button class="tab" data-tab="1">Xe cộ</button>
-        <button class="tab" data-tab="2">Nhà cửa</button>
-        <button class="tab" data-tab="3">Băng đảng</button>
-      </div>
-    </div>
-
-    <div class="panel reveal">
-      <div>
-        <h3 id="tabTitle">Hơn 10+ nghề, hợp pháp lẫn không</h3>
-        <p class="lead" id="tabBody" style="max-width:46ch">Mỗi nghề có tiến trình riêng, đồng nghiệp riêng và những tình huống roleplay riêng. Bạn có thể đổi đời bất cứ lúc nào.</p>
-        <div class="chips" id="tabChips"></div>
-      </div>
-      <div style="position:relative;padding:0 20px 26px 8px">
-        <div class="polaroid" style="--rot:1.8deg" data-rot="1.8" data-tilt>
-          <div class="shot"><em>ẢNH IN-GAME SẼ ĐƯỢC CẬP NHẬT</em></div>
-          <div class="pol-cap"><span id="tabShot">Ảnh in-game — ca trực của cảnh sát</span><span style="color:#FF8FD1">♡</span></div>
-        </div>
-        <img src="assets/mascot.png" alt="" style="position:absolute;right:-8px;bottom:-18px;width:clamp(78px,8.4vw,106px);transform:rotate(10deg);filter:drop-shadow(0 12px 16px rgba(164,95,214,.35));pointer-events:none">
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ KHÔNG KHÍ ============ -->
 <section class="sec" style="padding-top:0">
@@ -634,72 +154,60 @@ footer{position:relative;z-index:2;background:linear-gradient(180deg,#F7ECFF,#F0
   </div>
 </section>
 
-<!-- ============ VÀO SERVER ============ -->
-<section id="vao-server" class="sec" style="scroll-margin-top:96px;padding-top:0">
+<!-- ============ ĐI TIẾP ============ -->
+<section class="sec" style="padding-top:0">
   <div class="shell">
-    <div class="reveal">
-      <div class="badge"><img src="assets/mascot.png" alt=""><span>BẮT ĐẦU</span></div>
-      <h2 class="h2">Vào phố trong <span class="grad">3 bước</span></h2>
+    <div class="reveal" style="max-width:620px">
+      <div class="badge"><img src="assets/mascot.png" alt=""><span>KHÁM PHÁ</span></div>
+      <h2 class="h2">Xem tiếp gì đây?</h2>
     </div>
 
-    <div class="grid g3" style="margin-top:clamp(26px,3.4vw,44px)">
+    <div class="grid g4" style="margin-top:clamp(28px,3.6vw,48px)">
       <div class="reveal">
-        <div class="card" style="--rot:-1.2deg;--cc:#FFC2E6;--cs:#FFD9EE;--cw:#FFF2F9;--cg:rgba(255,143,209,.32);--cb1:#FFB0DF;--cb2:#FF6FC0;--cb3:#D24C9F" data-rot="-1.2" data-tilt>
-          <div class="tape"></div>
-          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">01</span></div>
-          <h3>Cài FiveM</h3>
-          <p>Cần GTA V bản quyền trên PC. Tải FiveM tại fivem.net rồi đăng nhập bằng tài khoản Cfx.re.</p>
-        </div>
+        <a class="gocard" href="gioi-thieu.html">
+          <div class="card" style="--rot:-1.2deg;--cc:#FFC2E6;--cs:#FFD9EE;--cw:#FFF2F9;--cg:rgba(255,143,209,.32);--cb1:#FFB0DF;--cb2:#FF6FC0;--cb3:#D24C9F" data-rot="-1.2" data-tilt>
+            <div class="tape"></div>
+            <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">♡</span></div>
+            <h3>Giới thiệu</h3>
+            <p>Venus World là gì, xây cho ai và server chạy trên nền tảng nào.</p>
+            <span class="go">XEM TRANG</span>
+          </div>
+        </a>
       </div>
       <div class="reveal">
-        <div class="card" style="--rot:1.1deg;--cc:#DCC7FF;--cs:#E7DAFF;--cw:#F6F0FF;--cg:rgba(185,139,255,.32);--cb1:#D3B4FF;--cb2:#A574F5;--cb3:#7245C4" data-rot="1.1" data-tilt>
-          <div class="tape"></div>
-          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">02</span></div>
-          <h3>Kết nối Venus World</h3>
-          <p>Mở console bằng phím F8, dán lệnh kết nối rồi Enter. Hoặc tìm “Venus World” trong tab Servers.</p>
-        </div>
+        <a class="gocard" href="thanh-pho.html">
+          <div class="card" style="--rot:1deg;--cc:#DCC7FF;--cs:#E7DAFF;--cw:#F6F0FF;--cg:rgba(185,139,255,.32);--cb1:#D3B4FF;--cb2:#A574F5;--cb3:#7245C4" data-rot="1" data-tilt>
+            <div class="tape"></div>
+            <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">✿</span></div>
+            <h3>Thành phố</h3>
+            <p>Nghề nghiệp, xe cộ, nhà cửa và băng đảng — trong phố có gì để chơi.</p>
+            <span class="go">XEM TRANG</span>
+          </div>
+        </a>
       </div>
       <div class="reveal">
-        <div class="card" style="--rot:-1deg;--cc:#FFD9B8;--cs:#FFE8D2;--cw:#FFF6EC;--cg:rgba(255,190,130,.3);--cb1:#FFD1A8;--cb2:#FFA463;--cb3:#D0763A" data-rot="-1" data-tilt>
-          <div class="tape"></div>
-          <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">03</span></div>
-          <h3>Tạo nhân vật &amp; sống</h3>
-          <p>Đặt tên, chọn ngoại hình, nhận CCCD. Vào Discord lấy role người chơi để nhận thông báo sự kiện.</p>
-        </div>
+        <a class="gocard" href="vao-server.html">
+          <div class="card" style="--rot:1.4deg;--cc:#BEE5FF;--cs:#D6EEFF;--cw:#EFF8FF;--cg:rgba(105,185,245,.3);--cb1:#A9D9FF;--cb2:#5FAEEE;--cb3:#3B7FB8" data-rot="1.4" data-tilt>
+            <div class="tape"></div>
+            <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">✦</span></div>
+            <h3>Vào server</h3>
+            <p>Ba bước cài FiveM, kết nối Venus World và tạo nhân vật đầu tiên.</p>
+            <span class="go">XEM TRANG</span>
+          </div>
+        </a>
       </div>
-    </div>
-
-    <div class="connect reveal" style="margin-top:28px">
-      <code id="ipText">connect venusworld.vn</code>
-      <button class="btn btn-p" id="copyIp" style="padding:14px 26px;font-size:15.5px">Copy lệnh kết nối</button>
-    </div>
-  </div>
-</section>
-
-<!-- ============ LUẬT ============ -->
-<section id="luat" class="sec" style="scroll-margin-top:96px;padding-top:0">
-  <div class="shell">
-    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(30px,4vw,60px)">
       <div class="reveal">
-        <div class="badge"><img src="assets/mascot.png" alt=""><span>LUẬT LỆ</span></div>
-        <h2 class="h2">Sáu điều để phố luôn vui</h2>
-        <p class="lead">Đây là phần cốt lõi. Bộ luật đầy đủ nằm trong kênh <strong style="color:var(--gum-d);font-weight:700">#luật-thành-phố</strong> trên Discord — đọc trước khi vào để tránh mất vui.</p>
-        <a class="btn btn-v" href="#" data-discord target="_blank" rel="noopener" style="margin-top:24px">Đọc luật đầy đủ →</a>
-        <img src="assets/mascot.png" alt="" style="width:132px;margin-top:32px;transform:rotate(-7deg);filter:drop-shadow(0 14px 18px rgba(164,95,214,.32))">
+        <a class="gocard" href="luat.html">
+          <div class="card" style="--rot:-1deg;--cc:#B6EDDD;--cs:#D2F4EA;--cw:#EEFBF7;--cg:rgba(90,220,190,.3);--cb1:#9BE9D6;--cb2:#4CC9AC;--cb3:#2E9A80" data-rot="-1" data-tilt>
+            <div class="tape"></div>
+            <div class="orb"><span class="glow"></span><span class="ring"></span><span class="ball">★</span></div>
+            <h3>Luật lệ</h3>
+            <p>Bộ luật thành phố, chia theo chương, có ô tìm kiếm để tra nhanh.</p>
+            <span class="go">XEM TRANG</span>
+          </div>
+        </a>
       </div>
-      <div class="rules reveal" id="rules"></div>
     </div>
-  </div>
-</section>
-
-<!-- ============ HỎI ĐÁP ============ -->
-<section id="hoi-dap" class="sec" style="scroll-margin-top:96px;padding-top:0">
-  <div class="shell">
-    <div class="reveal" style="max-width:620px;margin-bottom:clamp(24px,3.2vw,40px)">
-      <div class="badge"><img src="assets/mascot.png" alt=""><span>HỎI ĐÁP</span></div>
-      <h2 class="h2">Câu hỏi hay gặp</h2>
-    </div>
-    <div class="rules reveal" id="faq"></div>
   </div>
 </section>
 
@@ -739,11 +247,11 @@ footer{position:relative;z-index:2;background:linear-gradient(180deg,#F7ECFF,#F0
     <div>
       <h4>KHÁM PHÁ</h4>
       <ul>
-        <li><a href="#gioi-thieu">Giới thiệu</a></li>
-        <li><a href="#thanh-pho">Thành phố</a></li>
-        <li><a href="#vao-server">Hướng dẫn vào server</a></li>
-        <li><a href="#luat">Luật lệ</a></li>
-        <li><a href="#hoi-dap">Hỏi đáp</a></li>
+        <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+        <li><a href="thanh-pho.html">Thành phố</a></li>
+        <li><a href="vao-server.html">Hướng dẫn vào server</a></li>
+        <li><a href="luat.html">Luật lệ</a></li>
+        <li><a href="hoi-dap.html">Hỏi đáp</a></li>
       </ul>
     </div>
     <div>
@@ -776,370 +284,11 @@ footer{position:relative;z-index:2;background:linear-gradient(180deg,#F7ECFF,#F0
 
 <div id="toast"></div>
 
-<script>
-/* ============================================================
-   VENUS WORLD — script
-   Sửa 3 dòng CONFIG bên dưới là đổi được Discord / IP / ngày mở
-   ============================================================ */
-var CONFIG = {
-  discord : 'https://discord.gg/venusworld',
-  ip      : 'connect venusworld.vn',
-  openDate: '2026-09-16T19:00:00+07:00'
-};
+<div id="toast"></div>
 
-(function(){
-  'use strict';
-  var $  = function(s,c){ return (c||document).querySelector(s); };
-  var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var touch  = window.matchMedia && window.matchMedia('(hover: none)').matches;
+<script src="assets/js/config.js"></script>
 
-  /* ---------- CONFIG áp vào DOM ---------- */
-  $$('[data-discord]').forEach(function(a){ a.href = CONFIG.discord; });
-  var ipEl = $('#ipText'); if (ipEl) ipEl.textContent = CONFIG.ip;
+<script src="assets/js/venus.js"></script>
 
-  /* ---------- SPLASH ---------- */
-  (function(){
-    var splash = $('#splash'), fill = $('#spFill'), pct = $('#spPct');
-    if (!splash) return;
-    var imgs = $$('img').filter(function(i){ return (i.getAttribute('src')||'').indexOf('assets/') === 0 || (i.getAttribute('src')||'').indexOf('data:') === 0; });
-    var total = Math.max(1, imgs.length), done = 0, val = 0, ended = false;
-    function paint(v){
-      val = Math.max(val, Math.min(100, Math.round(v)));
-      fill.style.width = val + '%';
-      pct.textContent = (val < 10 ? '0' : '') + val + '%';
-    }
-    function bump(){ done++; paint(done / total * 92); }
-    imgs.forEach(function(i){
-      if (i.complete) bump();
-      else { i.addEventListener('load', bump); i.addEventListener('error', bump); }
-    });
-    function finish(){
-      if (ended) return; ended = true;
-      paint(100);
-      setTimeout(function(){
-        splash.classList.add('gone');
-        document.body.classList.remove('is-locked');
-        setTimeout(function(){ if (splash.parentNode) splash.parentNode.removeChild(splash); }, 900);
-      }, 620);
-    }
-    document.body.classList.add('is-locked');
-    var ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-    ready.then(function(){
-      if (document.readyState === 'complete') finish();
-      else window.addEventListener('load', finish);
-    });
-    setTimeout(finish, 5200);
-  })();
-
-  /* ---------- SPRINKLES RƠI ---------- */
-  (function(){
-    if (reduce) return;
-    var box = $('#fall'); if (!box) return;
-    var COLORS = ['#FF8FD1','#FFC2E6','#B98BFF','#DCC7FF','#A9D9FF','#9BE9D6','#FFE39A','#FFC2AE'];
-    var n = touch ? 12 : 24, frag = document.createDocumentFragment();
-    for (var i = 0; i < n; i++){
-      var p = document.createElement('span');
-      p.className = 'sprk';
-      var round = Math.random() < 0.4;
-      var w = round ? (6 + Math.random() * 7) : (9 + Math.random() * 10);
-      var hh = round ? w : (4 + Math.random() * 3);
-      p.style.left = (Math.random() * 100) + '%';
-      p.style.width = w.toFixed(1) + 'px';
-      p.style.height = hh.toFixed(1) + 'px';
-      p.style.background = COLORS[i % COLORS.length];
-      p.style.opacity = (0.5 + Math.random() * 0.45).toFixed(2);
-      p.style.boxShadow = '0 2px 0 rgba(255,255,255,.7) inset';
-      p.style.setProperty('--dx', (Math.random() * 220 - 110).toFixed(0) + 'px');
-      p.style.animationDuration = (11 + Math.random() * 14).toFixed(1) + 's';
-      p.style.animationDelay = (-Math.random() * 24).toFixed(1) + 's';
-      frag.appendChild(p);
-    }
-    box.appendChild(frag);
-  })();
-
-  /* ---------- HEADER + SCROLLSPY + PROGRESS ---------- */
-  (function(){
-    var hdr = $('#hdr'), bar = $('#bar'), fab = $('#fabMascot'), top = $('#toTop');
-    var links = $$('[data-nav]');
-    var secs = ['home','gioi-thieu','thanh-pho','vao-server','luat','hoi-dap']
-      .map(function(id){ return document.getElementById(id); }).filter(Boolean);
-    var lastY = 0, raf = 0;
-
-    function frame(){
-      raf = 0;
-      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
-      var vh = window.innerHeight || 800;
-      var max = Math.max(1, document.documentElement.scrollHeight - vh);
-
-      bar.style.width = (Math.min(1, y / max) * 100).toFixed(2) + '%';
-      hdr.classList.toggle('solid', y > 30);
-      hdr.classList.toggle('hide', y > lastY + 6 && y > 420 && !$('#drawer').classList.contains('open'));
-      lastY = y;
-
-      if (fab) fab.classList.toggle('show', y > vh * 0.65);
-      if (top) top.classList.toggle('show', y > vh * 0.65);
-
-      var cur = secs[0] ? secs[0].id : 'home';
-      for (var i = 0; i < secs.length; i++){
-        if (secs[i].getBoundingClientRect().top <= vh * 0.35) cur = secs[i].id;
-      }
-      links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-nav') === cur); });
-    }
-    function onScroll(){ if (!raf) raf = requestAnimationFrame(frame); }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    onScroll();
-
-    if (top) top.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
-  })();
-
-  /* ---------- DRAWER MOBILE ---------- */
-  (function(){
-    var b = $('#burger'), d = $('#drawer');
-    if (!b || !d) return;
-    function close(){ b.classList.remove('x'); d.classList.remove('open'); document.body.classList.remove('is-locked'); }
-    b.addEventListener('click', function(){
-      var open = !d.classList.contains('open');
-      b.classList.toggle('x', open);
-      d.classList.toggle('open', open);
-      document.body.classList.toggle('is-locked', open);
-    });
-    $$('a', d).forEach(function(a){ a.addEventListener('click', close); });
-    window.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
-  })();
-
-  /* ---------- REVEAL ---------- */
-  (function(){
-    var els = $$('.reveal');
-    if (!window.IntersectionObserver){ els.forEach(function(e){ e.classList.add('in'); }); return; }
-    var io = new IntersectionObserver(function(list){
-      list.forEach(function(e){
-        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    els.forEach(function(e, i){ e.style.transitionDelay = ((i % 4) * 0.07).toFixed(2) + 's'; io.observe(e); });
-  })();
-
-  /* ---------- TILT 3D ---------- */
-  (function(){
-    if (touch || reduce){ document.documentElement.classList.add('no-tilt'); return; }
-    $$('[data-tilt]').forEach(function(el){
-      var rot = parseFloat(el.getAttribute('data-rot') || '0') || 0;
-      var rest = 'rotate(' + rot + 'deg)';
-      var lift = el.hasAttribute('data-rot') ? ' translateY(-8px)' : '';
-      el.style.transformStyle = 'preserve-3d';
-      el.addEventListener('mousemove', function(e){
-        var r = el.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width - 0.5;
-        var py = (e.clientY - r.top) / r.height - 0.5;
-        el.style.transform = 'perspective(900px)' + lift +
-          ' rotateX(' + (-py * 6).toFixed(2) + 'deg) rotateY(' + (px * 7).toFixed(2) + 'deg)';
-      });
-      el.addEventListener('mouseleave', function(){ el.style.transform = rest; });
-    });
-  })();
-
-  /* ---------- TABS THÀNH PHỐ ---------- */
-  (function(){
-    var DATA = [
-      { title:'Hơn 10+ nghề, hợp pháp lẫn không',
-        body :'Mỗi nghề có tiến trình riêng, đồng nghiệp riêng và những tình huống roleplay riêng. Bạn có thể đổi đời bất cứ lúc nào.',
-        shot :'Ảnh in-game — ca trực của cảnh sát',
-        chips:['Cảnh sát & Cứu hoả','Bác sĩ EMS','Cơ khí & Cứu hộ','Nhà hàng & Bar','Taxi & Giao hàng','Báo chí & Truyền hình'] },
-      { title:'50+ xe custom & garage nhiều tầng',
-        body :'Từ xe máy chạy grab tới hypercar. Độ máy, độ thân, dán decal, chọn biển số riêng — chiếc xe là chữ ký của nhân vật bạn.',
-        shot :'Ảnh in-game — garage độ xe',
-        chips:['Độ máy & turbo','Decal tự thiết kế','Biển số cá nhân','Đua xe & drift'] },
-      { title:'Nhà là nơi câu chuyện bắt đầu',
-        body :'Thuê phòng trọ, mua căn hộ hay tậu villa ven biển. Tự do bày nội thất, mở tiệc, cất đồ trong kho riêng và mời bạn bè ghé chơi.',
-        shot :'Ảnh in-game — căn hộ người chơi',
-        chips:['Nội thất tự do','Kho & két sắt','Chìa khoá cho bạn bè','Kinh doanh tại gia'] },
-      { title:'Băng đảng & thế lực ngầm',
-        body :'Lập băng, giữ lãnh thổ, làm ăn với các thế lực khác. Xung đột có luật, có kịch bản — thắng thua đều phải ra chuyện, không phải xả súng vô nghĩa.',
-        shot :'Ảnh in-game — lãnh thổ băng đảng',
-        chips:['Lãnh thổ & kho băng','Cấp bậc thành viên','Phi vụ theo kịch bản','Chiến tranh có kiểm soát'] }
-    ];
-    var bar = $('#tabbar'), t = $('#tabTitle'), b = $('#tabBody'), c = $('#tabChips'), s = $('#tabShot');
-    if (!bar) return;
-    function draw(i){
-      var d = DATA[i] || DATA[0];
-      t.textContent = d.title; b.textContent = d.body; s.textContent = d.shot;
-      c.innerHTML = '';
-      d.chips.forEach(function(x, k){
-        var el = document.createElement('div');
-        el.className = 'chip'; el.textContent = x;
-        el.style.opacity = '0'; el.style.transform = 'translateY(10px)';
-        el.style.transition = 'opacity .35s ease ' + (k * 0.045) + 's, transform .45s cubic-bezier(.34,1.56,.64,1) ' + (k * 0.045) + 's';
-        c.appendChild(el);
-        requestAnimationFrame(function(){ el.style.opacity = '1'; el.style.transform = 'none'; });
-      });
-      $$('.tab', bar).forEach(function(x){ x.classList.toggle('on', +x.getAttribute('data-tab') === i); });
-    }
-    bar.addEventListener('click', function(e){
-      var btn = e.target.closest('.tab'); if (!btn) return;
-      draw(+btn.getAttribute('data-tab'));
-    });
-    draw(0);
-  })();
-
-  /* ---------- ACCORDION (LUẬT + FAQ) ---------- */
-  (function(){
-    var RULES = [
-      ['Giữ vai, đừng phá vai','Trong phố chỉ nói chuyện với tư cách nhân vật. Việc ngoài game để dành cho Discord.'],
-      ['Không RDM / VDM','Không bắn hay tông người vô cớ. Mọi xung đột phải có lý do roleplay đi trước.'],
-      ['Quý trọng mạng sống','Nhân vật của bạn biết sợ chết. Bị chĩa súng vào đầu thì đừng hành động như người bất tử.'],
-      ['Không metagaming','Thông tin nghe từ stream, Discord hay bạn bè ngoài game không được mang vào nhân vật.'],
-      ['Không phần mềm thứ ba','Mod hình ảnh thì thoải mái. Mọi công cụ can thiệp gameplay đều bị ban vĩnh viễn.'],
-      ['Tôn trọng người sau màn hình','Drama trong phố là gia vị. Xúc phạm ngoài đời, phân biệt hay quấy rối thì không.']
-    ];
-    var FAQ = [
-      ['Server có cần whitelist không?','Có, nhưng thủ tục rất nhanh. Bạn vào Discord điền đơn, đọc luật và nhận role người chơi — không phải chờ duyệt lâu.'],
-      ['Mình cần mua GTA V bản quyền không?','Có. FiveM yêu cầu bản GTA V hợp lệ trên PC (Steam, Rockstar hoặc Epic). Bản lậu sẽ không kết nối được.'],
-      ['Máy yếu có chơi được không?','Được. Server tối ưu để chạy ổn ở cấu hình tầm trung. Nếu giật, bạn có thể hạ setting và tắt bớt mod đồ hoạ.'],
-      ['Server có pay-to-win không?','Không. Tiền trong phố đến từ công việc và quan hệ. Vật phẩm hỗ trợ chỉ mang tính trang trí, không ảnh hưởng cân bằng.'],
-      ['Mình mới chơi RP lần đầu thì sao?','Hoàn toàn ổn. Có hướng dẫn cho người mới ngay khi vào phố, và cộng đồng luôn sẵn sàng chỉ bạn cách nhập vai.'],
-      ['Bao giờ server mở cửa?','19:00 ngày 16.09.2026 (giờ Việt Nam). Vào Discord trước để giữ tên nhân vật và nhận thông báo.']
-    ];
-    function build(host, rows, numbered){
-      if (!host) return;
-      rows.forEach(function(r, i){
-        var wrap = document.createElement('div'); wrap.className = 'rule';
-        var head = document.createElement('button'); head.className = 'rule-h'; head.type = 'button';
-        head.innerHTML = (numbered ? '<span class="rule-n">' + (i < 9 ? '0' : '') + (i + 1) + '</span>' : '<span class="rule-n">♡</span>')
-          + '<span class="rule-t"></span><span class="rule-x"></span>';
-        $('.rule-t', head).textContent = r[0];
-        var body = document.createElement('div'); body.className = 'rule-b';
-        var p = document.createElement('p'); p.textContent = r[1]; body.appendChild(p);
-        wrap.appendChild(head); wrap.appendChild(body); host.appendChild(wrap);
-        head.addEventListener('click', function(){
-          var open = wrap.classList.toggle('open');
-          body.style.maxHeight = open ? (body.scrollHeight + 'px') : '0px';
-          $$('.rule', host).forEach(function(o){
-            if (o !== wrap && o.classList.contains('open')){
-              o.classList.remove('open');
-              $('.rule-b', o).style.maxHeight = '0px';
-            }
-          });
-        });
-        if (i === 0){ wrap.classList.add('open'); requestAnimationFrame(function(){ body.style.maxHeight = body.scrollHeight + 'px'; }); }
-      });
-      window.addEventListener('resize', function(){
-        $$('.rule.open', host).forEach(function(o){ $('.rule-b', o).style.maxHeight = $('.rule-b', o).scrollHeight + 'px'; });
-      });
-    }
-    build($('#rules'), RULES, true);
-    build($('#faq'), FAQ, false);
-  })();
-
-  /* ---------- ĐẾM NGƯỢC ---------- */
-  (function(){
-    var d = $('#cdD'), h = $('#cdH'), m = $('#cdM'), s = $('#cdS');
-    if (!d) return;
-    var target = new Date(CONFIG.openDate).getTime();
-    if (isNaN(target)) return;
-    function pad(n){ return (n < 10 ? '0' : '') + n; }
-    function tick(){
-      var diff = Math.max(0, target - Date.now());
-      var sec = Math.floor(diff / 1000);
-      d.textContent = pad(Math.floor(sec / 86400));
-      h.textContent = pad(Math.floor(sec / 3600) % 24);
-      m.textContent = pad(Math.floor(sec / 60) % 60);
-      s.textContent = pad(sec % 60);
-    }
-    tick(); setInterval(tick, 1000);
-  })();
-
-  /* ---------- TOAST + TIM BAY ---------- */
-  var toastT;
-  function toast(msg){
-    var t = $('#toast'); if (!t) return;
-    t.textContent = msg; t.classList.add('show');
-    clearTimeout(toastT);
-    toastT = setTimeout(function(){ t.classList.remove('show'); }, 2000);
-  }
-  function hearts(x, y){
-    if (reduce) return;
-    var ic = ['♡','✦','♥','✿','★'];
-    for (var i = 0; i < 12; i++){
-      (function(i){
-        var el = document.createElement('span');
-        el.className = 'heart';
-        el.textContent = ic[i % ic.length];
-        el.style.left = (x + (Math.random() * 90 - 45)) + 'px';
-        el.style.top  = (y + (Math.random() * 20 - 10)) + 'px';
-        el.style.color = ['#FF6FC0','#FF8FD1','#A574F5','#FFD46B','#5FAEEE','#4CC9AC'][i % 6];
-        el.style.setProperty('--hx', (Math.random() * 140 - 70).toFixed(0) + 'px');
-        el.style.setProperty('--hr', (Math.random() * 120 - 60).toFixed(0) + 'deg');
-        el.style.animationDelay = (i * 0.035) + 's';
-        document.body.appendChild(el);
-        setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 1700);
-      })(i);
-    }
-  }
-
-  /* ---------- COPY IP ---------- */
-  (function(){
-    function copy(e){
-      var txt = CONFIG.ip;
-      function done(){
-        toast('Đã copy: ' + txt + ' ♡');
-        var r = e.currentTarget.getBoundingClientRect();
-        hearts(r.left + r.width / 2, r.top + r.height / 2);
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(txt).then(done, function(){ fallback(txt); done(); });
-      } else { fallback(txt); done(); }
-    }
-    function fallback(txt){
-      try{
-        var ta = document.createElement('textarea');
-        ta.value = txt; ta.setAttribute('readonly',''); ta.style.position = 'fixed'; ta.style.opacity = '0';
-        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-      }catch(err){}
-    }
-    ['#copyIp','#copyHero'].forEach(function(sel){
-      var b = $(sel); if (b) b.addEventListener('click', copy);
-    });
-  })();
-
-  /* ---------- SPARKLE THEO CHUỘT ---------- */
-  (function(){
-    if (touch || reduce) return;
-    var last = 0;
-    window.addEventListener('mousemove', function(e){
-      var now = Date.now();
-      if (now - last < 60) return;
-      last = now;
-      var s = document.createElement('span');
-      s.className = 'spark';
-      s.style.setProperty('--sk', ['#FF8FD1','#B98BFF','#A9D9FF','#9BE9D6','#FFE39A'][(Math.random()*5)|0]);
-      s.style.left = (e.clientX - 5 + (Math.random() * 14 - 7)) + 'px';
-      s.style.top  = (e.clientY - 5 + (Math.random() * 14 - 7)) + 'px';
-      var sc = (0.5 + Math.random() * 0.9).toFixed(2);
-      s.style.transform = 'scale(' + sc + ')';
-      document.body.appendChild(s);
-      setTimeout(function(){ if (s.parentNode) s.parentNode.removeChild(s); }, 780);
-    }, { passive: true });
-  })();
-
-  /* ---------- SMOOTH SCROLL BÙ HEADER ---------- */
-  (function(){
-    document.addEventListener('click', function(e){
-      var a = e.target.closest('a[href^="#"]');
-      if (!a) return;
-      var id = a.getAttribute('href').slice(1);
-      if (!id) return;
-      var el = document.getElementById(id);
-      if (!el) return;
-      e.preventDefault();
-      var y = el.getBoundingClientRect().top + window.pageYOffset - (id === 'home' ? 200 : 84);
-      window.scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
-      history.replaceState(null, '', '#' + id);
-    });
-  })();
-
-})();
-</script>
 </body>
 </html>
