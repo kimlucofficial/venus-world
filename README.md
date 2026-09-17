@@ -1,4 +1,18 @@
-# Venus World — Website v4 (nhiều trang)
+# Venus World — Website v5 (premium)
+
+## Có gì mới ở v5
+- Hiệu ứng: nền hero chuyển động chậm + aurora, hạt sáng bay, bóng đèn dây nhấp nháy, biển treo đung đưa, hộp đèn "bật điện" khi vào trang, chữ gradient chạy, Kuromi bồng bềnh, parallax theo chuột.
+- Chức năng: thanh tiến độ cuộn, menu sáng theo mục đang xem, nút Copy đổi thành "Đã copy ✓".
+- Trang chủ: 4 thẻ mặt tiền có icon + màu riêng + ánh sáng theo chuột, 3 bước dạng timeline, ô **tra luật nhanh** (gửi sang `luat.html?q=...`), băng kêu gọi cuối trang.
+- Trang luật: tô sáng từ khoá (bỏ dấu vẫn bắt), tự mở điều khi ít kết quả, phím `/` để tìm và `Esc` để xoá, chip từ khoá, thanh tìm kiếm dính đầu trang, nút copy link từng điều (`luat.html#dieu-3-2`), đọc từ khoá từ URL.
+- Toàn bộ hiệu ứng nặng tắt khi bật `prefers-reduced-motion`; nội dung vẫn hiện nếu JS lỗi.
+- Phần CSS mới nằm cuối `venus-b.css` (khối "v5 · LỚP PREMIUM").
+
+> Trang đang dùng thật: `index.html` + `luat.html` (dùng `venus-b.css` + `core.js`). Các file `gioi-thieu.html`, `thanh-pho.html`, `vao-server.html`, `hoi-dap.html` vẫn là bản cũ (`venus.css` + `venus.js`), không có trên menu.
+
+---
+
+# (Tài liệu v4 bên dưới)
 
 Website tĩnh. Không cần build, không cần Node, không framework. Mỗi mục trên menu giờ là **một trang HTML riêng**.
 

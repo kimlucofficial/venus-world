@@ -10,8 +10,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Chakra+Petch:wght@500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/venus-b.css">
+<script>document.documentElement.className+=' js'</script>
 </head>
 <body>
+<a class="skip" href="#luatSearch">Tới ô tìm kiếm</a>
 
 <header id="hdr" class="solid">
   <div class="hd">
@@ -26,8 +28,9 @@
       <a href="luat.html" class="on">Luật lệ</a>
     </nav>
     <a class="cta-sm" href="#" data-discord target="_blank" rel="noopener">Vào Discord</a>
-    <button class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="drawer"><i></i><i></i><i></i></button>
   </div>
+  <div class="progress" id="progress"></div>
 </header>
 
 <div class="drawer" id="drawer">
@@ -55,14 +58,22 @@
 <section class="sec" style="padding-top:clamp(20px,3vw,34px)">
   <div class="shell">
 
-    <div class="tools reveal">
-      <div class="search">
+    <div class="tools" id="luatTools">
+      <div class="search" id="luatSearchBox">
         <span class="ic">TÌM</span>
-        <input id="luatSearch" type="search" placeholder="Gõ từ khoá: RDM, biển báo, cooldown, trực thăng…" aria-label="Tìm điều luật">
+        <input id="luatSearch" type="search" placeholder="Gõ từ khoá: con tin, biển báo, cooldown, trực thăng…" aria-label="Tìm điều luật" autocomplete="off">
+        <kbd title="Nhấn / để tìm">/</kbd>
         <button id="luatClear" type="button" aria-label="Xoá ô tìm kiếm">×</button>
       </div>
       <button class="btn btn-g" id="luatAll" type="button">Mở tất cả</button>
-      <span class="count" id="luatCount"></span>
+      <span class="count" id="luatCount" aria-live="polite"></span>
+      <div class="chips">
+        <button class="chip" type="button" data-q="con tin" style="--ac:var(--neon)">Con tin</button>
+        <button class="chip" type="button" data-q="biển báo" style="--ac:var(--amber)">Biển báo</button>
+        <button class="chip" type="button" data-q="trực thăng" style="--ac:var(--sky)">Trực thăng</button>
+        <button class="chip" type="button" data-q="cooldown" style="--ac:var(--mint)">Cooldown</button>
+        <button class="chip" type="button" data-q="vùng vàng" style="--ac:var(--violet-2)">Vùng vàng</button>
+      </div>
     </div>
 
     <div class="luat-wrap">
@@ -100,7 +111,7 @@
         <span class="ava"><img src="assets/mascot.png" alt=""></span>
       <span class="plate"><b>VENUS WORLD</b></span>
       </a>
-      <p style="margin:14px 0 0;font-size:13.5px;color:var(--tx-2);max-width:32ch;line-height:1.8;font-weight:300">Thành phố mở cửa 19:00 mỗi tối, từ 16.09.2026.</p>
+      <p style="margin:14px 0 0;font-size:13.5px;color:var(--tx-2);max-width:32ch;line-height:1.8;font-weight:300">Thành phố mở cửa 19:00 mỗi tối, từ XX.XX.2026.</p>
     </div>
     <div>
       <h4>KHÁM PHÁ</h4>
@@ -120,7 +131,7 @@
     </div>
     <div>
       <h4>KHAI TRƯƠNG</h4>
-      <div class="mono" style="font-size:26px;font-weight:700;color:var(--neon);line-height:1.1">16.09.2026</div>
+      <div class="mono" style="font-size:26px;font-weight:700;color:var(--neon);line-height:1.1">XX.XX.2026</div>
       <div style="font-size:13px;color:var(--tx-3);margin-top:6px">19:00 (GMT+7)</div>
     </div>
     <div class="ft-note">© 2026 Venus World · V-Team. Venus World là server roleplay do cộng đồng vận hành, không liên kết với Rockstar Games hay Take-Two Interactive.</div>

@@ -33,13 +33,18 @@
 
   /* ---------- header ---------- */
   (function(){
-    var hdr = $('#hdr'), top = $('#toTop');
+    var hdr = $('#hdr'), top = $('#toTop'), bar = $('#progress');
     if (!hdr) return;
+    if (hdr.classList.contains('solid')) hdr.dataset.solid = '1';
     var raf = 0;
     function frame(){
       raf = 0;
       var y = window.pageYOffset || document.documentElement.scrollTop || 0;
-      hdr.classList.toggle('solid', y > 24);
+      hdr.classList.toggle('solid', y > 24 || hdr.dataset.solid === '1');
+      if (bar){
+        var max = (document.documentElement.scrollHeight - (window.innerHeight || 800)) || 1;
+        bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, y / max)).toFixed(4) + ')';
+      }
       if (top) top.classList.toggle('show', y > (window.innerHeight || 800) * 0.6);
     }
     function onScroll(){ if (!raf) raf = requestAnimationFrame(frame); }
@@ -54,10 +59,11 @@
   (function(){
     var b = $('#burger'), d = $('#drawer');
     if (!b || !d) return;
-    function close(){ b.classList.remove('x'); d.classList.remove('open'); document.body.classList.remove('lock'); }
+    function close(){ b.setAttribute('aria-expanded','false'); b.classList.remove('x'); d.classList.remove('open'); document.body.classList.remove('lock'); }
     b.addEventListener('click', function(){
       var open = !d.classList.contains('open');
       b.classList.toggle('x', open);
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
       d.classList.toggle('open', open);
       document.body.classList.toggle('lock', open);
     });
@@ -65,19 +71,32 @@
     window.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
   })();
 
-  /* ---------- đếm ngược ---------- */
+  /* ---------- đếm ngược / trạng thái mở cửa ---------- */
   (function(){
     var d = $('[data-cd="d"]'), h = $('[data-cd="h"]'), m = $('[data-cd="m"]'), s = $('[data-cd="s"]');
     if (!d) return;
     var target = new Date(CONFIG.openDate).getTime();
     if (isNaN(target)) return;
+    var st = $('#status'), stTx = $('#statusTx'), cap = $('#ledCap');
+    var last = {};
     function pad(n){ return (n < 10 ? '0' : '') + n; }
+    function set(el, v){
+      if (last[el.dataset.cd] === v) return;
+      last[el.dataset.cd] = v; el.textContent = v;
+      if (!reduce){ el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick'); }
+    }
     function tick(){
-      var sec = Math.floor(Math.max(0, target - Date.now()) / 1000);
-      d.textContent = pad(Math.floor(sec / 86400));
-      h.textContent = pad(Math.floor(sec / 3600) % 24);
-      m.textContent = pad(Math.floor(sec / 60) % 60);
-      s.textContent = pad(sec % 60);
+      var diff = target - Date.now();
+      var open = diff <= 0;
+      // trước ngày mở: đếm ngược · sau ngày mở: đếm số ngày thành phố đã hoạt động
+      var sec = Math.floor(Math.abs(diff) / 1000);
+      set(d, pad(Math.floor(sec / 86400)));
+      set(h, pad(Math.floor(sec / 3600) % 24));
+      set(m, pad(Math.floor(sec / 60) % 60));
+      set(s, pad(sec % 60));
+      if (st){ st.hidden = false; st.classList.toggle('soon', !open); }
+      if (stTx) stTx.textContent = open ? 'ĐANG HOẠT ĐỘNG' : 'SẮP MỞ CỬA';
+      if (cap) cap.textContent = open ? 'VENUS ĐÃ MỞ CỬA ĐƯỢC' : 'ĐẾM NGƯỢC KHAI TRƯƠNG';
     }
     tick(); setInterval(tick, 1000);
   })();
@@ -92,21 +111,30 @@
   VENUS.toast = toast;
 
   /* ---------- copy IP ---------- */
+  function copyText(txt, cb){
+    function xong(){ cb && cb(); }
+    if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext){
+      navigator.clipboard.writeText(txt).then(xong, fallback);
+    } else fallback();
+    function fallback(){
+      try{
+        var ta = document.createElement('textarea');
+        ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+        document.body.removeChild(ta);
+      }catch(e){}
+      xong();
+    }
+  }
+  VENUS.copy = copyText;
   $$('[data-copy-ip]').forEach(function(b){
+    var goc = b.innerHTML, tB;
     b.addEventListener('click', function(){
-      var txt = CONFIG.ip;
-      function xong(){ toast('Đã copy: ' + txt); }
-      if (navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(txt).then(xong, xong);
-      } else {
-        try{
-          var ta = document.createElement('textarea');
-          ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
-          document.body.appendChild(ta); ta.select(); document.execCommand('copy');
-          document.body.removeChild(ta);
-        }catch(e){}
-        xong();
-      }
+      copyText(CONFIG.ip, function(){
+        toast('Đã copy: ' + CONFIG.ip);
+        b.classList.add('done'); b.textContent = 'Đã copy ✓';
+        clearTimeout(tB); tB = setTimeout(function(){ b.classList.remove('done'); b.innerHTML = goc; }, 1800);
+      });
     });
   });
 
@@ -197,7 +225,92 @@
     e.preventDefault();
     var y = el.getBoundingClientRect().top + window.pageYOffset - 78;
     window.scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
-    history.replaceState(null, '', '#' + id);
+    try{ history.replaceState(null, '', '#' + id); }catch(err){}
   });
+
+  /* ============================================================
+     v5 · HIỆU ỨNG NHẤN NHÁ
+     ============================================================ */
+  var fine = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* đếm số chạy lên khi xuất hiện */
+  (function(){
+    var els = $$('[data-count]');
+    if (!els.length) return;
+    function run(el){
+      var to = parseInt(el.dataset.count, 10) || 0;
+      if (reduce){ el.textContent = to; return; }
+      var t0 = null, dur = 1200 + Math.min(to, 100) * 6;
+      function step(t){
+        if (!t0) t0 = t;
+        var k = Math.min(1, (t - t0) / dur);
+        el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+        if (k < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if (!window.IntersectionObserver){ return; }
+    var ob = new IntersectionObserver(function(list){
+      list.forEach(function(e){ if (e.isIntersecting){ ob.unobserve(e.target); run(e.target); } });
+    }, { threshold: 0.4 });
+    els.forEach(function(el){ el.textContent = '0'; ob.observe(el); });
+  })();
+
+  /* ánh sáng theo chuột trên thẻ */
+  if (fine && !reduce){
+    $$('.sign').forEach(function(c){
+      c.addEventListener('pointermove', function(e){
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
+
+  /* parallax nhẹ ở hero */
+  (function(){
+    var bg = $('[data-parallax]'), mas = $('[data-parallax-mas]'), hero = $('.hero');
+    if (!hero || reduce) return;
+    var raf = 0, px = 0, py = 0;
+    function draw(){
+      raf = 0;
+      var y = Math.min(window.pageYOffset || 0, window.innerHeight || 900);
+      if (bg) bg.parentNode.style.transform = 'translate3d(' + (px * -14) + 'px,' + (y * 0.25 + py * -10) + 'px,0)';
+      if (mas) mas.style.translate = (px * 18) + 'px ' + (py * 12) + 'px';
+    }
+    function req(){ if (!raf) raf = requestAnimationFrame(draw); }
+    window.addEventListener('scroll', req, { passive: true });
+    if (fine) hero.addEventListener('pointermove', function(e){
+      px = e.clientX / window.innerWidth - 0.5; py = e.clientY / window.innerHeight - 0.5; req();
+    });
+  })();
+
+  /* hạt sáng bay lên: rải ngẫu nhiên, chỉ trên máy tính */
+  $$('.sparks b').forEach(function(b){
+    b.style.left = (Math.random() * 100).toFixed(1) + '%';
+    b.style.animationDuration = (9 + Math.random() * 10).toFixed(1) + 's';
+    b.style.animationDelay = (-Math.random() * 18).toFixed(1) + 's';
+  });
+
+  /* menu sáng theo mục đang xem */
+  (function(){
+    var links = $$('nav.pills a[href^="#"]').map(function(a){
+      return { a: a, el: document.getElementById(a.getAttribute('href').slice(1)) };
+    }).filter(function(x){ return x.el; });
+    if (!links.length || !window.IntersectionObserver) return;
+    var ob = new IntersectionObserver(function(list){
+      list.forEach(function(e){
+        links.forEach(function(x){ if (x.el === e.target) x.a.classList.toggle('spy', e.isIntersecting); });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    links.forEach(function(x){ ob.observe(x.el); });
+  })();
+
+  /* lưới an toàn: nội dung không bao giờ bị kẹt ở trạng thái mờ */
+  setTimeout(function(){
+    $$('.reveal').forEach(function(e){
+      if (e.getBoundingClientRect().top < (window.innerHeight || 800)) e.classList.add('in');
+    });
+  }, 1500);
 
 })();
