@@ -4,6 +4,6 @@
    ============================================================ */
 var CONFIG = {
   discord : 'https://discord.gg/venusworld',
-  ip      : 'connect venusworld.vn',
+  ip      : 'connect play.venusworld.asia',
   openDate: '2026-09-16T19:00:00+07:00'
 };

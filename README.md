@@ -58,7 +58,7 @@ Mở `assets/js/config.js`:
 ```js
 var CONFIG = {
   discord : 'https://discord.gg/venusworld',   // link Discord thật
-  ip      : 'connect venusworld.vn',           // lệnh kết nối FiveM
+  ip      : 'connect play.venusworld.asia',           // lệnh kết nối FiveM
   openDate: '2026-09-16T19:00:00+07:00'        // mốc đếm ngược
 };
 ```
