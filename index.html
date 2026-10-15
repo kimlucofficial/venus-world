@@ -202,7 +202,7 @@ kbd{font:800 12px/1 var(--f);border:1.5px solid var(--ink);border-radius:5px;pad
       <span class="star" style="right:-2%;top:30%;width:4.5%;rotate:18deg;animation-delay:-.9s"><svg viewBox="0 0 24 24"><path fill="currentColor" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" d="m12 2.6 2.7 5.7 6.2.8-4.5 4.3 1.1 6.2L12 16.6l-5.5 3 1.1-6.2-4.5-4.3 6.2-.8L12 2.6Z"/></svg></span>
       <span class="bow" style="left:4%;top:12%;rotate:-16deg;animation-delay:-1.7s"><svg viewBox="0 0 48 32"><path fill="var(--accent)" d="M24 16C18 6 6 1 3 6s1 17 6 19 12-3 15-9Zm0 0c6-10 18-15 21-10s-1 17-6 19-12-3-15-9Z"/><path fill="#fff" opacity=".35" d="M8 9c3-2 8 1 11 5-4-1-8-2-11-5Z"/><circle cx="24" cy="16" r="5.2" fill="var(--accent)"/><circle cx="22.6" cy="14.6" r="1.6" fill="#fff" opacity=".6"/></svg></span>
       <span class="sticker"><img src="assets/mascot.png" alt=""></span>
-      <span class="bubble" id="bubble">Chào mừng tới phố Venus!</span>
+      <span class="bubble" id="bubble">Ê, vô phố Venus chơi!</span>
     </div>
   </div>
   <canvas class="refl" id="refl" aria-hidden="true"></canvas>
@@ -217,7 +217,7 @@ kbd{font:800 12px/1 var(--f);border:1.5px solid var(--ink);border-radius:5px;pad
   <div class="desc" id="desc" aria-live="polite">
     <div class="swap">
       <div class="k" id="descK">01 — Lãnh thổ</div>
-      <p id="descP">Tranh lãnh thổ bằng các đợt chiếm đóng, đánh nhau chủ yếu bằng cận chiến. Mọi tình huống đều có luật, thắng thua đều phải ra chuyện.</p>
+      <p id="descP">Băng nào mạnh thì giữ đất, đơn giản vậy thôi. Mỗi đợt chiếm đóng là anh em kéo nhau ra, đánh tay đôi, cầm gậy là chính. Có luật đàng hoàng, thua thì tâm phục, thắng thì có chuyện để kể cả tuần.</p>
     </div>
   </div>
 
@@ -281,13 +281,13 @@ var CONFIG = window.CONFIG || {
 
 /* Bốn khu: chữ + bảng màu riêng cho hành tinh */
 var MODES = [
-  {b:'Giữ đất của mình nha!', k:'01 — Lãnh thổ', p:'Tranh lãnh thổ bằng các đợt chiếm đóng, đánh nhau chủ yếu bằng cận chiến. Mọi tình huống đều có luật, thắng thua đều phải ra chuyện.',
+  {b:'Đất này có chủ rồi nha', k:'01 — Lãnh thổ', p:'Băng nào mạnh thì giữ đất, đơn giản vậy thôi. Mỗi đợt chiếm đóng là anh em kéo nhau ra, đánh tay đôi, cầm gậy là chính. Có luật đàng hoàng, thua thì tâm phục, thắng thì có chuyện để kể cả tuần.',
    bg:'#F6EEF4', base:'#FFF9FC', ink:'#E0459B', accent:'#E0459B'},
-  {b:'Hàng rơi kìa, chạy lẹ!', k:'02 — Hàng rơi', p:'Thùng hàng thả xuống phố. Ai tới được và giữ được thì lấy, nên chỗ hàng rơi hiếm khi yên.',
+  {b:'Hàng rớt kìa, lên xe lẹ!', k:'02 — Hàng rơi', p:'Thùng hàng vừa chạm đất là cả phố biết. Tới trước chưa chắc ăn, phải giữ được tới lúc mở thùng. Gọi anh em đi chung cho chắc, đi lẻ là dễ về tay trắng lắm.',
    bg:'#EEEAFA', base:'#F7F4FF', ink:'#5B32E6', accent:'#5B32E6'},
-  {b:'Ai nhanh hơn nào?', k:'03 — Đường đêm', p:'Đường phố về đêm là chỗ đọ xe. Ai nhanh hơn thì biết ngay, không phải nói nhiều.',
+  {b:'Đua một ván không?', k:'03 — Đường đêm', p:'Đêm xuống là phố thành đường đua. Không cần nói nhiều, đạp ga là biết ai trùm. Thua thì chịu, mai quay lại phục thù.',
    bg:'#F2ECF6', base:'#22113A', ink:'#FF9ACB', accent:'#C2357F'},
-  {b:'Tối nay ngồi nghe chuyện nha', k:'04 — Sóng âm', p:'Phố không chỉ có đánh nhau. Có những tối mọi người ngồi lại nghe nhau nói chuyện, không cầm gì trong tay.',
+  {b:'Tối nay ra quán ngồi nha', k:'04 — Sóng âm', p:'Đánh nhau mệt thì ngồi xuống nói chuyện. Có tối cả băng tụ lại, bật mic kể chuyện đời, chọc nhau cười tới khuya. Ở đây ai cũng là anh em, không chỉ là đồng đội.',
    bg:'#FBEFF4', base:'#FFEAF4', ink:'#7A4DFF', accent:'#7A4DFF'}
 ];
 
@@ -415,6 +415,7 @@ var MODES = [
   var frag = [
     'uniform float uTime; uniform float uProg; uniform float uFrom; uniform float uTo;',
     'uniform vec3 uBaseA; uniform vec3 uInkA; uniform vec3 uBaseB; uniform vec3 uInkB; uniform vec3 uBg;',
+    'uniform sampler2D uLogo; uniform float uLogoOn;',
     'varying vec3 vPos; varying vec3 vN;',
     NOISE,
     'float lineMask(float s, float w){ float d=abs(fract(s-0.5)-0.5); float aa=fwidth(s)*1.2; return 1.0-smoothstep(w-aa,w+aa,d); }',
@@ -435,6 +436,19 @@ var MODES = [
     '  float da=acos(clamp(dot(p,a),-1.0,1.0)); float db=acos(clamp(dot(p,b),-1.0,1.0));',
     '  float w=snoise(p*1.8+uTime*0.05)*0.05;',
     '  float s = da<db+w ? da*10.0-uTime*0.7 : db*10.0-uTime*0.55; return lineMask(s,0.21); }',
+    /* mảnh vụn cắt từ logo, mỗi mảnh lấy một góc logo khác nhau */
+    'vec3 hash3(vec3 p){ p=vec3(dot(p,vec3(127.1,311.7,74.7)),dot(p,vec3(269.5,183.3,246.1)),dot(p,vec3(113.5,271.9,124.6))); return fract(sin(p)*43758.5453); }',
+    'vec3 shard(vec3 p, vec3 ink){',
+    '  vec3 g=p*3.4; vec3 ip=floor(g); vec3 fp=fract(g); float md=8.0; vec3 mc=vec3(0.0); vec3 mr=vec3(0.0);',
+    '  for(int x=-1;x<=1;x++) for(int y=-1;y<=1;y++) for(int z=-1;z<=1;z++){',
+    '    vec3 o=vec3(float(x),float(y),float(z)); vec3 r=o+hash3(ip+o)-fp; float d=dot(r,r);',
+    '    if(d<md){ md=d; mc=ip+o; mr=r; } }',
+    '  vec3 h=hash3(mc*1.7+3.1); float a=h.x*6.2831853; float ca=cos(a), sa=sin(a);',
+    '  vec2 l=vec2(-mr.x-mr.z*0.5, -mr.y+mr.z*0.5); l=vec2(ca*l.x-sa*l.y, sa*l.x+ca*l.y);',
+    '  vec2 uv=clamp(vec2(0.2,0.16)+h.yz*vec2(0.6,0.62)+l*0.4, 0.02, 0.98);',
+    '  vec3 c=texture2D(uLogo,uv).rgb; float lum=dot(c,vec3(0.299,0.587,0.114));',
+    '  c=mix(c,ink,0.12+0.7*smoothstep(0.62,0.95,lum));',
+    '  return mix(ink,c,uLogoOn); }',
     'float pat(float m, vec3 p){ if(m<0.5) return contour(p); if(m<1.5) return dots(p); if(m<2.5) return streaks(p); return rings(p); }',
     'void main(){',
     '  vec3 p=normalize(vPos);',
@@ -442,7 +456,7 @@ var MODES = [
     '  float sel=1.0-smoothstep(uProg*1.4-0.2,uProg*1.4-0.05,w);',
     '  float edge=smoothstep(0.018,0.0,abs(w-(uProg*1.4-0.12)))*step(0.001,uProg)*step(uProg,0.999);',
     '  float mA=pat(uFrom,p); float mB=pat(uTo,p);',
-    '  vec3 colA=mix(uBaseA,uInkA,mA); vec3 colB=mix(uBaseB,uInkB,mB);',
+    '  vec3 colA=mix(uBaseA,shard(p,uInkA),mA); vec3 colB=mix(uBaseB,shard(p,uInkB),mB);',
     '  vec3 col=mix(colA,colB,sel);',
     '  col=mix(col,uInkB,edge*0.9);',
     '  vec3 n=normalize(vN); float diff=dot(n,normalize(vec3(-0.45,0.6,0.7)))*0.5+0.5;',
@@ -459,8 +473,25 @@ var MODES = [
   var U = {
     uTime:{value:0}, uProg:{value:1}, uFrom:{value:0}, uTo:{value:0},
     uBaseA:{value:C(MODES[0].base)}, uInkA:{value:C(MODES[0].ink)},
-    uBaseB:{value:C(MODES[0].base)}, uInkB:{value:C(MODES[0].ink)}, uBg:{value:C(MODES[0].bg)}
+    uBaseB:{value:C(MODES[0].base)}, uInkB:{value:C(MODES[0].ink)}, uBg:{value:C(MODES[0].bg)},
+    uLogo:{value:new THREE.Texture()}, uLogoOn:{value:0}
   };
+  /* logo dùng làm mảnh vụn cho vệt hoa văn */
+  var LOGO_SRC = 'assets/logo.webp', logoT = 0;
+  (function(){
+    var img = new Image();
+    img.onload = function(){
+      try {
+        var t = new THREE.Texture(img);
+        t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter;
+        t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        t.needsUpdate = true;
+        U.uLogo.value = t; logoT = reduce ? 1 : .0001;
+        if (reduce){ U.uLogoOn.value = 1; render(0); }
+      } catch(e){}
+    };
+    img.src = LOGO_SRC;
+  })();
   var mat = new THREE.ShaderMaterial({uniforms: U, vertexShader: vert, fragmentShader: frag, extensions: {derivatives: true}});
   var ball = new THREE.Mesh(new THREE.SphereGeometry(1, 160, 120), mat);
   scene.add(ball);
@@ -497,6 +528,7 @@ var MODES = [
     if (prog < 1){ prog = Math.min(1, prog + dt / 1.4); U.uProg.value = prog; }
     else U.uProg.value = 1;
     U.uBg.value.lerp(bgTarget, Math.min(1, dt * 2));
+    if (logoT > 0 && logoT < 1){ logoT = Math.min(1, logoT + dt / .8); U.uLogoOn.value = logoT * logoT * (3 - 2 * logoT); }
     if (!drag){ vy += (.0015 - vy) * .02; vx *= .94; }
     rotY += vy * (dt * 60); rotX = Math.max(-.9, Math.min(.9, rotX + vx * (dt * 60)));
     rotX += (.25 - rotX) * .01;
