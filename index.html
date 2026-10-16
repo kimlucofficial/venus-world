@@ -134,12 +134,6 @@ kbd{font:800 12px/1 var(--f);border:1.5px solid var(--ink);border-radius:5px;pad
 .cmd code{flex:1;min-width:0;padding:12px 18px;white-space:nowrap;overflow-x:auto}
 .cmd button{padding:0 18px;background:var(--ink);color:#fff;font-weight:800}
 .cmd button:hover{background:var(--accent)}
-.search{display:flex;border-bottom:1.5px solid var(--ink)}
-.search input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:700 20px var(--f);color:var(--ink);padding:10px 0}
-.search input::placeholder{color:var(--mute)}
-.search button{font-weight:800;padding:0 4px}
-.chips{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px;color:var(--soft)}
-.chips a:hover{color:var(--ink)}
 .dir .mascot{display:flex;gap:14px;align-items:center;color:var(--soft);font-weight:600;line-height:1.5}
 .dir .mascot img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:50% 18%;background:#FFE3F3;flex:none}
 
@@ -249,19 +243,6 @@ kbd{font:800 12px/1 var(--f);border:1.5px solid var(--ink);border-radius:5px;pad
         <li><span>03</span><div><strong>Tạo nhân vật</strong><p>Đặt tên, chọn ngoại hình, nhận CCCD rồi bước ra phố.</p></div></li>
       </ol>
       <div class="cmd"><code data-ip>connect play.venusworld.asia</code><button type="button" data-copy-ip>Copy</button></div>
-    </section>
-    <section>
-      <h2>Luật lệ · 25 chương, 82 điều</h2>
-      <form class="search" action="luat.html" method="get" role="search">
-        <input id="q" name="q" type="search" placeholder="Tra nhanh: con tin, biển báo…" aria-label="Tra luật">
-        <button type="submit">Tra →</button>
-      </form>
-      <div class="chips">
-        <a href="luat.html?q=con%20tin">Con tin</a>
-        <a href="luat.html?q=bi%E1%BB%83n%20b%C3%A1o">Biển báo</a>
-        <a href="luat.html?q=tr%E1%BB%B1c%20th%C4%83ng">Trực thăng</a>
-        <a href="luat.html?q=cooldown">Cooldown</a>
-      </div>
     </section>
     <div class="mascot"><img src="assets/mascot.png" alt=""><p>Vào Discord để nhận thông báo, đăng ký whitelist và hỏi GM khi cần.</p></div>
   </aside>
