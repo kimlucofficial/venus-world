@@ -3,11 +3,11 @@
    ------------------------------------------------------------
    Mỗi chương:  { id, ten, mo (bỏ được), dieu: [...] }
    Mỗi điều:    { so, t, n, phat (bỏ được) }
-     so   : số điều hiện trong vòng tròn, ví dụ "3.1"
+     so   : số điều hiện ở cột trái, ví dụ "3"
      t    : tiêu đề rút gọn hiện khi chưa mở
      n    : nội dung, mỗi phần tử là một đoạn
             có thể chèn { ds:["gạch đầu dòng 1","gạch đầu dòng 2"] }
-     phat : cột xử phạt, xuống dòng bằng \n
+     phat : khung xử phạt, xuống dòng bằng \n
 
    Thêm chương mới: copy nguyên khối { ... }, dán vào mảng chuong,
    đổi id cho khác các chương đang có. Mục lục tự cập nhật.
@@ -15,762 +15,490 @@
 
 var VENUS_LUAT = {
 
-  capNhat: "27.08.2026",
+  capNhat: "24.10.2026",
 
   chuong: [
 
-    /* ---------- Chương 1 ---------- */
+    /* ---------- Chương I ---------- */
     {
-      id  : "c1-quy-dinh-cua-canh-sat",
-      ten : "QUY ĐỊNH CỦA CẢNH SÁT",
+      id  : "c1-quy-dinh-chung",
+      ten : "QUY ĐỊNH CHUNG",
+      mo  : "Bộ luật thành phố Roleplay — Phiên bản 1.0 · Serious Roleplay",
       dieu: [
         {
-          so: "1.1",
-          t : "Người đi cướp cũng như cảnh sát tuyệt đối tuân thủ roleplay",
-          n : ["- Người đi cướp cũng như cảnh sát tuyệt đối tuân thủ roleplay"],
-          phat: "+ Phạt band 3 ngày nếu vi phạm"
-        },
-        {
-          so: "1.2",
-          t : "Còi 1: Truy đuổi theo dấu (không chặn đường bay, đường tẩu thoát) =…",
+          so: "1",
+          t : "Mục đích và phạm vi áp dụng",
           n : [
-            "- Còi 1: Truy đuổi theo dấu (không chặn đường bay, đường tẩu thoát) = 00 - 05 phút .",
-            "- Còi 2: Được phép Ép xe từ 2 phía (được phép chặn đường bay, đường tẩu thoát) = 05 - 7 phút đối với vi phạm dưới 3 sao và = 5 - 10 phút đối với vi phạm từ 3 sao trở lên.",
-            "- Còi 3: Dưới 3 sao = từ 7 phút - Từ 3 sao trở lên = từ 10 phút: Sử dụng súng điện để DB lốp xe - Hạ Móc kéo: Dưới 3 sao = 10 phút - Từ 3 sao trở lên = 13 phút+ Sau khi đã móc thành công xe đối tượng mà đối tượng tiếp tục ngồi trên xe để có hành vi trống đối không đầu hàng, lôi xe ban nghành, công an phải nhắc nhở đầu hàng 2 lần trong 30s mà vẫn tiếp tục ngồi trên xe không đầu hàng công an được phép db súng điện từ ngoài xe vào vị trí người ngồi ở vị trí ghế lái để áp chế. (trường hợp này công an cần setup 1 người điều khiển xe có gắn móc để kìm đối tượng 1 rời khỏi xe để thực hiện hành vi db súng điện tội phạm ở vị trí ghế lái)"
-          ],
-          phat: "+ Vi phạm phạt: phải chịu phí phạt của người đi cướp, hủy tình huống; tái phạm 3 lần sẽ bị cho ra khỏi ngành, đưa vào blacklist các ngành nhà trực thuộc Nhà Xanh."
-        },
-        {
-          so: "1.3",
-          t : "Luật tương tác: Khi bị khống chế phương tiện bắt buộc phải xuống…",
-          n : ["- Luật tương tác: Khi bị khống chế phương tiện bắt buộc phải xuống xe, bật mic thực hiện giao tiếp với công an; Công an cũng phải xuống xe để giao tiếp và thực hiện còng, bắt dữ. Nếu trường hợp bị khống chế xe, hư xe, lật xe người cướp cố tình bỏ chạy hoặc khóa cửa ngồi yên trên xe và không giao tiếp công an có quyền bắn súng điện để khống chế"],
-          phat: "+ Phạt: x2 số tiền vi phạm"
-        },
-        {
-          so: "1.4",
-          t : "Luật Dùng trực thăng Công An",
-          n : ["- Luật Dùng trực thăng Công An"],
-          phat: "+ Công an chỉ được dùng tối đa 01 trực Thăng trong 01 vụ cướp từ 3 sao trở lên."
-        },
-        {
-          so: "1.5",
-          t : "Các phương tiện tham gia trong các vụ cướp đều bị tịch thu + kiểm…",
-          n : ["- Các phương tiện tham gia trong các vụ cướp đều bị tịch thu + kiểm tra cốp và tịch thu mọi vật phẩm bẩn nếu có."],
-          phat: "+ Không sử phạt + trả ngay sau khi sử án + thụ án xong."
-        },
-        {
-          so: "1.6",
-          t : "Công dân tẩu thoát xuống nước, dùng thuyền để chạy trốn",
-          n : ["- Công dân tẩu thoát xuống nước, dùng thuyền để chạy trốn"],
-          phat: "+ Công an được quyền còng trực tiếp nếu tiếp cận được với đối tượng\n+ Công an được phép sử dụng các phương tiện, công cụ hỗ trợ dưới nước (bình lặn) để tiếp tục truy đuổi.\n* Được phép trưng dụng tối đa 01 thuyền hỗ trợ\n* Sử dụng trực thăng để hỗ trợ trong trường hợp cướp sử dụng 02 phương tiện hoặc cướp 3 sao trở lên"
-        },
-        {
-          so: "1.7",
-          t : "Xuống xe chạy bộ, tiếp tục tẩu thoát",
-          n : ["- Xuống xe chạy bộ, tiếp tục tẩu thoát"],
-          phat: "+ Phạt thêm: 200$ - 300$/1 trường hợp"
-        },
-        {
-          so: "1.8",
-          t : "Sau 10 phút đối với các vụ cướp dưới 3 sao và sau 20 phút đối với…",
-          n : ["Sau 10 phút đối với các vụ cướp dưới 3 sao và sau 20 phút đối với các vụ cướp trên 3 sao công an mất dấu hoàn toàn đối tượng cướp tình huống coi như mission failed và không được tiếp tục sử dụng tình huống cũ để truy đuổi, hoặc kiểm tra dưới dạng tình nghi"],
-          phat: "Công an cố vi phạm = phạt 100.000$/lần\nTái phạm nhiều (quá 3 lần) lần và bị người dân tố cáo = đình chỉ công việc"
-        }
-      ]
-    },
-
-    /* ---------- Chương 2 ---------- */
-    {
-      id  : "c2-quy-dinh-canh-sat-hinh-su",
-      ten : "QUY ĐỊNH CẢNH SÁT HÌNH SỰ",
-      dieu: [
-        {
-          so: "2.1",
-          t : "Cảnh sát Hình sự được quyền off duty hoặc on duty và mặc đồ dân sự…",
-          n : ["- Cảnh sát Hình sự được quyền off duty hoặc on duty và mặc đồ dân sự (thường phục) để chà trộn vào vụ án mật phục và báo cáo về cơ quan khi xảy ra xung đột khẩn cấp."]
-        },
-        {
-          so: "2.2",
-          t : "Cảnh sát Hình sự khi làm nhiệm vụ phải được sự Chỉ đạo trực tiếp từ…",
-          n : ["- Cảnh sát Hình sự khi làm nhiệm vụ phải được sự Chỉ đạo trực tiếp từ cấp đội trưởng trở lên hiện còn công tác tại Sở Cảnh sát."]
-        },
-        {
-          so: "2.3",
-          t : "Cảnh sát Hình sự chỉ được hỗ trợ còng tội phạm khi có sự có mặt của…",
-          n : ["- Cảnh sát Hình sự chỉ được hỗ trợ còng tội phạm khi có sự có mặt của tối thiểu 02 đồng chí công an đang trong ca và mặc quân phục"],
-          phat: "+ Vi phạm\n+ Lần 1: Đình chỉ công tác 3 ngày và bồi thường tiền cho người dân.\n+ Lần 2: Cho ra khỏi ngành và bị blacklist các ngành nhà trực thuộc Nhà Xanh."
-        },
-        {
-          so: "2.4",
-          t : "Cảnh sát Hình sự không được tự ý đi làm nhiệm vụ mà chưa có Chỉ đạo…",
-          n : ["- Cảnh sát Hình sự không được tự ý đi làm nhiệm vụ mà chưa có Chỉ đạo từ cấp trên."],
-          phat: "+ Vi phạm\n+ Lần 1: Đình chỉ công tác 3 ngày và bồi thường tiền cho người dân.\n+ Lần 2: Cho ra khỏi ngành và bị blacklist các ngành nhà trực thuộc Nhà Xanh."
-        },
-        {
-          so: "2.5",
-          t : "Cảnh sát Hình sự tuyệt đối không được xử lý dụng cụ hỗ trợ khác của…",
-          n : ["- Cảnh sát Hình sự tuyệt đối không được xử lý dụng cụ hỗ trợ khác của ngành Cảnh sát ngoại trừ Còng và súng điện."],
-          phat: "+ Vi phạm\n+ Lần 1: Đình chỉ công tác 3 ngày và bồi thường tiền cho người dân.\n+ Lần 2: Cho ra khỏi ngành và bị blacklist các ngành nhà trực thuộc Nhà Xanh."
-        }
-      ]
-    },
-
-    /* ---------- Chương 3 ---------- */
-    {
-      id  : "c3-quy-dinh-ve-nguoi-dan",
-      ten : "QUY ĐỊNH VỀ NGƯỜI DÂN",
-      dieu: [
-        {
-          so: "3.1",
-          t : "Không được phép sử dụng xe máy để đi cướp.",
-          n : ["- Không được phép sử dụng xe máy để đi cướp."],
-          phat: "+ Phạt: 500$ + Bị ép xe hỏng xe hoặc gây ngất tự chịu."
-        },
-        {
-          so: "3.2",
-          t : "Người hỗ trợ vụ cướp không được dùng xe khác vốn dĩ không có, không…",
-          n : ["- Người hỗ trợ vụ cướp không được dùng xe khác vốn dĩ không có, không liên quan trong vụ cướp tông vào xe cảnh sát dưới mọi hình thức."],
-          phat: "+ Vi phạm phạt: 100.000$ + Cảnh cáo từ sever; Nếu vi phạm 3 lần cảnh cáo = band"
-        },
-        {
-          so: "3.3",
-          t : "Người hỗ trợ vụ cướp chỉ được quyền tạo chướng ngại vật cản trở…",
-          n : ["- Người hỗ trợ vụ cướp chỉ được quyền tạo chướng ngại vật cản trở công an hoặc setup đón người tham gia cướp."],
-          phat: "+ Vi phạm phạt: 2.000 – 4.000$ tùy theo trường hợp."
-        },
-        {
-          so: "3.4",
-          t : "Tuyệt đối không sử dụng phương tiện bay để thực hiện các vụ cướp…",
-          n : ["- Tuyệt đối không sử dụng phương tiện bay để thực hiện các vụ cướp hoặc làm nghề bẩn, hỗ trợ cướp."],
-          phat: "+ Vi phạm phạt: Band 3 ngày; sau khi quay lại tiếp tục tái phạm = band v.v"
-        },
-        {
-          so: "3.5",
-          t : "Xuống xe chạy bộ, tiếp tục tẩu thoát",
-          n : ["- Xuống xe chạy bộ, tiếp tục tẩu thoát"],
-          phat: "+ Phạt thêm: 200$/1 trường hợp"
-        },
-        {
-          so: "3.6",
-          t : "Công dân không được thực hiện hành vi vi phạm pháp luật ngoài Thành…",
-          n : ["- Công dân không được thực hiện hành vi vi phạm pháp luật ngoài Thành phố như: Cậy biển báo, Cướp nhà dân, bảo kê tống tiền khu vực làm nghề sạch."],
-          phat: "+ Vi phạm sử phạt: Áp chế trực tiếp và phạt hóa đơn từ 10.000$ – 20.000$."
-        },
-        {
-          so: "3.7",
-          t : "Sau khi đã có thông báo động đất của Thành phố mọi người dân không…",
-          n : ["- Sau khi đã có thông báo động đất của Thành phố mọi người dân không được cướp"],
-          phat: "+ Vi phạm = Band 3 ngày.\n+ Lần 2 = Band - Vĩnh viễn."
-        },
-        {
-          so: "3.8",
-          t : "Nghiêm cấm những tình huống cố ý lao xe xuống biển.( dừng xe ở trên…",
-          n : ["- Nghiêm cấm những tình huống cố ý lao xe xuống biển.( dừng xe ở trên bờ và nhảy xuống biển sẽ không sao )"],
-          phat: "+ x3 số bãi và số tiền nếu bị bắt"
-        },
-        {
-          so: "3.9",
-          t : "Mặt nạ trong vùng vàng và xanh- Kể cả khẩu trang và các trang bị…",
-          n : ["- Mặt nạ trong vùng vàng và xanh- Kể cả khẩu trang và các trang bị che mặt [ 5000 / Người ]"],
-          phat: "Phạt 10000 / Người"
-        }
-      ]
-    },
-
-    /* ---------- Chương 4 ---------- */
-    {
-      id  : "c4-quy-dinh-giao-thong",
-      ten : "QUY ĐỊNH GIAO THÔNG",
-      dieu: [
-        {
-          so: "4.1",
-          t : "Không có giấy phép lái xe khi đang điều khiển phương tiện giao…",
-          n : ["+ Không có giấy phép lái xe khi đang điều khiển phương tiện giao thông hoặc không có căn cước công dân khi bị kiểm tra hành chính, khi bị bắt trong các tình huống ingame"],
-          phat: "Phạt: 5000$"
-        },
-        {
-          so: "4.2",
-          t : "Đỗ xe sai quy định, đỗ xe gây ảnh hưởng giao thông, đỗ xe ở nơi…",
-          n : ["+ Đỗ xe sai quy định, đỗ xe gây ảnh hưởng giao thông, đỗ xe ở nơi không được phép đỗ"],
-          phat: "Phạt: 5000$ + Giam xe"
-        },
-        {
-          so: "4.3",
-          t : "Đi xe không chính chủ (xe NPC, xe mang tên người dân khác) - áp…",
-          n : ["+ Đi xe không chính chủ (xe NPC, xe mang tên người dân khác) - áp dụng sử phạt cộng dồn trong trường hợp sử dụng xe không chính chủ tham gia cướp."],
-          phat: "Phạt: 5000$"
-        },
-        {
-          so: "4.4",
-          t : "Không chấp hành hiệu lệnh khi có hiệu lệnh yêu câu dừng xe từ cảnh…",
-          n : ["+ Không chấp hành hiệu lệnh khi có hiệu lệnh yêu câu dừng xe từ cảnh sát"],
-          phat: "Phạt: 3000$"
-        },
-        {
-          so: "4.5",
-          t : "Công an được phép lập chốt kiểm soát tốc độ khi có chuyên đề (GĐ…",
-          n : [
-            "+ Công an được phép lập chốt kiểm soát tốc độ khi có chuyên đề (GĐ, QLCS phải đăng thông báo lên TW ingame)",
-            "Lưu ý: áp dụng sử phạt cả Công An, Bác Sĩ khi đang không thực hiện nhiệm vụ (nếu đang thực hiện nhiệm vụ phải mở đèn ưu tiên - Còi 1, 2, 3)"
-          ],
-          phat: "Tốc độ bị sử phạt quá tốc độ trong thành phố:\n* Xe máy: 80km/h\n* Ô tô 4 cửa: 100km/h\n* Ô tô 2 cửa: 120km/h\nPhạt: 500$ - 1.000$/lần\nTốc độ bị sử phạt quá tốc độ ngoài thành phố:\n* Xe máy: 100km/h\n* Ô tô 4 cửa: 130km/h\n* Ô tổ 2 cửa: 150km/h\nPhạt: 500$ - 1.000$/lần"
-        }
-      ]
-    },
-
-    /* ---------- Chương 5 ---------- */
-    {
-      id  : "c5-quy-dinh-cuop-tap-hoa-cuop-ket-ngoai-cuop-ke",
-      ten : "QUY ĐỊNH CƯỚP TẠP HÓA (⭐⭐cướp két ngoài) (⭐⭐⭐⭐ Cướp két trong)",
-      dieu: [
-        {
-          so: "5.1",
-          t : "Điều kiện cần và đủ để mở cướp tạp hóa phải có tối thiểu 5 cảnh…",
-          n : [
-            "- Điều kiện cần và đủ để mở cướp tạp hóa phải có tối thiểu 5 cảnh sát; tối đa 5 xe Công an tham gia truy đuổi; Khi công an tới người cướp chưa thực hiện xong thao tác, công an sẽ chờ 10s - 1 phút để người cướp hoàn thành vụ cướp và lên xe tháo chạy. (Thời gian được tính từ lúc có hiệu lệnh còi trong vùng nghe thấy của người cướp).",
-            "- Trường hợp cướp sự dụng từ 2 phương tiện trở lên công an được sự dụng 01 máy bay để theo dấu"
-          ],
-          phat: "Hình thức phạt: Phạt 10000$ người + tịch thu toàn bộ đồ bẩn\nSử phạt: 30 bãi\nVi phạm luật = hủy tình huống\ncố tình vi phạm luật = BAN"
-        },
-        {
-          so: "5.2",
-          t : "Đối với người đi cướp Tạp hóa: Tối thiểu team 4 người + được dùng…",
-          n : [
-            "- Đối với người đi cướp Tạp hóa: Tối thiểu team 4 người + được dùng 01 phương tiện 4 chỗ; Tối đa team 8 người + 02 phương tiện 4 chỗ và yêu cầu có ít nhất 1 con tin.",
-            "- Khống chế con tin: Team 4 người ít nhất có 01 người khống chế con tin - Team 8 người có ít nhất 02 người khống chế con tin (Được dùng súng săn để khống chế)"
+            "1.1. Venus World là thành phố nhập vai theo định hướng Serious Roleplay, nơi mọi công dân phải xây dựng nhân vật, hành động và tương tác dựa trên tình huống thực tế, hợp lý.",
+            "1.2. Bộ luật áp dụng cho toàn bộ người chơi, tổ chức, Gang/Gia Tộc, các ban ngành và thành viên Ban Quản Trị khi tham gia hoạt động trong thành phố.",
+            "1.3. Mọi công dân có trách nhiệm đọc, hiểu và tuân thủ luật trước khi tham gia.",
+            "1.4. Không biết luật không được xem là lý do miễn trừ trách nhiệm.",
+            "1.5. Nghiêm cấm lợi dụng sơ hở của luật, cơ chế trò chơi hoặc tình huống RP để trục lợi, gây ảnh hưởng đến cộng đồng.",
+            "1.6. Ban Quản Trị có quyền giải quyết những tình huống chưa được quy định cụ thể, dựa trên bằng chứng, nguyên tắc công bằng và tinh thần Roleplay."
           ]
         },
         {
-          so: "5.3",
-          t : "Phương tiện được phép tham gia:+ police: 2/5",
+          so: "2",
+          t : "Nguyên tắc nhập vai",
           n : [
-            "- Phương tiện được phép tham gia:+ police: 2/5",
-            "+ sjcop1 (báo 2): 3/5 (có dòng xe 3 = 2/5 xe)+ GT63: Tối đa 1/5 (phía cướp có sử dụng xe tốc độ >= 230km/h trở lên = 2/5 xe GT63 tham gia và -1 sjcop1 = 1/5 sjcop1)"
+            "2.1. Mọi hành động phải có nguyên nhân, diễn biến và hậu quả RP hợp lý.",
+            "2.2. Người chơi phải coi trọng tính mạng, tài sản và sự an toàn của nhân vật.",
+            "2.3. Không được cố tình phá vỡ tình huống RP của người khác để giành lợi thế.",
+            "2.4. Không được sử dụng kiến thức ngoài đời hoặc thông tin ngoài nhân vật để tác động đến tình huống IC.",
+            "2.5. Người chơi phải duy trì thái độ tôn trọng, hợp tác và văn minh trong mọi hoạt động cộng đồng."
           ]
         }
       ]
     },
 
-    /* ---------- Chương 6 ---------- */
+    /* ---------- Chương II ---------- */
     {
-      id  : "c6-quy-dinh-cuop-nha",
-      ten : "QUY ĐỊNH CƯỚP NHÀ (⭐⭐⭐)",
+      id  : "c2-he-thong-xu-phat",
+      ten : "HỆ THỐNG XỬ PHẠT",
       dieu: [
         {
-          so: "6.1",
-          t : "Điều kiện cần và đủ để mở cướp đồng hồ phải có tối thiểu 5 cảnh…",
+          so: "3",
+          t : "Khung xử phạt thông thường",
           n : [
-            "- Điều kiện cần và đủ để mở cướp đồng hồ phải có tối thiểu 5 cảnh sát; tối đa 5 xe Công an; Khi công an tới người cướp chưa thực hiện xong thao tác, công an sẽ chờ 2 – 3p để người cướp hoàn thành vụ cướp và lên xe tháo chạy. (Thời gian được tính từ lúc có hiệu lệnh còi trong vùng nghe thấy của người cướp)",
-            "Trường hợp cướp sự dụng từ 2 phương tiện trở lên công an được sự dụng 01 máy bay để theo dấu"
+            "Các vi phạm thông thường được xử lý dựa trên mức độ, hậu quả và lịch sử vi phạm.",
+            "3.1. BQT có quyền tăng hoặc giảm hình phạt khi có tình tiết tăng nặng hoặc giảm nhẹ rõ ràng.",
+            "3.2. Cố ý tái phạm, che giấu chứng cứ, lôi kéo người khác vi phạm hoặc gây hậu quả nghiêm trọng là tình tiết tăng nặng.",
+            "3.3. Những hành vi gian lận, phá hoại hệ thống hoặc gây ảnh hưởng đặc biệt nghiêm trọng có thể bị BAN vĩnh viễn ngay lần đầu.",
+            "3.4. Các trường hợp thuộc nhóm vi phạm đỏ được xử lý theo cơ chế riêng tại Điều 4."
           ],
-          phat: "Hình thức phạt: Phạt 7000$/ người + Lao động công ích 20 bãi + tịch thu toàn bộ đồ bẩn.\nVi phạm luật = hủy tình huống\ncố tình vi phạm luật = BAN"
+          phat: "Mức 1 — Nhẹ: Nhắc nhở / Cảnh cáo\nMức 2 — Trung bình: Phạt tù IC 120 phút\nMức 3 — Nặng: Phạt tù IC 360 phút\nMức 4 — Nghiêm trọng: BAN 3–7 ngày\nMức 5 — Đặc biệt nghiêm trọng: BAN vĩnh viễn"
         },
         {
-          so: "6.2",
-          t : "Đối với cướp nhà dân: Tối thiểu team 4 người + được dùng 01 phương…",
-          n : ["- Đối với cướp nhà dân: Tối thiểu team 4 người + được dùng 01 phương tiện 4 chỗ; Tối đa team 8 người + 02 phương tiện 4 chỗ."]
-        },
-        {
-          so: "6.3",
-          t : "Phương tiện được phép tham gia:+ police: 2/5",
+          so: "4",
+          t : "Hệ thống sẹo — Vi phạm đỏ",
           n : [
-            "- Phương tiện được phép tham gia:+ police: 2/5",
-            "+ sjcop1 (báo 2): 3/5 (có dòng xe 3 = 2/5 xe)+ GT63: Tối đa 1/5 (phía cướp có sử dụng xe tốc độ >= 230km/h trở lên = 2/5 xe GT63 tham gia và -1 sjcop1 = 1/5 sjcop1)"
+            "4.1. Người chơi vi phạm đỏ sẽ bị cộng một sẹo vào hồ sơ cá nhân.",
+            "4.2. Khi thành viên Gang/Gia Tộc vi phạm đỏ, cá nhân chịu hình phạt tương ứng và tập thể nhận một WARNING.",
+            "4.3. Gang/Gia Tộc có thể bị cộng một sẹo tập thể nếu:",
+            { ds: [
+              "Có nhiều thành viên cùng tham gia một hành vi vi phạm đỏ.",
+              "Một thành viên cố ý tái phạm sau khi tập thể đã được cảnh báo.",
+              "Ban lãnh đạo chỉ đạo, bao che hoặc tổ chức hành vi vi phạm.",
+              "Tập thể cố tình lợi dụng số đông để phá hoại môi trường RP."
+            ] },
+            "4.4. WARNING không tự động tương đương với sẹo tập thể. Việc chuyển thành sẹo phải có quyết định và bằng chứng cụ thể.",
+            "4.5. Khi đạt ba sẹo tập thể, Gang/Gia Tộc bị giải thể, thu hồi quyền lợi tổ chức theo quy định thành phố.",
+            "4.6. Sẹo được lưu trong hồ sơ xử phạt và không tự động xóa theo thời gian, trừ khi có chính sách ân xá được BQT công bố."
+          ],
+          phat: "Cá nhân — 1 sẹo: Cảnh cáo\nCá nhân — 2 sẹo: BAN 3 ngày\nCá nhân — 3 sẹo: BAN vĩnh viễn\nGang / Gia Tộc — 3 sẹo tập thể: Thu hồi tư cách hoạt động và khai tử Gang/Gia Tộc"
+        },
+        {
+          so: "5",
+          t : "Danh sách vi phạm đỏ",
+          n : [
+            { ds: [
+              "RED-01 — Sử dụng Discord, TeamSpeak hoặc ứng dụng ngoài để giao tiếp IC",
+              "RED-02 — Deathmatching (DM/RDM) — Tấn công, giết người không có lý do RP",
+              "RED-03 — Car Ramming / Vehicle Deathmatching (CRM/VDM)",
+              "RED-04 — Toxic nghiêm trọng, xúc phạm gia đình, phân biệt vùng miền, kích động thù ghét",
+              "RED-05 — Camp Killer — Canh xác, canh hồi sinh và giết liên tục",
+              "RED-06 — Cố tình phá tình huống RP có tổ chức hoặc lặp lại hành vi phá trải nghiệm nghiêm trọng"
+            ] },
+            "Hành vi hack, cheat, khai thác bug nghiêm trọng được xử lý theo Điều 23 và có thể BAN vĩnh viễn trực tiếp, không áp dụng tuần tự hệ thống sẹo."
           ]
         }
       ]
     },
 
-    /* ---------- Chương 7 ---------- */
+    /* ---------- Chương III ---------- */
     {
-      id  : "c7-quy-dinh-giao-oxy",
-      ten : "QUY ĐỊNH GIAO OXY (⭐)",
+      id  : "c3-quy-tac-roleplay",
+      ten : "QUY TẮC ROLEPLAY",
       dieu: [
         {
-          so: "7.1",
-          t : "Điều kiện cần và đủ để mở giao Oxy phải có tối thiểu 2 cảnh sát…",
-          n : ["- Điều kiện cần và đủ để mở giao Oxy phải có tối thiểu 2 cảnh sát; tối đa 2 xe Công an tham gia truy đuổi khi phát hiện tình nghi."],
-          phat: "Hình thức phạt: 1 Bình oxi = 500 + tịch thu toàn bộ đồ bẩn + phạt lao động công ích 10 bãi đối với 10 bình và + 5k / người"
-        },
-        {
-          so: "7.2",
-          t : "Sau 7 phút mà người giao oxy không cắt dấu được, cảnh sát được dùng…",
-          n : ["- Sau 7 phút mà người giao oxy không cắt dấu được, cảnh sát được dùng biện pháp mạnh (Ép xe bằng biện pháp mạnh)"]
-        },
-        {
-          so: "7.3",
-          t : "Phương tiện được phép tham gia:+ Police: 2/2 (có dòng xe 2 or 3 =…",
+          so: "6",
+          t : "IC và OOC",
           n : [
-            "- Phương tiện được phép tham gia:+ Police: 2/2 (có dòng xe 2 or 3 = 1/2",
-            "+ Sjcop1 (báo 2): 1/2 (có dòng xe 3 = 0/2 xe)+ GT63: 1/2 (có xe 3 thì - hết xe 2 - và chỉ áp dụng khi đối tượng có sử dụng xe tốc độ >= 230km/h)"
+            "6.1. IC (In Character): Mọi thông tin, hành động, lời nói và quyết định thuộc về nhân vật trong thành phố.",
+            "6.2. OOC (Out of Character): Những thông tin ngoài đời thực hoặc nằm ngoài bối cảnh nhân vật.",
+            "6.3. Nghiêm cấm mang chuyện OOC vào IC để đe dọa, trả thù, gây áp lực hoặc giải quyết mâu thuẫn.",
+            "6.4. Không được dùng vấn đề IC để công kích, xúc phạm hoặc quấy rối người chơi ngoài đời.",
+            "6.5. Không được gọi tên ADMIN, nhắc án phạt, ticket hoặc các vấn đề quản trị trong cuộc hội thoại IC nhằm phá vỡ tình huống."
+          ]
+        },
+        {
+          so: "7",
+          t : "Metagaming (MG)",
+          n : [
+            "7.1. Metagaming là hành vi sử dụng thông tin nhân vật không thể biết được để tạo lợi thế trong RP.",
+            "7.2. Các hành vi bị cấm bao gồm:",
+            { ds: [
+              "Xem livestream để xác định vị trí người chơi.",
+              "Sử dụng Discord hoặc ứng dụng ngoài để gọi viện trợ IC.",
+              "Biết danh tính người đeo mặt nạ chỉ nhờ ID hoặc tên hiển thị.",
+              "Dùng thông tin từ người đã chết hoặc bất tỉnh để truy tìm đối phương.",
+              "Chuyển thông tin giữa các nhân vật không có liên hệ RP hợp lý."
+            ] },
+            "7.3. Mọi thông tin dùng để hành động IC phải được tiếp nhận bằng phương thức IC hợp lệ."
+          ]
+        },
+        {
+          so: "8",
+          t : "Powergaming (PG)",
+          n : [
+            "8.1. Powergaming là hành vi thực hiện hoặc áp đặt hành động phi thực tế nhằm giành lợi thế.",
+            "8.2. Nghiêm cấm:",
+            { ds: [
+              "Ép người khác phải chấp nhận kết quả RP mà không có cơ hội phản ứng hợp lý.",
+              "Thực hiện hành động vượt quá khả năng bình thường của nhân vật.",
+              "Sử dụng lỗi vật lý hoặc animation để thoát tình huống.",
+              "Cố tình điều khiển phương tiện theo cách phi thực tế để né truy đuổi.",
+              "Ép người khác thực hiện hành động OOC như xóa tài khoản, rời server hoặc chuyển tài sản ngoài game."
+            ] }
+          ]
+        },
+        {
+          so: "9",
+          t : "FearRP và NVL",
+          n : [
+            "9.1. FearRP: Người chơi phải thể hiện sự sợ hãi phù hợp khi nhân vật bị đe dọa nghiêm trọng.",
+            "9.2. NVL (Not Valuing Life): Không coi trọng mạng sống nhân vật.",
+            "9.3. Khi bị khống chế bằng vũ khí trong điều kiện không có khả năng phản kháng hợp lý, người chơi phải tuân thủ tình huống.",
+            "9.4. Nghiêm cấm cố tình lao vào khu vực đấu súng, war hoặc tình huống nguy hiểm khi không có liên quan RP.",
+            "9.5. Không được cố ý hy sinh nhân vật để tránh bị bắt giữ, tránh mất tài sản hoặc phá kèo.",
+            "9.6. Người chơi được phép tìm cách thoát thân nếu có cơ hội RP hợp lý, không vi phạm nguyên tắc FearRP và không lợi dụng lỗi game."
+          ]
+        },
+        {
+          so: "10",
+          t : "FailRP và Non-RP",
+          n : [
+            "10.1. FailRP là hành vi nhập vai không phù hợp với bối cảnh, tình huống hoặc đặc điểm nhân vật.",
+            "10.2. Non-RP là hành vi không thực hiện hoặc cố tình phá vỡ các yêu cầu nhập vai.",
+            "10.3. Nghiêm cấm sử dụng animation, emote, cõng, bế, vác, ngồi vai hoặc các cơ chế khác để né đạn, xuyên vật thể, làm nghề trái cơ chế hoặc thoát RP.",
+            "10.4. Không được cố tình spam âm thanh, animation hoặc hành động để phá trải nghiệm của người khác.",
+            "10.5. Người chơi phải phối hợp giải quyết tình huống RP thay vì cố tình trì hoãn, đứng im hoặc từ chối tương tác không có lý do hợp lý."
           ]
         }
       ]
     },
 
-    /* ---------- Chương 8 ---------- */
+    /* ---------- Chương IV ---------- */
     {
-      id  : "c8-quy-dinh-tang-chu-chat-cam-do-cam",
-      ten : "QUY ĐỊNH TÀNG CHỮ CHẤT CẤM, ĐỒ CẤM (⭐)",
+      id  : "c4-sinh-mang-va-chien-dau",
+      ten : "SINH MẠNG VÀ CHIẾN ĐẤU",
       dieu: [
         {
-          so: "8.1",
-          t : "đồ bẩn bao gồm: Các loại cần sa đóng gói, kẹo Ảo Giác, Caraplis…",
+          so: "11",
+          t : "Deathmatching (DM/RDM)",
           n : [
-            "- đồ bẩn bao gồm: Các loại cần sa đóng gói, kẹo Ảo Giác, Caraplis, bình oxy, tiền bẩn, đồng hồ rolex , dây chuyền vàng, nhẫn kim cương, hóa đơn bẩn, điện thoại bẩn, giấy in tiền, ma túy đá, cocain, toolkit, chìa khóa A, B, C (và các nguyên liệu liên quan); các loại thẻ xanh, đỏ, tím, vàng, đen, biển báo ăn cướp, tivi, tủ lạnh, máy tính, lò vi sóng, tranh bị đánh cắp, điện thoại samsung, lockpick đỏ… các vật phẩm liên quan tới các nghề bẩn, cướp, cướp đều tính là đồ cấm.",
-            "Lưu ý: Cọ nụ, cỏ sấy không tính là đồ bẩn"
-          ],
-          phat: "Tàng chữ từ 01 - 50 item: Tịch thu đồ bẩn , phạt tiền từ 500 – 2.000 tùy theo số lượng + phạt lao động công ích 5 bãi.\nTàng chữ từ 50 - 100 item: Tịch thu đồ bẩn, phạt 2.000 - 5.000$ tùy theo số lượng + phạt lao động công ích 15 bãi.\nTàng chữ trên 100 item: tịch thu đồ bẩn, phạt 10.000$- 30.000$ tùy theo số lượng + phạt lao động công ích 20 bãi."
-        },
-        {
-          so: "8.2",
-          t : "Tàng chữ Lockpick: Mỗi công dân chỉ được mang theo mình không quá…",
-          n : ["- Tàng chữ Lockpick: Mỗi công dân chỉ được mang theo mình không quá 05 lockpick. Mang trên số lượng 5 sẽ tính là tàng chữ đồ cấm"],
-          phat: "+ Tàng chữ từ 5 - 20 lockpick: Phạt 500 - 1.000$ tùy số lượng đem theo + tịch thu để dư 5 cái.\nTàng chữ 50 - 100 lockpick: 1.000$ - 3.000$ tùy số lượng đem theo + tịch thu để dư 5 cái.\nTàng chữ trên 100 lockpick: 5.000$ - 10.000$ tùy số lượng mang theo + tịch thu để dư 5 cái."
-        },
-        {
-          so: "8.3",
-          t : "Tàng chữ vũ khí, công cụ hỗ trợ của ban nghành (đèn pin, súng điện…",
-          n : ["- Tàng chữ vũ khí, công cụ hỗ trợ của ban nghành (đèn pin, súng điện, còng tay)."],
-          phat: "+ Đối với vũ khí và công cụ hỗ trợ của ban nghành, Phạt người tuồn đồ nghành 1.000$ + band khỏi nghành; Phạt người sở hữu đồ 10.000$ + thu hồi."
-        }
-      ]
-    },
-
-    /* ---------- Chương 9 ---------- */
-    {
-      id  : "c9-quy-dinh-trom-cho",
-      ten : "QUY ĐỊNH TRỘM CHÓ (⭐)",
-      dieu: [
-        {
-          so: "9.1",
-          t : "Đối với người dân: Đi tối đa 02 người 01 xe máy (xe 2 bánh) - Bắt…",
-          n : ["- Đối với người dân: Đi tối đa 02 người 01 xe máy (xe 2 bánh) - Bắt buộc sử dụng phương tiện 2 bánh (ưu tien xe máy Bati)"],
-          phat: "+ Phạt khi bị CA bắt: người bắt chó (là người đang bế chó) phạt 2000$ - Đồng phạm phạt 1.000$\nVi phạm luật = hủy tình huống\nCố tình vi phạm luật = BAN"
-        },
-        {
-          so: "9.2",
-          t : "Đối với công An: Có trách nhiệm tuần khu cướp chó & bán chó và chỉ…",
-          n : [
-            "- Đối với công An: Có trách nhiệm tuần khu cướp chó & bán chó và chỉ được dùng phương tiện là xe máy (xe máy nghành) để tham gia tuần và truy bắt kẻ cướp chó.",
-            "Số lượng cảnh sát truy đuổi tối đa/1 đối tượng cướp tình nghi = 2",
-            "1 xe cướp chó = tối đa 2 xe công an truy đuổi",
-            "Sau 5 phút Nếu vẫn dữ được dấu vết kẻ cướp CA được quyền sử dụng Súng điện DP Lốp xe",
-            "Công an không được Cam khu vực bán chó",
-            "Khi đi tuần phải mở đèn + còi 1 - Khi truy bắt phải mở đèn + còi 2 - Trước Khi DB lốp phải mở còi 3"
-          ],
-          phat: "+ Công an sai luật = đóng phạt thay người cướp"
-        }
-      ]
-    },
-
-    /* ---------- Chương 10 ---------- */
-    {
-      id  : "c10-quy-dinh-hai-can-sa",
-      ten : "QUY ĐỊNH HÁI CẦN SA (⭐)",
-      dieu: [
-        {
-          so: "10.1",
-          t : "Người dân được quyền hái cần sa (dạng Cỏ Nụ), Công an không bắt…",
-          n : ["- Người dân được quyền hái cần sa (dạng Cỏ Nụ), Công an không bắt hoặc sử phạt với vật phẩm cỏ nụ."]
-        },
-        {
-          so: "10.2",
-          t : "Công an được quyền kiểm tra và sử phạt:",
-          n : [
-            "- Công an được quyền kiểm tra và sử phạt:",
-            "+ Người dân đang ở khu chế biến cần (xấy, đóng gói)",
-            "+ Người dân có tang chữ cỏ đã sấy và các loại gói cần sa trong người.",
-            "+ Người dân đang có hành vi bán cần cho công dân, NPC trong thành phố.",
-            "+ Công an được quyền kiểm tra những người dân quanh khu vực có báo động bán cần"
-          ],
-          phat: "+ Người dân vi phạm sẽ sử theo tội tàng chữ, buôn bán chất cấm + phạt lao động công ích 10 bãi\n+ Vi phạm luật = hủy tình huống\nCố tình vi phạm luật = BAN"
-        }
-      ]
-    },
-
-    /* ---------- Chương 11 ---------- */
-    {
-      id  : "c11-quy-dinh-trom-bien-bao",
-      ten : "QUY ĐỊNH TRỘM BIỂN BÁO (⭐)",
-      dieu: [
-        {
-          so: "11.1",
-          t : "Cướp biển báo yêu cầu tối thiểu 03 cảnh sát online + tối thiểu: 02…",
-          n : [
-            "- Cướp biển báo yêu cầu tối thiểu 03 cảnh sát online + tối thiểu: 02 người/1 biển tối đa 04 người/1 biển",
-            "- Trong một tính huống cướp không được có quá 2 người cùng cướp tại một vị trí biển báo",
-            "- Trong một vụ cướp biển báo, người tham gia cướp không được dùng quá 01 phương tiện giao thông."
-          ],
-          phat: "+ Đối với trường hợp bị bắt Phạt 2000$/người + phạt lao động công ích 10 bãi + tịch thu toàn bộ đồ bẩn.\n+ Vi phạm luật = hủy tình huống\nCố tình vi phạm luật = BAN"
-        },
-        {
-          so: "11.2",
-          t : "Công an được quyền sử dụng tối đa 03 xe để truy đuổi",
-          n : [
-            "Công an được quyền sử dụng tối đa 03 xe để truy đuổi",
-            "Tham ra truy đuổi tối đa 05 cảnh sát"
+            "11.1. Nghiêm cấm tấn công hoặc giết người khi chưa có nguyên nhân RP chính đáng.",
+            "11.2. Mâu thuẫn phải có quá trình hình thành, tương tác và diễn biến hợp lý trước khi leo thang bạo lực.",
+            "11.3. Những lý do như nhìn đểu, va chạm nhẹ, trêu chọc đơn giản hoặc bất đồng OOC không mặc nhiên cho phép sử dụng vũ khí gây chết người.",
+            "11.4. Không được cố tình tạo lý do RP giả để hợp thức hóa hành vi DM.",
+            "11.5. Hành vi DM thuộc nhóm vi phạm đỏ."
           ]
         },
         {
-          so: "11.3",
-          t : "Phương tiện được phép tham gia:+ Police: 2/2 (có dòng xe 2 or 3 =…",
+          so: "12",
+          t : "Vehicle Deathmatching và Car Ramming",
           n : [
-            "- Phương tiện được phép tham gia:+ Police: 2/2 (có dòng xe 2 or 3 = 1/2",
-            "+ Sjcop1 (báo 2): 1/2 (có dòng xe 3 = 0/2 xe)+ GT63: 1/2 (có xe 3 thì - hết xe 2 - và chỉ áp dụng khi đối tượng có sử dụng xe tốc độ xe tốc độ >= 230km/h)"
+            "12.1. Cấm sử dụng phương tiện làm vũ khí tấn công người khác khi không có tình huống RP hợp lý.",
+            "12.2. Cấm cố tình tông liên tục vào phương tiện hoặc người chơi nhằm phá RP.",
+            "12.3. Không được sử dụng xe để chặn, đẩy, nghiền hoặc làm lật xe đối phương bằng hành vi phi thực tế.",
+            "12.4. Những hành vi gây va chạm trong tình huống truy đuổi phải tuân theo luật truy đuổi và nguyên tắc RP thực tế.",
+            "12.5. CRM/VDM cố ý thuộc nhóm vi phạm đỏ."
+          ]
+        },
+        {
+          so: "13",
+          t : "New Life Rule (NLR) và Revenge Kill (RK)",
+          n : [
+            "13.1. Khi nhân vật chết hoàn toàn và hồi sinh, nhân vật không được ghi nhớ những thông tin trực tiếp liên quan đến tình huống dẫn đến cái chết.",
+            "13.2. Không được quay lại hiện trường để tiếp tục tham chiến hoặc trả thù.",
+            "13.3. Không được sử dụng thông tin từ tình huống đã chết để chỉ điểm, truy bắt hoặc tìm đối phương.",
+            "13.4. Khi được EMS cứu sống, người chơi phải nhập vai phù hợp với tình trạng thương tích. Không được lập tức quay lại chiến đấu hoặc trả thù trong cùng tình huống.",
+            "13.5. Nghiêm cấm Revenge Kill — giết hoặc tấn công người đã hạ gục mình nhằm trả thù tình huống trước.",
+            "13.6. Cấm Camp Killer — canh xác, canh điểm hồi sinh hoặc liên tục hạ gục một người để ngăn họ tiếp tục chơi."
+          ]
+        },
+        {
+          so: "14",
+          t : "Combat Logging",
+          n : [
+            "14.1. Cấm cố tình thoát game, chuyển nhân vật hoặc AFK để né tình huống RP.",
+            "14.2. Cấm thoát game khi đang bị truy đuổi, bắt giữ, khống chế, cướp hoặc giao tranh.",
+            "14.3. Khi mất kết nối ngoài ý muốn, người chơi phải chủ động liên hệ người liên quan hoặc BQT và quay lại tiếp tục tình huống khi có thể.",
+            "14.4. Trường hợp mất kết nối nhiều lần bất thường trong các tình huống bất lợi có thể bị kiểm tra.",
+            "14.5. Nếu không thể tiếp tục tình huống do lỗi kỹ thuật, BQT sẽ căn cứ bằng chứng để quyết định phương án xử lý công bằng."
           ]
         }
       ]
     },
 
-    /* ---------- Chương 12 ---------- */
+    /* ---------- Chương V ---------- */
     {
-      id  : "c12-quy-dinh-cuop-atm",
-      ten : "QUY ĐỊNH CƯỚP ATM (⭐⭐⭐⭐)",
+      id  : "c5-luat-toi-pham-va-cuop",
+      ten : "LUẬT TỘI PHẠM VÀ CƯỚP",
       dieu: [
         {
-          so: "12.1",
-          t : "Điều kiện cần và đủ để mở cướp đồng hồ phải có tối thiểu 7 cảnh…",
+          so: "15",
+          t : "Quy định về cướp tài sản",
           n : [
-            "- Điều kiện cần và đủ để mở cướp đồng hồ phải có tối thiểu 7 cảnh sát; tối đa 6 xe Công an tham gia truy đuổi. Khi công an tới người cướp chưa thực hiện xong thao tác, công an sẽ chờ 10S – 1P để người cướp hoàn thành vụ cướp và lên xe tháo chạy. (Thời gian được tính từ lúc có hiệu lệnh còi trong vùng nghe thấy của người cướp)",
-            "Trường hợp cướp sự dụng từ 2 phương tiện trở lên công an được sự dụng 01 máy bay để theo dấu"
-          ],
-          phat: "+ Hình thức phạt: Phạt 10000/người + phạt lao động công ích 30 bãi + tịch thu toàn bộ đồ bẩn.\n+ Vi phạm luật = hủy tình huống\n+ Cố tình vi phạm luật = BAN"
+            "15.1. Một nhóm tổ chức cướp phải có tối thiểu ba người, trừ các sự kiện hoặc tình huống được BQT cho phép riêng.",
+            "15.2. Mọi hành vi cướp phải có mở đầu RP rõ ràng, yêu cầu hợp lý và cơ hội tương tác cho nạn nhân.",
+            "15.3. Không được cướp cùng một người quá ba lần trong một ngày.",
+            "15.4. Cấm cướp người đang được EMS cấp cứu hoặc đang trong tình huống y tế.",
+            "15.5. Cấm lợi dụng lỗi giao dịch, inventory hoặc animation để cưỡng đoạt tài sản.",
+            "15.6. Cấm ép người chơi chuyển nhượng tài sản ngoài cơ chế RP cho phép hoặc thực hiện giao dịch bằng tiền thật.",
+            "15.7. Sau khi cướp thành công, không được giết nạn nhân chỉ để xóa nhân chứng nếu không có diễn biến RP đặc biệt chính đáng.",
+            "15.8. Cấm cố tình cướp người chơi mới liên tục nhằm gây khó khăn hoặc ép họ rời thành phố."
+          ]
         },
         {
-          so: "12.2",
-          t : "Đối với cướp ATM: Tối thiểu team 4 người + được dùng 01 phương tiện…",
-          n : ["- Đối với cướp ATM: Tối thiểu team 4 người + được dùng 01 phương tiện 4 chỗ + 1 con tin; Tối đa team 10 người + tối đa 03 phương tiện 4 chỗ + Tối thiểu 1 con tin."]
-        },
-        {
-          so: "12.3",
-          t : "Phương tiện được phép tham gia:+ police: 1/6",
+          so: "16",
+          t : "Luật bắt cóc và con tin",
           n : [
-            "- Phương tiện được phép tham gia:+ police: 1/6",
-            "+ sjcop1 (báo 2): 3/6",
-            "+ GT63: 2/6",
-            "+ trường hợp cướp sử dụng xe > 2 xe tốc độ > 230km = tối đa 3/6 GT63 và 3/6 sjcop1"
+            "16.1. Việc bắt cóc phải có mục đích RP hợp lý và không được sử dụng chỉ để quấy rối.",
+            "16.2. Cấm sử dụng con tin giả, con tin tự nguyện thông đồng để tạo lợi thế trong các tình huống cần con tin thật.",
+            "16.3. Cấm cố tình giết con tin trong quá trình thương lượng. Con tin chết hoặc bất tỉnh do hành vi của bên bắt cóc có thể dẫn đến hủy kèo.",
+            "16.4. Cấm bắt cóc một chiều khi đối tượng đang thuộc tình huống RP được bảo vệ hoặc có lý do hợp lệ để từ chối.",
+            "16.5. Bên bắt cóc phải tạo điều kiện thương lượng hợp lý, không được đưa ra yêu cầu bất khả thi nhằm cố tình phá kèo.",
+            "16.6. Nghiêm cấm sử dụng tình huống con tin để ép người chơi thực hiện hành vi xúc phạm, nhục mạ hoặc vi phạm quy định cộng đồng."
           ]
         }
       ]
     },
 
-    /* ---------- Chương 13 ---------- */
+    /* ---------- Chương VI ---------- */
     {
-      id  : "c13-quy-dinh-ra-xe",
-      ten : "QUY ĐỊNH RÃ XE (⭐)",
+      id  : "c6-luat-gang-gia-toc",
+      ten : "LUẬT GANG / GIA TỘC",
       dieu: [
         {
-          so: "13.1",
-          t : "Quy định người tham gia tối đa 3 người rã và 1 người ngồi trên xe…",
-          n : ["- Quy định người tham gia tối đa 3 người rã và 1 người ngồi trên xe setup hỗ trợ người rã."],
-          phat: "+ Hình thức phạt: 500$ + Tịch thu toàn bộ nguyên vật liệu: (Đồng, Kính, Nhôm, Thép, Cao su, Nhựa) + phạt lao động công ích 5 bãi."
-        },
-        {
-          so: "13.2",
-          t : "Đối với rã xe: Tối đa team 4 người + 1 phương tiện hỗ trợ. Có từ 3…",
-          n : ["- Đối với rã xe: Tối đa team 4 người + 1 phương tiện hỗ trợ. Có từ 3 Cảnh sát trở lên."],
-          phat: "+ Vi phạm luật = hủy tình huống.\nCố tình vi phạm luật = BAN."
-        }
-      ]
-    },
-
-    /* ---------- Chương 14 ---------- */
-    {
-      id  : "c14-au-da-trong-vung-vang",
-      ten : "ẨU ĐẢ TRONG VÙNG VÀNG (⭐⭐⭐)",
-      dieu: [
-        {
-          so: "14.1",
-          t : "Ẩu đả có tổ chức (có trên 03 người tham gia)",
-          n : ["Ẩu đả có tổ chức (có trên 03 người tham gia)"],
-          phat: "+ phạt 20.000/1 người không bị ngất; 10000/1 người bị ngất + phạt tất cả lao động công ích 40 bãi"
-        },
-        {
-          so: "14.2",
-          t : "Ẩu đả không tổ chức (dưới 02 người tham gia)",
-          n : ["Ẩu đả không tổ chức (dưới 02 người tham gia)"],
-          phat: "+ phạt 10.000 người không bị ngất; phạt 5.000 người bị ngất. + phạt tất cả lao động công ích 20 bãi"
-        },
-        {
-          so: "14.3",
-          t : "Ẩu đả để gây sự gây rối có tình đánh người vô cớ theo hình thức phá…",
-          n : ["Ẩu đả để gây sự gây rối có tình đánh người vô cớ theo hình thức phá hoại không lí do:"],
-          phat: "+ Nonroplay (Ban 3 ngày - vĩnh viễn)"
-        },
-        {
-          so: "14.4",
-          t : "Ẩu đả có sử dụng vũ khí hỗ trợ (được phép cộng phạt với điều 1 và…",
-          n : ["Ẩu đả có sử dụng vũ khí hỗ trợ (được phép cộng phạt với điều 1 và 2):"],
-          phat: "+ Phạt đánh sẹo vũ khí với trường hợp có giấy phép sử dụng vũ khí và tịch thu vũ khí với trường hợp không có giấy phép sử dụng vũ khí + phạt 10.000$/1 cá nhân có vũ khí trong người. + phạt tất cả lao động công ích 15 bãi"
-        }
-      ]
-    },
-
-    /* ---------- Chương 15 ---------- */
-    {
-      id  : "c15-au-da-trong-vung-do",
-      ten : "ẨU ĐẢ TRONG VÙNG ĐỎ (⭐⭐)",
-      dieu: [
-        {
-          so: "15.1",
-          t : "Ẩu đả có tổ chức:",
-          n : ["Ẩu đả có tổ chức:"],
-          phat: "+ Bị bắt phạt 5000 người không bị ngất; phạt 3000 người bị ngất."
-        },
-        {
-          so: "15.2",
-          t : "Ẩu đả không tổ chức (dưới 02 người tham gia):",
-          n : ["Ẩu đả không tổ chức (dưới 02 người tham gia):"],
-          phat: "+ phạt 1.000 người không bị ngất; phạt 500 người bị ngất."
-        },
-        {
-          so: "15.3",
-          t : "Ẩu đả để gây sự gây rối có tình đánh người vô cớ theo hình thức phá…",
-          n : ["Ẩu đả để gây sự gây rối có tình đánh người vô cớ theo hình thức phá hoại không lí do:"],
-          phat: "+ Ban 3 ngày - vĩnh viễn"
-        },
-        {
-          so: "15.4",
-          t : "Ẩu đả có sử dụng vũ khí hỗ trợ (được phép cộng phạt với điều 1 và…",
-          n : ["Ẩu đả có sử dụng vũ khí hỗ trợ (được phép cộng phạt với điều 1 và 2):"],
-          phat: "+ Phạt 5.000$/1 cá nhân có vũ khí trong người."
-        }
-      ]
-    },
-
-    /* ---------- Chương 16 ---------- */
-    {
-      id  : "c16-quy-dinh-bat-coc",
-      ten : "QUY ĐỊNH BẮT CÓC (⭐⭐)",
-      dieu: [
-        {
-          so: "16.1",
-          t : "Khi bắt cóc người chơi đội bắt cóc phải có ít nhất 3 người trở lên…",
+          so: "17",
+          t : "Tổ chức và trách nhiệm tập thể",
           n : [
-            "- Khi bắt cóc người chơi đội bắt cóc phải có ít nhất 3 người trở lên và người bị bắt cóc phải là người đang hoạt động những nới vắng vẻ dưới 3 người khác băng,nhóm xung quanh và người tổ chức bắt cóc bắt buộc phải có hung khí khống chế con tin.",
-            "- Có thể dàn dựng tính huống bắt cóc hoặc giả mạo con tin để tham gia các hoạt động trong sever.",
-            "- Người chơi không được phép sử dụng emote + tương tác (trick) công dân trong F1 để bắt cóc người khác khi mục tiêu bắt cóc chưa bị trói (buộc tay bằng giây rút)",
-            "- Người bị bắt bóc bắt buộc phải là người đang bị buộc tay bằng giây rút.",
-            "- Người bị bắt cóc phải luôn ở trong trạng thái còn sống - không bị ngất, chết.",
-            "- Tuyệt đối nghiêm cấm các hành vi bắt cóc trong vùng xanh của thành phố.- Trong tình huống người bị bắt cóc sau khi bị trói tay mà có cơ hội để chạy trốn có thể chạy trốn. Người thực hiện hành vi bắt cóc có thể truy đuổi và sử dụng Hộ tống để bắt lại. Sau 5 phút không bắt được lại con tin coi như tình huống thất bại - Người bị bắt cóc coi như tự tẩu thoát thành công (Trong tình huống ngày nghiêm cấm con tin dùng trick để tẩu thoát hoặc alt để ngáng chân).- Nghiêm cấm các tình huống liên hoàn: Bắt cóc lần hai cùng một người, một đối tượng trong vòng 24h",
-            "- Nếu xác định bắt cóc để giết người (trùng sinh) thì sau khi người bị bắt cóc đã chết - thì người thực hiện bắt cóc giết người phải kết thúc mọi câu chuyện, xích mích với người bị giết và không được tiếp tục thực hiện hành vi bắt cóc, trung sinh nhân vật của người đã từng bị bạn trùng sinh trong vòng vòng 7 ngày."
-          ],
-          phat: "+ Vi phạm phạt: 100.000$/1 lần vi phạm + cảnh cáo từ thị trưởng; 3 lần cảnh cáo phạt Band 3 hoặc band vĩnh viễn tùy mức độ."
-        }
-      ]
-    },
-
-    /* ---------- Chương 17 ---------- */
-    {
-      id  : "c17-quy-dinh-su-dung-vu-khi",
-      ten : "QUY ĐỊNH SỬ DỤNG VŨ KHÍ",
-      dieu: [
-        {
-          so: "17.1",
-          t : "Đối với ban nghành nhà nước (Công an, bác sĩ): Không được tự tiện…",
-          n : ["- Đối với ban nghành nhà nước (Công an, bác sĩ): Không được tự tiện rút vũ khí, sử dụng vũ khí trong thành phố, vùng xanh, vùng làm việc khi không thực sự cần thiết."],
-          phat: "+ Vi phạm 3 lần cảnh cáo phạt Band 3 ngày + band khỏi nghành"
+            "17.1. Gang/Gia Tộc phải được thành phố công nhận trước khi hoạt động với tư cách tổ chức chính thức.",
+            "17.2. Người đứng đầu có trách nhiệm quản lý thành viên và duy trì hoạt động phù hợp với luật thành phố.",
+            "17.3. Không được lợi dụng danh nghĩa tổ chức để đe dọa OOC, bắt nạt người chơi mới hoặc phá trải nghiệm cộng đồng.",
+            "17.4. Các hoạt động chiến tranh, tranh chấp lãnh thổ hoặc trả thù phải có lý do IC hợp lệ.",
+            "17.5. Cấm liên minh OOC để huy động lực lượng hoặc chuyển thông tin chiến đấu.",
+            "17.6. Cấm dùng người ngoài Gang/Gia Tộc tham chiến trái với giới hạn số lượng hoặc quy định của kèo.",
+            "17.7. Thành viên đã chết hoặc bị loại khỏi tình huống không được quay lại hỗ trợ.",
+            "17.8. Gang/Gia Tộc phải chấp hành hệ thống WARNING và sẹo tập thể theo Điều 4."
+          ]
         },
         {
-          so: "17.2",
-          t : "Đối với công dân: Không được tự tiện cầm vũ khí, sử dụng vũ khí…",
-          n : ["- Đối với công dân: Không được tự tiện cầm vũ khí, sử dụng vũ khí trong khu vực vùng xanh (Bệnh viện, đồn công an, gara trung tâm, các khu kinh doanh, khu tập trung đông người, các khu làm việc) chỉ sử dụng vũ khí trong khu vực của Xã đoàn quản lý và chịu sự quản lý của người lãnh đạo Xã đoàn. Ngoài ra chỉ sử dụng trong trường hợp bắt cóc con tin tham ra vụ cướp."],
-          phat: "+ Vi phạm phạt: 10.000$/1 lần vi phạm đối với tội sử dụng vũ khí trái phép theo điều 2 quy định\nTái phạm lần 2: phạt 20.000$/1 lần + tịch thu vũ khí 7 ngày."
-        },
-        {
-          so: "17.3",
-          t : "Dùng vũ khí để hành hung vô tổ chức với phương hướng phá game gây…",
-          n : ["- Dùng vũ khí để hành hung vô tổ chức với phương hướng phá game gây ảnh hưởng người khác"],
-          phat: "+ Phạt: Thu hồi vũ khí + Ban 3 ngày - vĩnh viễn tùy mức độ"
-        },
-        {
-          so: "17.4",
-          t : "Người dân có vũ khí phải đăng ký giấy phép sử dụng vũ khí với công…",
-          n : ["- Người dân có vũ khí phải đăng ký giấy phép sử dụng vũ khí với công an"],
-          phat: "+ Không có giấy phép , không chính chủ = tịch thu vũ khí không hoàn trả"
-        },
-        {
-          so: "17.5",
-          t : "Dùng vũ khí để tấm công người khác trong các vụ ẩu đả trái phép gây…",
-          n : ["- Dùng vũ khí để tấm công người khác trong các vụ ẩu đả trái phép gây mất trật tự an ninh thành phố"],
-          phat: "+ Phạt: 5.000$/1 vũ khí tham gia ẩu đả, tấn công."
-        },
-        {
-          so: "17.6",
-          t : "Vũ khí sử dụng để áp chế con tim trong trường hợp: Cướp tạp hóa…",
+          so: "18",
+          t : "Quy tắc War và giao tranh",
           n : [
-            "- Vũ khí sử dụng để áp chế con tim trong trường hợp: Cướp tạp hóa, cướp nhà dân, cướp xe tiền, Cướp ngân hàng",
-            "- Tuyệt đối không được dùng để tấn công gây ngất con tin."
-          ],
-          phat: "+ Vi phạm phạt : Bồi thường cho con tin 5.000$ + nộp phạt 50.000$/1 trường hợp"
-        }
-      ]
-    },
-
-    /* ---------- Chương 18 ---------- */
-    {
-      id  : "c18-quy-dinh-buon-lau",
-      ten : "QUY ĐỊNH BUÔN LẬU(⭐⭐)",
-      dieu: [
-        {
-          so: "18.1",
-          t : "Bán buôn là các hành vi bán chất cấm (cần xa, ma túy,) cho NPC…",
-          n : ["- Bán buôn là các hành vi bán chất cấm (cần xa, ma túy,) cho NPC trong thành phố"],
-          phat: "+Công an bắt được phạt theo luật tàng chữ chất cấm + phạt lao động công ích 10 bãi"
-        },
-        {
-          so: "18.2",
-          t : "Người chơi không được dùng trick để bán nhanh, hoặc logout sau khi…",
-          n : ["- Người chơi không được dùng trick để bán nhanh, hoặc logout sau khi bán thành công."],
-          phat: "+Vi phạm Ban 3 ngày - hoặc vĩnh viễn"
-        },
-        {
-          so: "18.3",
-          t : "Công an khi có tín báo từ người dân (bao gồm cả NPC) được quyền sử…",
-          n : ["- Công an khi có tín báo từ người dân (bao gồm cả NPC) được quyền sử dụng moto hoặc ô tô để tuần khu vực có báo động bán buôn và kiểm tra hành trang những người trong khu vực có báo động, công an bắt buộc phải giai tín hiệu bằng cách chào, hỏi, xin phép trước khi kiểm tra hành trang công dân."]
-        },
-        {
-          so: "18.4",
-          t : "Công dân khi có yêu cầu kiểm tra từ phía công an do có thông báo…",
-          n : ["- Công dân khi có yêu cầu kiểm tra từ phía công an do có thông báo bán buôn tại khu vực công dân đang đứng, công dân vui lòng hợp tác cho công an kiểm tra (nếu bạn là người trong sạch)"],
-          phat: "+Trường hợp không hợp tác công an được quyền áp chế để kiểm tra, nếu có tàng chữ chất cấm sẽ phạt theo luật tàng chữ chất cấm.\n(vật phẩm được dùng để áp chế: súng điện, còng)"
-        },
-        {
-          so: "18.5",
-          t : "Công dân và Cảnh sát phải hoàn toàn sử dụng xe máy trong lúc buôn…",
-          n : ["- Công dân và Cảnh sát phải hoàn toàn sử dụng xe máy trong lúc buôn bán và truy đuổi"],
-          phat: "+ Vi phạm:\nLần 1: Hủy tình huống.\nLần 2: Cố tình Band 3 ngày và black list.\nLần 3: Band Vĩnh viễn."
-        }
-      ]
-    },
-
-    /* ---------- Chương 19 ---------- */
-    {
-      id  : "c19-cuop-apple-store",
-      ten : "CƯỚP APPLE STORE (⭐⭐)",
-      dieu: [
-        {
-          so: "19.1",
-          t : "Điều kiện: Cần tối đa 4 người tham gia vụ cướp + 1 phương tiện 4…",
-          n : ["- Điều kiện: Cần tối đa 4 người tham gia vụ cướp + 1 phương tiện 4 chỗ + 4 Công an trở lên.- Tối đa 03 phương tiện truy đuổi"],
-          phat: "+ Xử phạt: Phạt 3000$ + phạt lao động công ích 20 bãi + Tịch thu toàn bộ đồ bẩn.\n+ Vi phạm luật = hủy tình huống.\n+ Cố tình vi phạm luật = Ban."
-        },
-        {
-          so: "19.2",
-          t : "Phương tiện được phép tham gia:+ police: 2/3",
-          n : [
-            "- Phương tiện được phép tham gia:+ police: 2/3",
-            "+ sjcop1 (báo 2): 1/3 (có dòng xe 3 = 0/3 xe)+ GT63: Tối đa 1/3 (áp dụng khi phía cướp có sử dụng xe tốc độ >= 230km/h trở lên = 1/3 xe GT63 tham gia và -1 sjcop1 = 0/3 sjcop1)"
+            "18.1. War phải xuất phát từ mâu thuẫn IC có diễn biến rõ ràng.",
+            "18.2. Cấm tạo chiến tranh chỉ vì mâu thuẫn OOC hoặc mục đích phá hoại.",
+            "18.3. Mọi bên tham chiến phải tuân thủ giới hạn thành viên, vũ khí, khu vực và điều kiện riêng của từng loại kèo.",
+            "18.4. Cấm người không liên quan tự ý tham chiến, tiếp tế hoặc hỗ trợ thông tin.",
+            "18.5. Cấm sử dụng bug, glitch, vị trí lỗi hoặc phương tiện phi thực tế để tạo lợi thế.",
+            "18.6. Khi một bên đã đầu hàng hoặc không còn khả năng phản kháng, bên còn lại không được cố tình kéo dài hành vi bạo lực để làm nhục.",
+            "18.7. Không được cố tình kéo kèo vào Safe Zone hoặc lợi dụng khu vực an toàn để né giao tranh.",
+            "18.8. Sau khi kết thúc kèo, các bên phải tôn trọng kết quả RP và không được tiếp tục gây chiến bằng lý do OOC."
           ]
         }
       ]
     },
 
-    /* ---------- Chương 20 ---------- */
+    /* ---------- Chương VII ---------- */
     {
-      id  : "c20-bao-ke-dia-ban",
-      ten : "BẢO KÊ ĐỊA BÀN",
+      id  : "c7-khu-vuc-va-ban-nganh",
+      ten : "KHU VỰC VÀ BAN NGÀNH",
       dieu: [
         {
-          so: "20.1",
-          t : "Tất cả các khu vực làm nghề sạch (không bao gồm vườn cần sa, vườn…",
-          n : ["- Tất cả các khu vực làm nghề sạch (không bao gồm vườn cần sa, vườn cokein), khu trong thành phố (ngoại trừ địa bàn của các gia tộc) không được thu phép bảo kê hoặc gây rối trật tự khu vực này."],
-          phat: "+ Vi phạm lần 1: Phạt bồi thường gấp 3 lần số tiền đã bao kê.\n+ Vi phạm lần 2: Phạt bồi thường gấp 5 lần số tiền đã bao kê.\n+ Vi phạm lần 3: Band vĩnh viễn.\n+ Trường hợp Công an phát hiện và đi đến nơi có quyền còng đối tượng tại chỗ."
-        }
-      ]
-    },
-
-    /* ---------- Chương 21 ---------- */
-    {
-      id  : "c21-cuop-tru-dien",
-      ten : "CƯỚP TRỤ ĐIỆN (⭐)",
-      dieu: [
-        {
-          so: "21.1",
-          t : "Điều kiện cướp: có 02 người trở lên và tối đa không quá 06 người +…",
-          n : ["- Điều kiện cướp: có 02 người trở lên và tối đa không quá 06 người + 01 phương tiện 4 bánh + tối thiểu 04 công an online. Khi công an tới người cướp chưa thực hiện xong thao tác, công an sẽ chờ 10S – 1P để người cướp hoàn thành vụ cướp và lên xe tháo chạy. (Thời gian được tính từ lúc có hiệu lệnh còi trong vùng nghe thấy của người cướp)"],
-          phat: "+ Hình thức phạt: Phạt 300$ - 500$/người + phạt lao động công ích 15 bãi + tịch thu toàn bộ đồ bẩn.\n+ Vi phạm luật = hủy tình huống\n+ Cố tình vi phạm luật = BAN"
+          so: "19",
+          t : "Hệ thống vùng",
+          n : [
+            { ds: [
+              "Vùng xanh — Safe Zone: Khu vực an toàn tuyệt đối. Cấm cướp, bắt cóc, tấn công, giết người và khởi tạo giao tranh. Cấm chạy vào vùng xanh để né tình huống đang diễn ra.",
+              "Vùng vàng — Restricted Zone: Khu vực hạn chế bạo lực. Các hành vi cướp, bắt cóc và giao tranh phải tuân thủ quy định riêng của khu vực và có tình huống RP hợp lệ.",
+              "Vùng đỏ — Conflict Zone: Khu vực cho phép giao tranh theo cơ chế thành phố. Không đồng nghĩa với việc được phép DM, sử dụng hack, phá RP hoặc vi phạm các luật khác."
+            ] },
+            "19.1. Ranh giới các vùng được xác định theo bản đồ hoặc thông báo chính thức.",
+            "19.2. Không được lợi dụng ranh giới vùng để tấn công một chiều hoặc né trách nhiệm RP.",
+            "19.3. Trường hợp event có luật riêng, BQT phải thông báo trước khi sự kiện diễn ra."
+          ]
         },
         {
-          so: "21.2",
-          t : "Phương tiện được phép tham gia:+ Police: 2/2 (có dòng xe 2 or 3 =…",
+          so: "20",
+          t : "Luật PD / EMS / Ban ngành",
           n : [
-            "- Phương tiện được phép tham gia:+ Police: 2/2 (có dòng xe 2 or 3 = 1/2",
-            "+ Sjcop1 (báo 2): 1/2 (có dòng xe 3 = 0/2 xe)+ GT63: 1/2 (có xe 3 thì - hết xe 2 - và chỉ áp dụng khi đối tượng có sử dụng xe tốc độ xe tốc độ >= 230km/h)"
+            "20.1. Nhân sự các ban ngành phải nhập vai đúng chức trách, nhiệm vụ và quyền hạn được giao.",
+            "20.2. Cấm tham nhũng, cấu kết tội phạm, lạm quyền hoặc RP bẩn khi chưa được cho phép theo cơ chế thành phố.",
+            "20.3. Nghiêm cấm cố tình lợi dụng quyền hạn công vụ để gây khó khăn, trả thù hoặc phá trải nghiệm người chơi.",
+            "20.4. Không được tấn công, bắt cóc hoặc giết PD/EMS đang làm nhiệm vụ nếu không có mục đích RP chính đáng.",
+            "20.5. EMS đang thực hiện nhiệm vụ cứu người được bảo vệ khỏi hành vi cướp, quấy rối hoặc tấn công vô lý.",
+            "20.6. Những tình huống đặc biệt liên quan đến bắt cóc nhân sự ban ngành hoặc nội dung RP quy mô lớn phải được BQT phê duyệt nếu luật riêng yêu cầu.",
+            "20.7. Nhân sự ban ngành vi phạm luật chung vẫn chịu xử phạt như công dân và có thể bị xử lý kỷ luật nội bộ."
           ]
         }
       ]
     },
 
-    /* ---------- Chương 22 ---------- */
+    /* ---------- Chương VIII ---------- */
     {
-      id  : "c22-cuop-xe-tien",
-      ten : "CƯỚP XE TIỀN (⭐⭐⭐⭐)",
+      id  : "c8-tai-khoan-va-phan-mem",
+      ten : "TÀI KHOẢN VÀ PHẦN MỀM",
       dieu: [
         {
-          so: "22.1",
-          t : "Điều kiện cướp: có 04 người trở lên và tối đa không quá 10 người +…",
-          n : ["Điều kiện cướp: có 04 người trở lên và tối đa không quá 10 người + tối thiểu 01 xe 4 bánh tối đa không quá 04 xe 4 bánh + tối thiểu 07 công an online"],
-          phat: "+ Hình thức phạt: Phạt 5000$ - 10000$/người + phạt lao động công ích 40 bãi + tịch thu toàn bộ đồ bẩn.\n+ Vi phạm luật = hủy tình huống\n+ Cố tình vi phạm luật = BAN"
+          so: "21",
+          t : "Tài khoản và nhân vật",
+          n : [
+            "21.1. Người chơi phải sử dụng tài khoản hợp lệ, do chính mình quản lý.",
+            "21.2. Cấm mua bán, chia sẻ, cho thuê hoặc chuyển nhượng tài khoản.",
+            "21.3. Nghiêm cấm giả mạo BQT, PD, EMS hoặc người có chức vụ trong thành phố.",
+            "21.4. Tên nhân vật phải phù hợp bối cảnh RP; cấm tên phản cảm, xúc phạm hoặc cố tình gây nhầm lẫn.",
+            "21.5. Theo quy định RGI của thành phố, nhân vật phải sử dụng giới tính phù hợp với yêu cầu đăng ký nhân vật do server công bố.",
+            "21.6. Người chơi có trách nhiệm bảo vệ thông tin đăng nhập. Việc khôi phục tài khoản phải dựa trên bằng chứng xác minh hợp lệ."
+          ]
         },
         {
-          so: "22.2",
-          t : "Phương tiện được phép tham gia:+ police: 1/6",
+          so: "22",
+          t : "Multi-accounting",
           n : [
-            "- Phương tiện được phép tham gia:+ police: 1/6",
-            "+ sjcop1 (báo 2): 3/6",
-            "+ GT63: 2/6",
-            "+ trường hợp cướp sử dụng xe > 2 xe tốc độ > 230km = tối đa 3/6 GT63 và 3/6 sjcop1"
+            "22.1. Mỗi người chơi chỉ được sử dụng số lượng tài khoản do thành phố cho phép.",
+            "22.2. Cấm dùng tài khoản phụ để chuyển tài sản, hỗ trợ nhân vật chính hoặc né án phạt.",
+            "22.3. Vi phạm lần đầu: BAN toàn bộ tài khoản 3–7 ngày, xóa dữ liệu tài khoản phụ vi phạm và có thể trừ 50% tài sản tài khoản chính theo quyết định xử lý.",
+            "22.4. Tái phạm: BAN vĩnh viễn toàn bộ tài khoản liên quan.",
+            "22.5. Nghiêm cấm sử dụng tài khoản người khác để tiếp tục chơi trong thời gian bị BAN."
+          ]
+        },
+        {
+          so: "23",
+          t : "Hack, Cheat và Bug",
+          n : [
+            "23.1. Nghiêm cấm mọi phần mềm gian lận, hack, cheat, inject, mod menu hoặc công cụ tạo lợi thế không công bằng.",
+            "23.2. Cấm sử dụng macro, script hoặc công cụ tự động hóa trái phép nhằm farm, chiến đấu hoặc vượt qua cơ chế trò chơi.",
+            "23.3. Cấm khai thác bug nhân bản tài sản, tiền, vật phẩm hoặc các lỗi ảnh hưởng đến kinh tế thành phố.",
+            "23.4. Cấm sử dụng lỗi bản đồ, lỗi animation, lỗi hitbox hoặc lỗi cơ chế để giành lợi thế.",
+            "23.5. Khi phát hiện lỗi nghiêm trọng, người chơi phải ngừng khai thác và báo cáo qua ticket.",
+            "23.6. Hành vi gian lận hoặc cố tình khai thác bug nghiêm trọng có thể bị BAN vĩnh viễn và thu hồi toàn bộ tài sản phát sinh bất hợp pháp."
           ]
         }
       ]
     },
 
-    /* ---------- Chương 23 ---------- */
+    /* ---------- Chương IX ---------- */
     {
-      id  : "c23-luat-san-thu-quy-hiem",
-      ten : "LUẬT SĂN THÚ QUÝ HIẾM (⭐⭐)",
+      id  : "c9-giao-tiep-va-cong-dong",
+      ten : "GIAO TIẾP VÀ CỘNG ĐỒNG",
       dieu: [
         {
-          so: "23.1",
-          t : "Khi đi săn thú công dân có cơ hội nhìn thấy Người tuyết, nếu bạn…",
-          n : ["Khi đi săn thú công dân có cơ hội nhìn thấy Người tuyết, nếu bạn giết người tuyết công an sẽ nhận được thông báo và tiến hành tuần tra khu vực săn và kiểm tra sử phạt kẻ săn người tuyết"],
-          phat: "Phạt 1250$/1 người tuyết + thịch thu xác người tuyết + phạt lao động công ích 10 bãi."
-        }
-      ]
-    },
-
-    /* ---------- Chương 24 ---------- */
-    {
-      id  : "c24-luat-cua-bom",
-      ten : "LUẬT CƯA BOM (⭐⭐)",
-      dieu: [
-        {
-          so: "24.1",
-          t : "Điều kiện cần và đủ khi cưa BOM là 2 cảnh sát online và bạn phải có…",
-          n : ["Điều kiện cần và đủ khi cưa BOM là 2 cảnh sát online và bạn phải có 2 người tham gia"],
-          phat: "- Cưa bom thành công nhận vật phẩm: phạt 1000$ + phạt lao động 10 bãi- Cưa bom thất bại (ngất): phạt lao động 10 bãi"
+          so: "24",
+          t : "Văn hóa ứng xử",
+          n : [
+            "24.1. Mọi người chơi phải tôn trọng nhau trong và ngoài thành phố.",
+            "24.2. Cấm xúc phạm gia đình, phân biệt vùng miền, tôn giáo, giới tính hoặc các hành vi kích động thù ghét.",
+            "24.3. Cấm đe dọa ngoài đời, tiết lộ thông tin cá nhân hoặc tổ chức quấy rối người chơi.",
+            "24.4. Cấm phát tán nội dung riêng tư của người khác khi chưa được phép.",
+            "24.5. Cấm cố tình khiêu khích, spam, phá voice hoặc gây náo loạn cộng đồng.",
+            "24.6. Người chơi phải sử dụng tiếng Việt rõ ràng khi giao tiếp RP, hạn chế cách nói gây hiểu nhầm nghiêm trọng."
+          ]
         },
         {
-          so: "24.2",
-          t : "Nghiêm cấm hành vi cưa bom trước cửa bệnh viện, cửa đồn công an…",
-          n : ["Nghiêm cấm hành vi cưa bom trước cửa bệnh viện, cửa đồn công an, các khu vực tập trung đông người, các khu vực của các doanh nghiệp trong thành phố"],
-          phat: "Vi phạm = band 1 - 3 ngày, tái diễn nhiều lần = band vĩnh viễn"
+          so: "25",
+          t : "Voice Chat",
+          n : [
+            "25.1. Người chơi phải có micro hoạt động để tham gia các tình huống RP yêu cầu giao tiếp.",
+            "25.2. Người mới chưa có micro được tối đa 24 giờ để khắc phục theo quy định thành phố.",
+            "25.3. Cấm sử dụng Voicemod hoặc phần mềm giả giọng khi chưa được BQT cho phép.",
+            "25.4. Cấm sử dụng âm thanh quá lớn, âm thanh gây khó chịu hoặc cố tình phá voice người khác.",
+            "25.5. Cấm dùng phần mềm ngoài để truyền đạt thông tin IC thay cho hệ thống liên lạc trong game."
+          ]
         }
       ]
     },
 
-    /* ---------- Chương 25 ---------- */
+    /* ---------- Chương X ---------- */
     {
-      id  : "c25-luat-cooldown",
-      ten : "LUẬT COOLDOWN (⭐)",
+      id  : "c10-lam-viec-voi-ban-quan-tri",
+      ten : "LÀM VIỆC VỚI BAN QUẢN TRỊ",
       dieu: [
         {
-          so: "25.1",
-          t : "Nếu cố ý cướp trong thời gian cool down : - Đối với biển báo x2…",
-          n : ["Nếu cố ý cướp trong thời gian cool down : - Đối với biển báo x2 hình phạt và + 20p tù liên bang - Đối với oxy x2 hình phạt và + 20p tù liên bang - Đối với nhà dân x3 hình phạt + 30p tù liên bang - Đối với Apple Store x3 hình phạt + 30p tù liên bang"],
-          phat: "Thời gian cool down cho 1 vụ cướp là 15p tính từ thời gian bị phạt lao động."
+          so: "26",
+          t : "Tố cáo và khiếu nại",
+          n : [
+            "26.1. Người chơi khi tố cáo phải cung cấp bằng chứng rõ ràng như video, ảnh hoặc dữ liệu hợp lệ.",
+            "26.2. Bằng chứng phải thể hiện đủ bối cảnh để đánh giá tình huống; video cắt ghép hoặc thiếu diễn biến quan trọng có thể không được chấp nhận.",
+            "26.3. Người tố cáo và người bị tố cáo phải giữ thái độ văn minh, hợp tác.",
+            "26.4. Cấm gian dối lời khai, chỉnh sửa chứng cứ nhằm thay đổi bản chất sự việc.",
+            "26.5. Phòng xử lý chỉ gồm người tố cáo, người bị tố cáo và người có liên quan trực tiếp hoặc được BQT triệu tập.",
+            "26.6. Người ngoài tự ý can thiệp có thể bị một sẹo cảnh cáo; tái phạm có thể bị xử lý nặng hơn.",
+            "26.7. Cấm phát tán, bóc phốt hoặc đào lại những vụ việc đã được giải quyết nhằm kích động mâu thuẫn.",
+            "26.8. Người chơi có quyền yêu cầu xem xét lại án phạt bằng ticket nếu có chứng cứ mới hoặc phát hiện sai sót trong quá trình xử lý."
+          ]
+        },
+        {
+          so: "27",
+          t : "Trách nhiệm của BQT",
+          n : [
+            "27.1. BQT phải xem xét tình huống dựa trên chứng cứ và quy định thành phố.",
+            "27.2. Không được sử dụng quyền quản trị để thiên vị, trả thù cá nhân hoặc can thiệp trái phép vào tình huống RP.",
+            "27.3. Các quyết định xử phạt phải ghi nhận lý do, hình thức xử lý và bằng chứng liên quan trong hồ sơ quản trị.",
+            "27.4. Những vụ việc có xung đột lợi ích phải được chuyển cho thành viên BQT khác xem xét khi có thể.",
+            "27.5. BQT có thể áp dụng biện pháp tạm thời để ngăn hành vi phá hoại đang diễn ra, sau đó phải kiểm tra và xác nhận hình phạt chính thức."
+          ]
+        }
+      ]
+    },
+
+    /* ---------- Chương XI ---------- */
+    {
+      id  : "c11-quy-dinh-dac-biet",
+      ten : "QUY ĐỊNH ĐẶC BIỆT",
+      dieu: [
+        {
+          so: "28",
+          t : "Server Restart",
+          n : [
+            "28.1. Cấm thực hiện hành vi cướp trong vòng 30 phút trước và 30 phút sau thời điểm restart được thông báo.",
+            "28.2. Cấm lợi dụng restart để né bắt giữ, tránh mất tài sản hoặc xóa bỏ hậu quả RP.",
+            "28.3. Cấm cố tình kéo dài tình huống để hệ thống restart làm gián đoạn kèo.",
+            "28.4. Những tình huống chưa hoàn thành trước restart phải được các bên thống nhất tiếp tục hoặc yêu cầu BQT hỗ trợ."
+          ]
+        },
+        {
+          so: "29",
+          t : "Quy định về nội dung nhạy cảm",
+          n : [
+            "29.1. Cấm nhập vai trẻ em trong những tình huống bạo lực, tình dục hoặc bóc lột.",
+            "29.2. Nội dung RP tình dục (ERP) chỉ được xem xét khi có sự đồng thuận rõ ràng giữa những người trưởng thành và phải tuân thủ quy định nền tảng; khuyến khích không thực hiện trong server.",
+            "29.3. Cấm ép buộc người khác tham gia nội dung nhạy cảm.",
+            "29.4. Cấm nhập vai với mục đích tuyên truyền cực đoan, kích động thù ghét hoặc xúc phạm cá nhân, cộng đồng.",
+            "29.5. Cấm sử dụng RP làm lý do để quấy rối hoặc gây tổn thương người chơi ngoài đời."
+          ]
+        },
+        {
+          so: "30",
+          t : "Quy định về sự kiện",
+          n : [
+            "30.1. Những sự kiện như AirDrop, Arena, đua xe và hoạt động do BQT tổ chức phải tuân theo luật sự kiện riêng.",
+            "30.2. Không được mang mâu thuẫn IC vào sự kiện OOC nếu sự kiện không cho phép.",
+            "30.3. Cấm sử dụng bug, cheat hoặc hành vi phá hoại để giành phần thưởng.",
+            "30.4. Người tham gia phải tuân thủ thể thức, giới hạn trang bị và quyết định của trọng tài sự kiện.",
+            "30.5. Trường hợp luật sự kiện có quy định đặc thù khác với luật chung, BQT phải thông báo rõ phạm vi ngoại lệ trước khi bắt đầu."
+          ]
+        }
+      ]
+    },
+
+    /* ---------- Chương XII ---------- */
+    {
+      id  : "c12-dieu-khoan-thi-hanh",
+      ten : "ĐIỀU KHOẢN THI HÀNH",
+      mo  : "Tôn trọng — Công bằng — Văn minh — Nhập vai chân thật",
+      dieu: [
+        {
+          so: "31",
+          t : "Hiệu lực và cập nhật",
+          n : [
+            "31.1. Bộ luật có hiệu lực kể từ thời điểm được Ban Quản Trị Venus World công bố chính thức.",
+            "31.2. Mọi thay đổi phải được công bố công khai tại kênh thông báo hoặc kênh luật thành phố.",
+            "31.3. Các hành vi vi phạm được xử lý theo phiên bản luật có hiệu lực tại thời điểm xảy ra hành vi, trừ trường hợp chính sách xử lý mới có lợi hơn cho người vi phạm và được BQT chấp thuận.",
+            "31.4. Các quy định chuyên ngành như luật PD, EMS, Gang/Gia Tộc, kinh tế, cướp ngân hàng, lãnh thổ và sự kiện được áp dụng bổ sung nhưng không được trái với các nguyên tắc nền tảng của bộ luật này.",
+            "Mỗi công dân là một phần của câu chuyện. Mỗi hành động đều có hậu quả. Hãy cùng xây dựng Venus World thành một thành phố Roleplay chuyên nghiệp, nơi trải nghiệm của cộng đồng luôn được đặt lên hàng đầu."
+          ]
         }
       ]
     }
