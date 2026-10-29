@@ -83,6 +83,12 @@ mark{background:#FFD3E8;color:inherit;border-radius:3px;padding:0 1px}
 .orbfall{position:absolute;inset:14%;border-radius:50%;background:repeating-radial-gradient(circle at 60% 38%, #fff 0 8px, var(--accent) 8px 11px);display:none}
 .nogl .orbfall{display:block}
 
+/* ---- Chọn bộ luật ---- */
+.books{display:flex;gap:6px 22px;flex-wrap:wrap;margin-top:26px;font-size:15px;font-weight:800}
+.books a{color:var(--mute);border-bottom:2px solid transparent;padding-bottom:2px;transition:color .2s,border-color .2s}
+.books a:hover{color:var(--soft)}
+.books a[aria-current]{color:var(--ink);border-color:var(--accent)}
+
 /* ---- Thanh tìm kiếm dính ---- */
 .tools{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(246,238,244,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border-top:1.5px solid var(--ink);border-bottom:1px solid var(--rule);padding:14px var(--gr) 12px var(--gl)}
@@ -201,10 +207,15 @@ footer a:hover{color:var(--ink)}
     <h1>Luật thành <em>phố</em></h1>
     <p class="intro">Đọc trước khi vào phố. Vào server là mặc định bạn đã đồng ý với toàn bộ nội dung ở đây. Mỗi điều ghi rõ mức xử lý.</p>
     <div class="meta">
-      <div><b id="mChuong">12</b>chương</div>
+      <div><b id="mChuong">12</b><span id="mChuongLbl">chương</span></div>
       <div><b id="mDieu">31</b>điều</div>
       <div><b id="mDate">—</b>cập nhật lần cuối</div>
     </div>
+    <nav class="books" aria-label="Bộ luật">
+      <a href="luat.html" aria-current="page">Luật thành phố</a>
+      <a href="luat-gang.html">Luật Gang</a>
+      <a href="luat-airdrop.html">Luật Airdrop</a>
+    </nav>
   </div>
   <div class="orbwrap" id="orbwrap" aria-hidden="true">
     <div class="orbfall"></div>
@@ -238,7 +249,7 @@ footer a:hover{color:var(--ink)}
 </div>
 
 <main class="book">
-  <nav class="toc" id="luatToc" aria-label="Mục lục chương"><h2>Mục lục</h2></nav>
+  <nav class="toc" id="luatToc" aria-label="Mục lục"><h2>Mục lục</h2></nav>
   <div>
     <div id="luatBody"></div>
     <div class="empty" id="luatEmpty" hidden><b>Không có điều luật nào khớp</b>Thử từ khoá ngắn hơn, hoặc xoá ô tìm kiếm để xem lại toàn bộ.</div>
@@ -280,6 +291,7 @@ var CONFIG = window.CONFIG || { discord:'https://discord.gg/venusworld', ip:'con
 
   /* ---------- dựng nội dung từ data-luat.js ---------- */
   var DATA = window.VENUS_LUAT || {chuong: []};
+  var NHAN = DATA.nhan || 'Chương';
   var boDau = function(s){ return (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase(); };
   var gon = function(s){ return (s || '').replace(/^[\s\-–•+]+/, '').trim(); };
   var chuong = (DATA.chuong || []).filter(function(c){ return c && c.ten && (c.dieu || []).some(function(d){ return d && d.t; }); });
@@ -292,7 +304,7 @@ var CONFIG = window.CONFIG || { discord:'https://discord.gg/venusworld', ip:'con
     tong += dieu.length;
     var sec = el('section', 'chap'); sec.id = c.id || ('chuong-' + (ci + 1));
     var h = el('div', 'chap-h');
-    h.appendChild(el('span', 'no', 'Chương ' + pad(ci + 1)));
+    h.appendChild(el('span', 'no', NHAN + ' ' + pad(ci + 1)));
     h.appendChild(el('h2', 'hl', c.ten));
     if (c.mo) h.appendChild(el('p', 'hl', c.mo));
     sec.appendChild(h);
@@ -333,14 +345,14 @@ var CONFIG = window.CONFIG || { discord:'https://discord.gg/venusworld', ip:'con
     host.appendChild(sec);
 
     var a = el('a'); a.href = '#' + sec.id;
-    a.appendChild(el('span', null, pad(ci + 1))); a.appendChild(el('span', null, c.ten.charAt(0) + c.ten.slice(1).toLowerCase())); a.appendChild(el('span', null, dieu.length));
+    a.appendChild(el('span', null, pad(ci + 1))); a.appendChild(el('span', null, c.muc || (c.ten.charAt(0) + c.ten.slice(1).toLowerCase()))); a.appendChild(el('span', null, dieu.length));
     toc.appendChild(a);
     khoi.push({sec: sec, link: a, rules: rules});
   });
   function setOpen(r, o){ r.classList.toggle('open', o); $('.rule-q', r).setAttribute('aria-expanded', o); }
 
-  $('#mChuong').textContent = chuong.length; $('#mDieu').textContent = tong; $('#mDate').textContent = DATA.capNhat || '—';
-  var countEl = $('#luatCount'); countEl.textContent = tong + ' điều · ' + chuong.length + ' chương';
+  $('#mChuong').textContent = chuong.length; $('#mDieu').textContent = tong; $('#mDate').textContent = DATA.capNhat || '—'; $('#mChuongLbl').textContent = NHAN.toLowerCase();
+  var countEl = $('#luatCount'); countEl.textContent = tong + ' điều · ' + chuong.length + ' ' + NHAN.toLowerCase();
 
   /* ---------- mở / thu tất cả ---------- */
   var allBtn = $('#luatAll'), allOpen = false;
@@ -384,7 +396,7 @@ var CONFIG = window.CONFIG || { discord:'https://discord.gg/venusworld', ip:'con
       else if (!mo && r.classList.contains('auto')){ setOpen(r, false); r.classList.remove('auto'); }
     });
     empty.hidden = !!hien;
-    countEl.textContent = qk ? ('Tìm thấy ' + hien + ' điều') : (tong + ' điều · ' + chuong.length + ' chương');
+    countEl.textContent = qk ? ('Tìm thấy ' + hien + ' điều') : (tong + ' điều · ' + chuong.length + ' ' + NHAN.toLowerCase());
     $$('.chips button').forEach(function(b){ b.classList.toggle('on', boDau(b.dataset.q) === qk); });
     try { var u = new URL(location.href); if (raw) u.searchParams.set('q', raw); else u.searchParams.delete('q'); history.replaceState(null, '', u.toString()); } catch(e){}
     spy();

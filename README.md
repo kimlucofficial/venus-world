@@ -8,6 +8,11 @@
 - Toàn bộ hiệu ứng nặng tắt khi bật `prefers-reduced-motion`; nội dung vẫn hiện nếu JS lỗi.
 - Phần CSS mới nằm cuối `venus-b.css` (khối "v5 · LỚP PREMIUM").
 
+## Luật Gang & Luật Airdrop (mới)
+- `luat-gang.html` đọc `assets/js/data-luat-gang.js`; `luat-airdrop.html` đọc `assets/js/data-luat-airdrop.js`. Cấu trúc dữ liệu giống hệt `data-luat.js`.
+- Thêm 2 trường không bắt buộc: `nhan` (chữ hiện trước số chương, mặc định "Chương"; 2 bộ luật mới dùng "Phần") và `muc` trong từng chương (tên ngắn hiện ở mục lục).
+- Cả 3 trang luật có hàng chuyển bộ luật ngay dưới số liệu đầu trang: Luật thành phố / Luật Gang / Luật Airdrop.
+
 > Trang đang dùng thật: `index.html` + `luat.html` (dùng `venus-b.css` + `core.js`). Các file `gioi-thieu.html`, `thanh-pho.html`, `vao-server.html`, `hoi-dap.html` vẫn là bản cũ (`venus.css` + `venus.js`), không có trên menu.
 
 ---
